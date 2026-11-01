@@ -1,0 +1,935 @@
+<!-- Hak cipta © 2026 Media Pembelajaran SiDaSi SuperMetri -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bangun Datar &amp; Bangun Ruang — Media Pembelajaran Interaktif</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&family=STIX+Two+Text:ital,wght@0,500;0,700;1,500&display=swap">
+<style>
+:root{--bg:#eaf2ff;--card:#fff;--ink:#14213d;--mut:#5b6b85;--line:#dfe7f3;--pri:#2563eb;--on:#fff;--soft:#e3edff;--ok:#15803d;--okbg:#dcfce7;--no:#b91c1c;--nobg:#fee2e2;--fx:#f1f6ff;--fxl:#9dbdf5;--sh:0 14px 34px -22px rgba(30,64,175,.55);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0c1426;--card:#16213a;--ink:#e8eefa;--mut:#9aabc6;--line:#2a3857;--pri:#7aa7ff;--on:#0c1426;--soft:#1d2f5c;--ok:#4ade80;--okbg:#10361f;--no:#fca5a5;--nobg:#3f1a1d;--fx:#182a52;--fxl:#3d5ca6}}
+:root[data-theme=dark]{--bg:#0c1426;--card:#16213a;--ink:#e8eefa;--mut:#9aabc6;--line:#2a3857;--pri:#7aa7ff;--on:#0c1426;--soft:#1d2f5c;--ok:#4ade80;--okbg:#10361f;--no:#fca5a5;--nobg:#3f1a1d;--fx:#182a52;--fxl:#3d5ca6}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font:500 15px/1.5 Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg) radial-gradient(circle at 8% -8%,var(--soft),transparent 45%)}
+[hidden]{display:none!important}
+.view{display:none}.view.on{display:block;animation:in .3s ease}@keyframes in{from{opacity:0}}
+.wrap{max-width:1040px;margin:auto;padding:0 16px 40px}
+header{text-align:center;padding:20px 16px 6px}
+h1{margin:0 0 6px;font-size:clamp(1.7rem,4.4vw,2.6rem);font-weight:900;letter-spacing:-.02em;color:var(--pri)}
+header p{margin:0 auto;max-width:520px;color:var(--mut)}
+.cr{display:block;margin:0 auto 8px;font-size:.8rem;line-height:1.4;color:var(--mut)}
+.dash{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;padding-top:18px}
+.card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:22px 16px;background:var(--card);border:2px solid var(--line);border-radius:22px;color:inherit;font:inherit;cursor:pointer;box-shadow:var(--sh);transition:transform .25s,border-color .2s}
+.card:hover,.card:focus-visible{transform:translateY(-5px);border-color:var(--pri);outline:none}
+.card svg{width:76px;height:76px}.card h3{margin:4px 0 0;font-size:1.1rem}.card p{margin:0;font-size:.82rem;color:var(--mut)}
+.card span{margin-top:8px;font-weight:800;font-size:.8rem;color:var(--pri);background:var(--soft);padding:6px 14px;border-radius:99px}
+.bar{max-width:1040px;margin:auto;padding:14px 16px;display:flex;justify-content:space-between;gap:8px}
+.mt{margin:0 0 16px;text-align:center;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:900;color:var(--pri)}
+.btn{border:0;border-radius:13px;padding:11px 18px;font:inherit;font-weight:800;cursor:pointer;background:var(--pri);color:var(--on);transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--fxl);outline-offset:2px}
+.btn.gh{background:var(--card);color:var(--ink);border:1px solid var(--line)}.btn.sm{padding:8px 14px;font-size:.85rem}.btn.on{background:#f59e0b;color:#fff}
+.ws{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:start}@media(max-width:820px){.ws{grid-template-columns:1fr}}
+.pn{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--sh);margin-bottom:0}.ls{margin-top:16px}
+svg#svg-lingkaran,.pn>svg{width:100%;height:auto;display:block;touch-action:none}
+.st{display:flex;gap:12px;align-items:center;padding:13px 15px;border-radius:15px;font-weight:900;margin-bottom:16px;transition:background .25s,color .25s}
+.st.ok{background:var(--okbg);color:var(--ok)}.st.no{background:var(--nobg);color:var(--no)}.st small{display:block;font-weight:600;opacity:.9}.ic{font-size:1.5rem}
+.ctl{margin-bottom:15px}.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700}
+output{background:var(--soft);color:var(--pri);padding:2px 10px;border-radius:9px;font-weight:800;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:8px;border-radius:9px;-webkit-appearance:none;appearance:none;cursor:pointer;background:linear-gradient(var(--pri),var(--pri)) 0 0/var(--p,50%) 100% no-repeat,var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid var(--pri);box-shadow:0 3px 10px rgba(37,99,235,.45);transition:transform .15s}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.2)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--pri)}
+.pre{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.ck{margin-top:14px;display:grid;gap:8px}
+.c{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;font-weight:700;font-size:.88rem}.c i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.75rem;color:#fff}
+.c.p{background:var(--okbg);color:var(--ok)}.c.p i{background:#16a34a}.c.f{background:var(--nobg);color:var(--no)}.c.f i{background:#dc2626}
+h3{margin:0 0 12px;font-size:1.05rem;display:flex;gap:10px;align-items:center}h3 i{font-style:normal;font-size:.78rem;background:var(--soft);color:var(--pri);padding:3px 10px;border-radius:8px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:14px}.ls .info{margin-top:0}
+.it{background:var(--fx);border:1px solid var(--line);border-radius:12px;padding:8px 12px}.it.hi{border-color:var(--fxl)}.it span{display:block;font-size:.75rem;color:var(--mut);font-weight:700}.it b{font-variant-numeric:tabular-nums}
+.fx{margin-top:12px;padding:14px 16px;border-radius:16px;background:var(--fx);border:1.5px dashed var(--fxl);font-family:"STIX Two Text","Cambria Math",Georgia,serif;font-size:1.02rem}
+.fx h4{margin:0 0 6px;font:800 .9rem Nunito,system-ui,sans-serif;color:var(--pri)}.fx p{margin:3px 0}.fx small{font-family:Nunito,system-ui,sans-serif;color:var(--mut)}
+.res{display:inline-block;background:var(--pri);color:var(--on);padding:4px 14px;border-radius:10px;font-weight:700;font-size:1.15rem}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 3px}.fr i{font-style:normal;padding:0 4px}.fr i:first-child{border-bottom:1.5px solid currentColor}
+.key{font:600 .82rem Nunito,system-ui,sans-serif!important;color:var(--mut);margin-top:10px!important}
+.gr{display:grid;gap:3px;margin:16px auto;padding:8px;background:var(--fx);border:1px solid var(--line);border-radius:14px}.gr i{aspect-ratio:1;background:var(--pri);opacity:.85;border-radius:3px;animation:pop .35s backwards}@keyframes pop{from{transform:scale(0)}}
+.tip{text-align:center;color:var(--mut);font-weight:700;margin:8px 0 0}.hs{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:10px;font-weight:700}
+select{padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700}
+.tabs{display:flex;gap:6px;background:var(--fx);padding:5px;border-radius:12px;margin-bottom:10px}.tabs button{flex:1;border:0;padding:9px;border-radius:9px;background:none;color:var(--mut);font:inherit;font-weight:800;cursor:pointer}.tabs .on{background:var(--card);color:var(--pri);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.chips button{--c:#334155;display:flex;gap:7px;align-items:center;padding:7px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;font-weight:700;font-size:.83rem;cursor:pointer;transition:background .2s}
+.chips i{width:11px;height:11px;border-radius:50%;background:var(--c)}.chips .on{background:var(--c);color:#fff;border-color:var(--c)}.chips .on i{background:#fff}
+.pill{fill:var(--card);stroke-width:1.4}.gl{stroke:var(--line);stroke-width:1}.gl.ax{stroke-width:2}.ext{stroke:#94a3b8;stroke-width:1.5;stroke-dasharray:4 4}.drag{fill:transparent;cursor:grab}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:6px 16px 30px}
+</style>
+</head>
+<body>
+<main></main>
+<footer>Media Pembelajaran Matematika · Bangun Datar &amp; Bangun Ruang</footer>
+<script>
+/* ── Utilitas ───────────────────────────────────────────── */
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg',PI=Math.PI,rad=d=>d*PI/180;
+const mk=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.append(e);return e};
+const num=v=>(+v).toLocaleString('id-ID',{maximumFractionDigits:2}); // maks. 2 desimal
+const dist=(p,q)=>Math.hypot(p.x-q.x,p.y-q.y);
+const unit=(a,b)=>{const d=dist(a,b)||1;return{x:(b.x-a.x)/d,y:(b.y-a.y)/d}};
+const add=(p,u,k)=>({x:p.x+u.x*k,y:p.y+u.y*k}),mid=(p,q)=>({x:(p.x+q.x)/2,y:(p.y+q.y)/2});
+const angleAt=(v,p,q)=>{const d=Math.abs(Math.atan2(p.y-v.y,p.x-v.x)-Math.atan2(q.y-v.y,q.x-v.x));return(d>PI?2*PI-d:d)*180/PI};
+const triArea=(a,b,c)=>Math.abs((b.x-a.x)*(c.y-a.y)-(c.x-a.x)*(b.y-a.y))/2;
+const text=(g,x,y,s,fill,size=12)=>{const t=mk('text',{x,y,fill,'font-size':size,'font-weight':800,'text-anchor':'middle','dominant-baseline':'central','font-family':'Nunito,system-ui,sans-serif'},g);t.textContent=s};
+const pill=(g,x,y,s,stroke,size=12)=>{const w=s.length*size*.6+16;mk('rect',{x:x-w/2,y:y-11,width:w,height:22,rx:8,class:'pill',stroke},g);text(g,x,y+.5,s,stroke,size)};
+const rightMark=(g,v,u1,u2,stroke,s=11)=>{const a=add(v,u1,s),b=add(a,u2,s),c=add(v,u2,s);mk('polyline',{points:[a,b,c].map(q=>`${q.x.toFixed(1)},${q.y.toFixed(1)}`).join(' '),fill:'none',stroke,'stroke-width':2},g)};
+/* ── Kotak rumus ────────────────────────────────────────── */
+const frac=(n,d)=>`<span class="fr"><i>${n}</i><i>${d}</i></span>`;
+let box=(t,rows,res,u)=>`<div class="fx"><h4>${t}</h4>${rows.map(r=>`<p>${r}</p>`).join('')}<p><span class="res">${res}</span> <small>${u}</small></p></div>`;
+const key=(...x)=>`<p class="key"><b>Keterangan:</b> ${x.join(' · ')}</p>`;
+const slider=(l,da,mn,mx,sp,v)=>`<div class="ctl"><div class="ch"><span>${l}</span><output></output></div><input type="range" ${da} min="${mn}" max="${mx}" step="${sp}" value="${v}"></div>`;
+const paint=r=>{r.style.setProperty('--p',(r.value-r.min)/(r.max-r.min)*100+'%');$('output',r.parentNode).textContent=num(r.value)+(r.dataset.u||'')};
+
+/* ── Data bangun datar (satu mesin gambar untuk semuanya) ── */
+const para=({a,b,s})=>{const r=rad(s),x=b*Math.cos(r),y=b*Math.sin(r);return[{x:0,y:0},{x:a,y:0},{x:a+x,y:y},{x,y}]};
+const paraName=p=>p.s===90?(p.a===p.b?'Persegi':'Persegi panjang'):p.a===p.b?'Belah ketupat':'Jajar genjang';
+const paraInfo=p=>{const t=p.b*Math.sin(rad(p.s));return[['Bangun',paraName(p),1],['Tinggi t',num(t)],['Keliling',num(2*(p.a+p.b))],['Luas',num(p.a*t)]]};
+const paraK=(p,x,y)=>box('Keliling',[`K = ${x} + ${y} + ${x} + ${y} = 2 × (${x} + ${y})`,`K = 2 × (${p.a} + ${p.b})`],`K = ${num(2*(p.a+p.b))}`,'satuan')+key('<b>K</b> keliling',`<b>${x}</b> dan <b>${y}</b> sisi berdekatan`);
+const paraL=p=>box('Luas',['L = a × b × sin θ',`L = ${p.a} × ${p.b} × sin ${p.s}°`],`L = ${num(p.a*p.b*Math.sin(rad(p.s)))}`,'satuan²')+key('<b>θ</b> sudut apit kedua sisi');
+const kiteLike=(p,s1,s2,name,sub)=>{const ar=p.d1*p.d2/2;return{ok:true,title:'Ini '+name.toUpperCase()+'!',sub,checks:[[true,name==='Belah ketupat'||name==='Persegi'?'Keempat sisi sama panjang':`Dua pasang sisi berdekatan sama panjang (${num(s1)} dan ${num(s2)})`],[true,'Diagonal berpotongan tegak lurus (90°)']],info:[['Bangun',name,1],['d₁ × d₂',`${p.d1} × ${p.d2}`],['Keliling',num(2*(s1+s2))],['Luas',num(ar)]],
+ K:box('Keliling',s1===s2?['K = 4 × s',`K = 4 × ${num(s1)}`]:['K = 2 × (s₁ + s₂)',`K = 2 × (${num(s1)} + ${num(s2)})`],`K = ${num(2*(s1+s2))}`,'satuan')+key('<b>s</b> panjang sisi'),
+ L:box('Luas',[`L = ${frac(1,2)} × d₁ × d₂`,`L = ${frac(1,2)} × ${p.d1} × ${p.d2}`],`L = ${num(ar)}`,'satuan²')+key('<b>d₁, d₂</b> panjang diagonal')}};
+const O4=[['Titik D ke AB',3,0,1],['Titik C ke AB',2,0,1],['Titik A ke CD',0,3,2],['Titik B ke CD',1,3,2]];
+
+const SH=[
+{id:'persegi',name:'Persegi',tip:'Keempat sisi sama panjang, keempat sudut 90°.',color:'#2563eb',icon:'16,16 64,16 64,64 16,64',
+ sl:[['a','Sisi mendatar (a)',2,10,1,6],['b','Sisi miring / tegak (b)',2,10,1,6],['s','Besar sudut',30,150,1,90,'°']],grids:[[2,2],[5,5],[10,10]],geo:para,
+ calc:p=>{const eq=p.a===p.b,rt=p.s===90,ok=eq&&rt;return{ok,title:ok?'Ini PERSEGI!':'Bukan persegi',sub:ok?'Keempat sisi sama panjang & keempat sudut 90°':'Bangun ini adalah '+paraName(p).toLowerCase(),
+  checks:[[eq,`Keempat sisi sama panjang (a = ${p.a}, b = ${p.b})`],[rt,`Keempat sudut 90° (sekarang ${p.s}°)`]],info:paraInfo(p),
+  K:ok?box('Keliling persegi',['K = s + s + s + s = 4 × s',`K = 4 × ${p.a}`],`K = ${4*p.a}`,'satuan')+key('<b>s</b> panjang sisi'):paraK(p,'a','b'),
+  L:ok?box('Luas persegi',['L = s × s = s²',`L = ${p.a}²`],`L = ${p.a*p.a}`,'satuan²')+key('<b>s</b> panjang sisi'):paraL(p)}}},
+{id:'persegi-panjang',name:'Persegi Panjang',tip:'Sisi berhadapan sama panjang, sudut 90°.',color:'#0891b2',icon:'8,22 72,22 72,58 8,58',
+ sl:[['a','Panjang (p)',2,10,1,6],['b','Lebar (l)',2,10,1,3],['s','Besar sudut',30,150,1,90,'°']],grids:[[3,4],[4,6],[5,8]],geo:para,
+ calc:p=>{const rt=p.s===90;return{ok:rt,title:rt?(p.a===p.b?'Persegi panjang istimewa (= persegi)':'Ini PERSEGI PANJANG!'):'Bukan persegi panjang',sub:rt?'Sisi berhadapan sama panjang & keempat sudut 90°':`Sudut belum 90° (sekarang ${p.s}°)`,
+  checks:[[true,`Sisi berhadapan sama panjang (p = ${p.a}, l = ${p.b})`],[rt,`Keempat sudut 90° (sekarang ${p.s}°)`]],info:paraInfo(p),K:paraK(p,'p','l'),
+  L:rt?box('Luas persegi panjang',['L = p × l',`L = ${p.a} × ${p.b}`],`L = ${p.a*p.b}`,'satuan²')+key('<b>p</b> panjang','<b>l</b> lebar'):paraL(p)}}},
+{id:'segitiga',name:'Segitiga',tip:'Tiga sisi, tiga sudut. Titiknya bisa digeser!',color:'#16a34a',icon:'40,12 68,64 12,64',fixed:true,
+ sl:[['Ax','Titik A · x',-5,5,.1,0],['Ay','Titik A · y',-5,5,.1,4.2],['Bx','Titik B · x',-5,5,.1,-3],['By','Titik B · y',-5,5,.1,-1],['Cx','Titik C · x',-5,5,.1,3],['Cy','Titik C · y',-5,5,.1,-1]],
+ presets:{'Sama sisi':{Ax:0,Ay:4.2,Bx:-3,By:-1,Cx:3,Cy:-1},'Sama kaki':{Ax:0,Ay:4,Bx:-3,By:-2,Cx:3,Cy:-2},'Siku-siku':{Ax:-3,Ay:-2,Bx:3,By:-2,Cx:-3,Cy:3},'Tumpul':{Ax:-4,Ay:-2,Bx:4,By:-2,Cx:0,Cy:1},'Sembarang':{Ax:-3,Ay:-2,Bx:4,By:-3,Cx:1,Cy:4}},
+ hopts:[['Tinggi dari C ke AB',2,0,1],['Tinggi dari A ke BC',0,1,2],['Tinggi dari B ke AC',1,0,2]],
+ geo:p=>[{x:p.Ax,y:p.Ay},{x:p.Bx,y:p.By},{x:p.Cx,y:p.Cy}],
+ calc:(p,V,ho)=>{const[A,B,C]=V,a=dist(B,C),b=dist(C,A),c=dist(A,B),ar=triArea(A,B,C);
+  if(ar<.01)return{ok:false,title:'Bukan segitiga',sub:'Ketiga titik segaris atau berimpit',checks:[],info:[],K:'',L:''};
+  const an=[A,B,C].map((v,i)=>angleAt(v,V[(i+1)%3],V[(i+2)%3])),eq=(x,y)=>Math.abs(x-y)<.1,
+   bs=eq(a,b)&&eq(b,c)?'Sama sisi':eq(a,b)||eq(b,c)||eq(a,c)?'Sama kaki':'Sembarang',
+   ba=an.some(x=>Math.abs(x-90)<.6)?'Siku-siku':an.some(x=>x>90)?'Tumpul':'Lancip',
+   [,,i,j]=ho||['',0,0,1],base=dist(V[i],V[j]),t=2*ar/base,s=(a+b+c)/2;
+  return{ok:true,title:'Segitiga '+bs,sub:'Jenis sudut: '+ba,checks:[],
+   info:[['Jenis (sisi)',bs,1],['Jenis (sudut)',ba,1],['a = BC',num(a)],['b = CA',num(b)],['c = AB',num(c)],['∠A',num(an[0])+'°'],['∠B',num(an[1])+'°'],['∠C',num(an[2])+'°'],['Luas',num(ar)]],
+   K:box('Keliling segitiga',['K = a + b + c',`K = ${num(a)} + ${num(b)} + ${num(c)}`],`K = ${num(a+b+c)}`,'satuan')+key('<b>a, b, c</b> panjang ketiga sisi'),
+   L:box('Luas — alas × tinggi',[`L = ${frac(1,2)} × alas × tinggi`,`L = ${frac(1,2)} × ${num(base)} × ${num(t)}`],`L = ${num(ar)}`,'satuan²')
+    +key('<b>t</b> tinggi (garis oranye)')}}},
+{id:'jajar-genjang',name:'Jajar Genjang',tip:'Sisi berhadapan sejajar & sama panjang.',color:'#f59e0b',icon:'24,20 72,20 56,60 8,60',
+ sl:[['a','Alas (a)',2,10,1,6],['b','Sisi miring (b)',2,10,1,4],['s','Besar sudut',30,150,1,60,'°']],geo:para,hopts:O4,
+ calc:p=>{const t=p.b*Math.sin(rad(p.s));return{ok:true,title:'Ini '+paraName(p).toUpperCase()+'!',sub:'Sisi berhadapan sejajar & sama panjang',
+  checks:[[true,`Sisi berhadapan sama panjang (a = ${p.a}, b = ${p.b})`],[true,`Sudut berhadapan sama besar (${p.s}° dan ${180-p.s}°)`]],info:paraInfo(p),K:paraK(p,'a','b'),
+  L:box('Luas jajar genjang',['L = a × t',`t = b × sin θ = ${p.b} × sin ${p.s}° = ${num(t)}`,`L = ${p.a} × ${num(t)}`],`L = ${num(p.a*t)}`,'satuan²')+key('<b>a</b> alas','<b>t</b> tinggi (garis oranye)')}}},
+{id:'trapesium',name:'Trapesium',tip:'Sepasang sisi sejajar dengan panjang berbeda.',color:'#f43f5e',icon:'22,20 58,20 72,60 8,60',
+ sl:[['a','Alas bawah (a)',4,12,1,8],['b','Alas atas (b)',2,10,1,4],['t','Tinggi (t)',2,8,1,4],['o','Geser atas (offset)',-4,8,1,2]],hopts:O4,
+ geo:p=>[{x:0,y:0},{x:p.a,y:0},{x:p.o+p.b,y:p.t},{x:p.o,y:p.t}],
+ calc:(p,V)=>{const c=dist(V[0],V[3]),d=dist(V[1],V[2]),rt=Math.abs(p.o)<.1||Math.abs(p.o+p.b-p.a)<.1,iso=Math.abs(p.o-(p.a-p.b)/2)<.1,ty=rt?'Siku-siku':iso?'Sama kaki':'Sembarang',ar=(p.a+p.b)*p.t/2;
+  return{ok:true,title:'Ini TRAPESIUM '+ty.toUpperCase()+'!',sub:'Sepasang sisi sejajar (AB ∥ CD)',checks:[[true,`AB ∥ CD, dengan a = ${p.a} dan b = ${p.b}`]],
+   info:[['Jenis','Trapesium '+ty.toLowerCase(),1],['Tinggi t',num(p.t)],['Kaki kiri c',num(c)],['Kaki kanan d',num(d)],['Keliling',num(p.a+p.b+c+d)],['Luas',num(ar)]],
+   K:box('Keliling trapesium',['K = a + b + c + d',`K = ${p.a} + ${p.b} + ${num(c)} + ${num(d)}`],`K = ${num(p.a+p.b+c+d)}`,'satuan')+key('<b>a, b</b> sisi sejajar','<b>c, d</b> kaki'),
+   L:box('Luas trapesium',[`L = ${frac(1,2)} × (a + b) × t`,`L = ${frac(1,2)} × (${p.a} + ${p.b}) × ${p.t}`],`L = ${num(ar)}`,'satuan²')+key('<b>t</b> jarak kedua sisi sejajar (garis oranye)')}}},
+{id:'belah-ketupat',name:'Belah Ketupat',tip:'Keempat sisi sama panjang, diagonal tegak lurus.',color:'#8b5cf6',icon:'40,10 66,40 40,70 14,40',
+ sl:[['d1','Diagonal 1 (d₁)',2,10,1,6],['d2','Diagonal 2 (d₂)',2,10,1,8]],diag:[[1,3,'d₁'],[0,2,'d₂']],
+ geo:p=>[{x:0,y:p.d2/2},{x:p.d1/2,y:0},{x:0,y:-p.d2/2},{x:-p.d1/2,y:0}],
+ calc:p=>{const s=Math.hypot(p.d1,p.d2)/2,sq=p.d1===p.d2;return kiteLike(p,s,s,sq?'Persegi':'Belah ketupat',sq?'Belah ketupat istimewa: d₁ = d₂, sudut 90°':`Keempat sisi sama panjang (s = ${num(s)})`)}},
+{id:'layang-layang',name:'Layang-layang',tip:'Dua pasang sisi berdekatan sama panjang.',color:'#ec4899',icon:'40,8 68,36 40,72 12,36',
+ sl:[['d1','Diagonal 1 (d₁)',2,10,1,6],['d2','Diagonal 2 (d₂)',4,12,1,8],['h1','Tinggi bawah (h₁)',1,7,1,2]],diag:[[1,3,'d₁'],[0,2,'d₂']],fix:p=>{p.h1=Math.min(p.h1,p.d2-1)},
+ geo:p=>[{x:0,y:p.d2-p.h1},{x:p.d1/2,y:0},{x:0,y:-p.h1},{x:-p.d1/2,y:0}],
+ calc:p=>{const s1=Math.hypot(p.d1/2,p.d2-p.h1),s2=Math.hypot(p.d1/2,p.h1),bk=Math.abs(s1-s2)<.05;return kiteLike(p,s1,s2,bk?(p.d1===p.d2?'Persegi':'Belah ketupat'):'Layang-layang',bk?'Keempat sisi sama panjang (diagonal saling membagi dua)':'Dua pasang sisi berdekatan sama panjang')}}
+];
+const ALL=[...SH,{id:'lingkaran',name:'Lingkaran',tip:'Himpunan titik berjarak sama dari titik pusat.',color:'#14b8a6'}],ORDER=ALL.map(s=>s.id),BY=Object.fromEntries(SH.map(s=>[s.id,s]));
+const ST={};SH.forEach(s=>{const d=Object.fromEntries(s.sl.map(x=>[x[0],x[5]]));ST[s.id]={def:d,tgt:{...d},cur:{...d},h:s.hopts?0:-1,hl:false,fresh:false,raf:0,info:{ok:true},drag:null}});
+
+/* ── Gambar generik: garis dimensi, sudut, huruf titik ──── */
+function draw(s){
+  const st=ST[s.id],svg=$('#svg-'+s.id),V=s.geo(st.cur),n=V.length,col=st.info.ok?s.color:'#dc2626';let T;
+  svg.replaceChildren();
+  if(s.fixed){T=q=>({x:220+q.x*34,y:190-q.y*34});for(let i=-5;i<=5;i++)[[-5,i,5,i],[i,-5,i,5]].forEach(([a,b,c,d])=>{const p=T({x:a,y:b}),q=T({x:c,y:d});mk('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,class:'gl'+(i?'':' ax')},svg)})}
+  else{const xs=V.map(q=>q.x),ys=V.map(q=>q.y),x0=Math.min(...xs),y0=Math.min(...ys),w=Math.max(Math.max(...xs)-x0,.01),h=Math.max(Math.max(...ys)-y0,.01),k=Math.min(290/w,230/h);st.k=k;T=q=>({x:220+(q.x-x0-w/2)*k,y:190-(q.y-y0-h/2)*k})}
+  const P=V.map(T),cen={x:P.reduce((a,q)=>a+q.x,0)/n,y:P.reduce((a,q)=>a+q.y,0)/n},pts=P.map(q=>`${q.x.toFixed(1)},${q.y.toFixed(1)}`).join(' ');
+  mk('polygon',{points:pts,fill:col,'fill-opacity':.16,stroke:col,'stroke-width':3,'stroke-linejoin':'round'},svg);
+  if(st.hl){const len=P.reduce((a,q,i)=>a+dist(q,P[(i+1)%n]),0),hl=mk('polygon',{points:pts,fill:'none',stroke:'#2563eb','stroke-width':8,'stroke-opacity':.8,'stroke-linejoin':'round','stroke-dasharray':len,'stroke-dashoffset':st.fresh?len:0},svg);
+    if(st.fresh){hl.animate([{strokeDashoffset:len},{strokeDashoffset:0}],{duration:3200,easing:'ease-in-out',fill:'forwards'});st.fresh=false}}
+  if(s.diag){s.diag.forEach(([i,j,lab])=>{mk('line',{x1:P[i].x,y1:P[i].y,x2:P[j].x,y2:P[j].y,stroke:col,'stroke-width':2,'stroke-dasharray':'5 4'},svg);const q=add(P[i],unit(P[i],P[j]),dist(P[i],P[j])*.3);pill(svg,q.x,q.y,`${lab}`,col,11)});
+    const O=T({x:0,y:0});rightMark(svg,O,unit(O,P[1]),unit(O,P[0]),col)}
+  const ho=s.hopts&&s.hopts[st.h];
+  if(ho){const[,v,i,j]=ho,B1=P[i],B2=P[j],Vp=P[v],u=unit(B1,B2),len=dist(B1,B2),t=(Vp.x-B1.x)*u.x+(Vp.y-B1.y)*u.y,F=add(B1,u,t),sg=t>len/2?-1:1;
+    if(t<0||t>len){const E=t<0?B1:B2;mk('line',{x1:E.x,y1:E.y,x2:F.x,y2:F.y,class:'ext'},svg)}
+    mk('line',{x1:Vp.x,y1:Vp.y,x2:F.x,y2:F.y,stroke:'#f59e0b','stroke-width':2.5,'stroke-dasharray':'6 4'},svg);
+    rightMark(svg,F,{x:u.x*sg,y:u.y*sg},unit(F,Vp),'#f59e0b');const q=mid(Vp,F);pill(svg,q.x,q.y,'t','#d97706',11)}
+  P.forEach((a,i)=>{const b=P[(i+1)%n],e=unit(a,b),m=mid(a,b);let nm={x:-e.y,y:e.x};if(nm.x*(m.x-cen.x)+nm.y*(m.y-cen.y)<0)nm={x:-nm.x,y:-nm.y};
+    const a2=add(a,nm,26),b2=add(b,nm,26);
+    
+    const c=mid(a2,b2);pill(svg,c.x,c.y,`${'ABCD'[i]}${'ABCD'[(i+1)%n]}`,col,11)});
+  P.forEach((v,i)=>{const p=P[(i+n-1)%n],q=P[(i+1)%n],u1=unit(v,p),u2=unit(v,q),deg=angleAt(V[i],V[(i+n-1)%n],V[(i+1)%n]);
+    if(Math.abs(deg-90)<.5)rightMark(svg,v,u1,u2,col,13);
+    else{const a=add(v,u1,24),b=add(v,u2,24);mk('path',{d:`M${a.x} ${a.y}A24 24 0 0 ${u1.x*u2.y-u1.y*u2.x>0?1:0} ${b.x} ${b.y}`,fill:'none',stroke:col,'stroke-width':2.2},svg)}
+    const l=add(v,unit({x:0,y:0},{x:u1.x+u2.x,y:u1.y+u2.y}),42);text(svg,l.x,l.y,Math.round(deg)+'°',col,12)});
+  P.forEach((v,i)=>{const l=add(v,unit(cen,v),32);mk('circle',{cx:v.x,cy:v.y,r:5,fill:'#fff',stroke:col,'stroke-width':3},svg);text(svg,l.x,l.y,'ABCD'[i],col,15);
+    mk('circle',{cx:v.x,cy:v.y,r:18,class:'drag','data-v':i},svg)});
+}
+
+/* ── Animasi halus: nilai kursor mengalir ke target ─────── */
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function kick(id){const st=ST[id],s=BY[id];if(st.raf)return;
+  const step=()=>{let moving=false;for(const k in st.tgt){const d=st.tgt[k]-st.cur[k];if(rm||Math.abs(d)<.004)st.cur[k]=st.tgt[k];else{st.cur[k]+=d*.28;moving=true}}draw(s);st.raf=moving?requestAnimationFrame(step):0};
+  st.raf=requestAnimationFrame(step)}
+function refresh(s){const st=ST[s.id],root=$('#v-'+s.id),I=st.info=s.calc(st.tgt,s.geo(st.tgt),s.hopts&&s.hopts[st.h]);
+  const sb=$('.st',root);sb.className='st '+(I.ok?'ok':'no');sb.innerHTML=`<span class="ic">${I.ok?'✅':'❌'}</span><div>${I.title}<small>${I.sub}</small></div>`;
+  $('.ck',root).innerHTML=I.checks.map(([ok,t])=>`<div class="c ${ok?'p':'f'}"><i>${ok?'✓':'✕'}</i>${t}</div>`).join('');
+  $('.info',root).innerHTML=I.info.map(([l,v,hi])=>`<div class="it${hi?' hi':''}"><span>${l}</span><b>${v}</b></div>`).join('');
+  $('.K',root).innerHTML=I.K;$('.L',root).innerHTML=I.L;if(st.grid)renderGrid(s,...st.grid,true)}
+function syncSliders(s){$$(`input[data-s="${s.id}"]`).forEach(r=>{r.value=ST[s.id].tgt[r.dataset.k];paint(r)})}
+function apply(s,params){const st=ST[s.id];Object.assign(st.tgt,params);s.fix&&s.fix(st.tgt);syncSliders(s);refresh(s);kick(s.id)}
+function setHl(id,on){const st=ST[id],b=$(`[data-hl="${id}"]`);st.hl=on;st.fresh=on;b.classList.toggle('on',on);b.textContent=on?'✖ Sembunyikan sorotan':'🔵 Sorot semua sisi';kick(id)}
+function renderGrid(s,n,m,keep){const root=$('#v-'+s.id),st=ST[s.id];if(!n){n=st.tgt.a;m=st.tgt.b}st.grid=[n,m];const g=$('.gr',root);
+  if(!keep){g.style.gridTemplateColumns=`repeat(${n},1fr)`;g.style.width=340/Math.max(n,m)*n+'px';g.replaceChildren(...Array.from({length:n*m},(_,i)=>{const c=document.createElement('i');c.style.animationDelay=i*6+'ms';return c}))}
+  $('.GO',root).innerHTML=box('Luas dengan kotak satuan',[`Banyak kotak = ${n} kolom × ${m} baris`,s.id==='persegi'&&n===m?`L = s × s = ${n} × ${n}`:`L = p × l = ${n} × ${m}`],`L = ${n*m}`,'satuan²')}
+
+/* ── Template halaman ───────────────────────────────────── */
+const card=s=>`<button class="card" data-go="${s.id}"><svg viewBox="0 0 80 80" aria-hidden="true">${s.icon?`<polygon points="${s.icon}" fill="${s.color}" fill-opacity=".2" stroke="${s.color}" stroke-width="4" stroke-linejoin="round"/>`:`<circle cx="40" cy="40" r="26" fill="${s.color}" fill-opacity=".2" stroke="${s.color}" stroke-width="4"/>`}</svg><h3>${s.name}</h3><p>${s.tip}</p><span>Mulai belajar</span></button>`;
+const nav=id=>{const i=ORDER.indexOf(id),nx=ORDER[i+1];return`<div class="bar"><button class="btn gh sm" data-go="home">← Beranda</button>${nx?`<button class="btn sm" data-go="${nx}">Selanjutnya →</button>`:''}</div>`};
+const viewHTML=s=>`<section class="view" id="v-${s.id}">${nav(s.id)}<div class="wrap"><h2 class="mt">Bangun Datar: ${s.name}</h2><div class="ws">
+<div class="pn"><svg id="svg-${s.id}" viewBox="0 0 440 380" role="img" aria-label="Visualisasi ${s.name} interaktif"></svg>
+${s.hopts?`<label class="hs">Garis tinggi: <select data-h="${s.id}">${s.hopts.map((h,j)=>`<option value="${j}">${h[0]}</option>`).join('')}<option value="-1">Sembunyikan</option></select></label>`:''}${s.fixed?'<p class="tip">💡 Seret titik A, B, atau C langsung pada gambar.</p>':''}</div>
+<aside class="pn"><div class="st"></div>${s.presets?`<div class="pre">${Object.keys(s.presets).map(k=>`<button class="btn gh sm" data-pre="${s.id}|${k}">${k}</button>`).join('')}</div>`:''}
+${s.sl.map(([k,l,mn,mx,sp,v,u=''])=>slider(l,`data-s="${s.id}" data-k="${k}" data-u="${u}"`,mn,mx,sp,v)).join('')}
+<button class="btn gh" data-reset="${s.id}">↺ Kembalikan ke awal</button><div class="ck"></div></aside></div>
+<div class="pn ls"><h3><i>Analisis</i>Ukuran dan sifat</h3><div class="info"></div></div>
+<div class="pn ls"><h3><i>Keliling</i>Keliling ${s.name}</h3><button class="btn" data-hl="${s.id}">🔵 Sorot semua sisi</button><div class="K"></div></div>
+<div class="pn ls"><h3><i>Luas</i>Luas ${s.name}</h3><div class="L"></div>${s.grids?`<div class="pre" style="margin-top:14px">${s.grids.map(([n,m])=>`<button class="btn gh sm" data-grid="${s.id}|${n}|${m}">${n} × ${m} kotak</button>`).join('')}<button class="btn gh sm" data-grid="${s.id}|0|0">Pakai nilai kursor</button></div><div class="gr"></div><div class="GO"></div>`:''}</div></div></section>`;
+const UN=[['pusat','Titik pusat','#334155'],['jari','Jari-jari','#dc2626'],['diameter','Diameter','#2563eb'],['busur','Busur','#b45309'],['tali','Tali busur','#0f766e'],['juring','Juring','#db2777'],['tembereng','Tembereng','#0891b2']];
+const circleView=()=>`<section class="view" id="v-lingkaran">${nav('lingkaran')}<div class="wrap"><h2 class="mt">Bangun Datar: Lingkaran</h2><div class="ws">
+<div class="pn"><div class="tabs"><button class="on" data-tab="unsur">Unsur-unsur</button><button data-tab="luas">Pembuktian luas</button></div><svg id="svg-lingkaran" viewBox="0 0 440 380" role="img" aria-label="Visualisasi lingkaran interaktif"></svg></div>
+<aside class="pn"><div id="t-unsur"><div class="chips"><button class="on" data-all style="--c:#2563eb">Tampilkan semua</button>${UN.map(([k,l,c])=>`<button class="on" data-un="${k}" style="--c:${c}"><i></i>${l}</button>`).join('')}</div>
+${slider('Sudut juring θ','data-c="theta" data-u="°"',10,180,1,60)}${slider('Sudut tali busur φ','data-c="phi" data-u="°"',10,180,1,80)}${slider('Jari-jari (r)','data-c="r"',2,10,1,6)}
+<div id="cK"></div><div id="cL"></div><div class="info" id="cinfo"></div></div>
+<div id="t-luas" hidden><div class="st ok"><span class="ic">⭕</span><div>Pembuktian luas lingkaran<small>Lingkaran dipotong menjadi 32 juring, lalu disusun menjadi persegi panjang.</small></div></div>
+<button class="btn" id="play" style="width:100%;margin-bottom:14px">▶ Putar animasi</button>${slider('Posisi animasi','data-c="anim" data-u="%"',0,100,1,0)}<div class="fx" id="step"></div></div></aside></div></div></section>`;
+$('main').innerHTML=`<section class="view on" id="v-home"><header><small class="cr">Hak cipta &copy; 2026 Media Pembelajaran SiDaSi SuperMetri</small><h1>Bangun Datar Interaktif</h1><p>Pilih bangun datar, lalu geser kursor dan lihat bentuk, ukuran, serta rumusnya berubah saat itu juga.</p></header><div class="wrap"><div class="dash">${ALL.map(card).join('')}</div></div></section>${SH.map(viewHTML).join('')}${circleView()}`;
+
+/* ── Lingkaran ──────────────────────────────────────────── */
+const C={r:6,rc:6,theta:60,phi:80,oj:-PI/2,ot:PI/2,od:0,on:new Set(UN.map(u=>u[0])),tab:'unsur',anim:0};
+function drawCircle(){const g=$('#svg-lingkaran'),R=C.rc*16,cx=220,cy=190;g.replaceChildren();const P=(a,k=R)=>({x:cx+k*Math.cos(a),y:cy+k*Math.sin(a)}),f=k=>C.on.has(k);
+  if(C.tab==='unsur'){
+    const th=rad(C.theta),a0=C.oj,S=P(a0),T=P(a0+th),mA=a0+th/2,ph=rad(C.phi),Cp=P(C.ot-ph/2),Dp=P(C.ot+ph/2),big=C.theta>180?1:0,kc=6.28*C.r,lbl=(k,x,y,s,c)=>pill(g,x,y,s,c,11);
+    mk('circle',{cx,cy,r:R,fill:'#14b8a6','fill-opacity':.1,stroke:'#14b8a6','stroke-width':2.5},g);
+    if(f('juring')){mk('path',{d:`M${cx} ${cy}L${S.x} ${S.y}A${R} ${R} 0 ${big} 1 ${T.x} ${T.y}Z`,fill:'#db2777','fill-opacity':.25,stroke:'#db2777','stroke-width':2},g);const q=P(mA,R*.5);lbl(0,q.x,q.y,'juring OST','#db2777')}
+    if(f('tembereng')){mk('path',{d:`M${Cp.x} ${Cp.y}A${R} ${R} 0 0 1 ${Dp.x} ${Dp.y}Z`,fill:'#0891b2','fill-opacity':.3,stroke:'#0891b2','stroke-width':2},g);const q=P(C.ot,R+20);lbl(0,q.x,q.y,'tembereng CD','#0891b2')}
+    if(f('busur')){mk('path',{d:`M${S.x} ${S.y}A${R} ${R} 0 ${big} 1 ${T.x} ${T.y}`,fill:'none',stroke:'#d97706','stroke-width':6,'stroke-linecap':'round'},g);const q=P(mA,R+26);lbl(0,q.x,q.y,`busur ST = ${num(C.theta/360*3.14*2*C.r)}`,'#b45309')}
+    if(f('juring')||f('busur')){const a=add(S,unit({x:cx,y:cy},S),14),b=add(T,unit({x:cx,y:cy},T),14);text(g,a.x,a.y,'S','#9d174d',14);text(g,b.x,b.y,'T','#9d174d',14)}
+    if(f('tali')){mk('line',{x1:Cp.x,y1:Cp.y,x2:Dp.x,y2:Dp.y,stroke:'#0f766e','stroke-width':3},g);const q=mid(Cp,Dp);lbl(0,q.x,q.y-16,`tali busur CD = ${num(2*C.r*Math.sin(ph/2))}`,'#0f766e')}
+    if(f('tali')||f('tembereng')){const a=add(Cp,unit({x:cx,y:cy},Cp),14),b=add(Dp,unit({x:cx,y:cy},Dp),14);text(g,a.x,a.y,'C','#0f766e',14);text(g,b.x,b.y,'D','#0f766e',14)}
+    if(f('diameter')){const A=P(C.od+PI),B=P(C.od),A2=P(C.od+PI,R+14),B2=P(C.od,R+14),m=P(C.od+PI,R*.5);mk('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:'#2563eb','stroke-width':3},g);text(g,A2.x,A2.y,'A','#2563eb',14);text(g,B2.x,B2.y,'B','#2563eb',14);lbl(0,m.x,m.y-14,`d = 2r = ${2*C.r}`,'#2563eb')}
+    if(f('jari')){const q=P(rad(-150));mk('line',{x1:cx,y1:cy,x2:q.x,y2:q.y,stroke:'#dc2626','stroke-width':3},g);mk('circle',{cx:q.x,cy:q.y,r:4,fill:'#dc2626'},g);const l=add(q,unit({x:cx,y:cy},q),14),m=mid({x:cx,y:cy},q);text(g,l.x,l.y,'P','#b91c1c',14);lbl(0,m.x-6,m.y-14,`r = OP = ${C.r}`,'#b91c1c')}
+    if(f('pusat')){mk('circle',{cx,cy,r:5,fill:'#334155'},g);text(g,cx+13,cy+14,'O','#334155',14)}
+  }else{
+    const t=C.anim/100,N=C.N||32,R2=Math.min(C.r*16,100),th=2*PI/N,w=2*R2*Math.sin(th/2),h=R2*Math.cos(th/2),tw=(N+1)*w/2,
+    d=`M0 0L${(R2*Math.cos(-th/2)).toFixed(1)} ${(R2*Math.sin(-th/2)).toFixed(1)}A${R2} ${R2} 0 0 1 ${(R2*Math.cos(th/2)).toFixed(1)} ${(R2*Math.sin(th/2)).toFixed(1)}Z`;
+    for(let i=0;i<N;i++){const ev=i%2===0,r0=((i*360/N+180)%360)-180,r1=ev?-90:90,x1=(i-(N-1)/2)*w/2,y1=ev?h/2:-h/2;
+      mk('path',{d,fill:ev?'#3b82f6':'#f59e0b',stroke:'#fff','stroke-width':1,transform:`translate(${(cx+x1*t).toFixed(1)} ${(cy+y1*t).toFixed(1)}) rotate(${(r0+(r1-r0)*t).toFixed(1)})`},g)}
+    if(t>.85){const lg=mk('g',{opacity:Math.min(1,(t-.85)/.15)},g);mk('rect',{x:cx-tw/2,y:cy-h/2,width:tw,height:h,fill:'none',stroke:'#64748b','stroke-width':2,'stroke-dasharray':'6 4'},lg);
+      pill(lg,cx,cy+h/2+26,`alas = ½ × 2πr = πr`,'#b91c1c');pill(lg,cx-tw/2+62,cy,`tinggi = r = ${C.r}`,'#b91c1c')}
+    else if(t<.12){pill(g,cx+R2/2,cy-14,'r = '+C.r,'#dc2626')}}}
+function updC(){const kc=6.28*C.r,lc=3.14*C.r*C.r;
+  $('#cK').innerHTML=box('Keliling lingkaran',['K = 2 × π × r',`K = 2 × 3,14 × ${C.r}`],`K = ${num(kc)}`,'satuan');
+  $('#cL').innerHTML=box('Luas lingkaran',['L = π × r²',`L = 3,14 × ${C.r}²`],`L = ${num(lc)}`,'satuan²')+key('π ≈ 3,14','<b>r</b> jari-jari');
+  $('#cinfo').innerHTML=[['Diameter d = 2r',num(2*C.r)],['Busur ST',num(C.theta/360*kc)],['Luas juring OST',num(C.theta/360*lc)],['Tali busur CD',num(2*C.r*Math.sin(rad(C.phi/2)))],['Luas tembereng CD',num(C.phi/360*lc-.5*C.r*C.r*Math.sin(rad(C.phi)))]].map(([l,v])=>`<div class="it"><span>${l}</span><b>${v}</b></div>`).join('');
+  const t=C.anim;$('#step').innerHTML=t<10?`<h4>Langkah 1</h4><p>Lingkaran berjari-jari <b>r</b> memiliki keliling <b>2πr</b>.</p>`:t<60?`<h4>Langkah 2</h4><p>Lingkaran dipotong menjadi <b>${C.N||32} juring</b> sama besar.</p>`:t<85?`<h4>Langkah 3</h4><p>Juring disusun bergantian, satu menghadap atas dan satu menghadap bawah.</p>`:
+    `<h4>Langkah 4: bukti rumus</h4><p>Bangun menyerupai persegi panjang.</p><p>Alas = ${frac(1,2)} × keliling lingkaran = ${frac(1,2)} × 2πr</p><p>Alas = <b>πr</b></p><p>Tinggi = <b>r</b></p><p><span class="res">L = πr × r = πr²</span></p>`}
+let rAF=0;const easeR=()=>{if(rAF)return;const s=()=>{const d=C.r-C.rc;C.rc=rm||Math.abs(d)<.01?C.r:C.rc+d*.25;drawCircle();rAF=C.rc===C.r?0:requestAnimationFrame(s)};rAF=requestAnimationFrame(s)};
+let playId=0;
+
+/* ── Router & event ─────────────────────────────────────── */
+function go(id){if(!ORDER.includes(id))id='home';$$('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+id));scrollTo(0,0);try{history.replaceState(null,'','#'+(id==='home'?'':id))}catch(_){}}
+addEventListener('hashchange',()=>go(location.hash.slice(1)));
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if(d.go)return go(d.go);
+  if(d.hl)return setHl(d.hl,!ST[d.hl].hl);
+  if(d.reset){setHl(d.reset,false);return apply(BY[d.reset],ST[d.reset].def)}
+  if(d.pre){const[id,k]=d.pre.split('|');setHl(id,false);return apply(BY[id],BY[id].presets[k])}
+  if(d.grid){const[id,n,m]=d.grid.split('|');return renderGrid(BY[id],+n,+m)}
+  if(d.tab){C.tab=d.tab;$$('#v-lingkaran .tabs button').forEach(x=>x.classList.toggle('on',x===b));$('#t-unsur').hidden=C.tab!=='unsur';$('#t-luas').hidden=C.tab!=='luas';return drawCircle()}
+  if('all' in d){UN.forEach(u=>C.on.add(u[0]));$$('.chips button').forEach(x=>x.classList.add('on'));return drawCircle()}
+  if(d.un){C.on.has(d.un)?C.on.delete(d.un):C.on.add(d.un);b.classList.toggle('on',C.on.has(d.un));$('[data-all]').classList.toggle('on',C.on.size===UN.length);return drawCircle()}
+  if(b.id==='play'){if(playId){cancelAnimationFrame(playId);playId=0;b.textContent='▶ Putar animasi';return}
+    const t0=performance.now(),r=$('input[data-c=anim]');b.textContent='⏸ Hentikan';
+    const step=now=>{const p=Math.min(1,(now-t0)/4000);C.anim=(1-Math.pow(1-p,3))*100;r.value=C.anim;paint(r);updC();drawCircle();if(p<1)playId=requestAnimationFrame(step);else{playId=0;b.textContent='▶ Putar animasi'}};playId=requestAnimationFrame(step)}});
+document.addEventListener('input',e=>{const r=e.target;if(r.type!=='range')return;paint(r);
+  if(r.dataset.c){C[r.dataset.c]=+r.value;if(r.dataset.c==='r')easeR();updC();return drawCircle()}
+  const s=BY[r.dataset.s],st=ST[s.id];st.tgt[r.dataset.k]=+r.value;s.fix&&s.fix(st.tgt);syncSliders(s);refresh(s);kick(s.id)});
+document.addEventListener('change',e=>{const id=e.target.dataset.h;if(!id)return;ST[id].h=+e.target.value;refresh(BY[id]);kick(id)});
+
+/* Seret titik segitiga langsung pada gambar */
+{const s=BY.segitiga,st=ST.segitiga,svg=$('#svg-segitiga');
+ svg.addEventListener('pointerdown',e=>{const g=e.target.closest('[data-v]');if(!g)return;st.drag=+g.dataset.v;svg.setPointerCapture(e.pointerId)});
+ svg.addEventListener('pointermove',e=>{if(st.drag===null)return;const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse()),L='ABC'[st.drag],sn=v=>Math.max(-5,Math.min(5,Math.round(v*10)/10));
+  st.tgt[L+'x']=sn((q.x-220)/34);st.tgt[L+'y']=sn((190-q.y)/34);Object.assign(st.cur,st.tgt);syncSliders(s);refresh(s);draw(s)});
+ ['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>st.drag=null))}
+
+/* ── Inisialisasi ───────────────────────────────────────── */
+SH.forEach(s=>{refresh(s);draw(s);if(s.grids)renderGrid(s,...s.grids[1])});
+$$('input[type=range]').forEach(paint);updC();drawCircle();
+go(location.hash.slice(1));
+</script>
+<script>
+/* ── Bangun ruang 3D (memakai ulang mesin slider, rumus, dan router di atas) ── */
+(()=>{
+const pi=3.14,RT=Math.sqrt,NM='ABCDEFGHIJKLMNOP',VW=window.VW={};
+const css=document.createElement('style');css.textContent='.s3{touch-action:none;cursor:grab}.s3:active{cursor:grabbing}.dsel{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 14px;font-weight:700}.hd{grid-column:1/-1;margin:14px 0 0;font-size:1.25rem;font-weight:900;color:var(--pri)}';document.head.append(css);
+const rot=(p,y,x)=>{const c=Math.cos(y),s=Math.sin(y),X=p.x*c+p.z*s,Z=p.z*c-p.x*s,cx=Math.cos(x),sx=Math.sin(x);return{x:X,y:p.y*cx-Z*sx,z:p.y*sx+Z*cx}};
+const mod=(P,F,x={})=>{const c=[0,1,2].map(i=>(Math.min(...P.map(p=>p[i]))+Math.max(...P.map(p=>p[i])))/2),V=P.map((p,i)=>({x:p[0]-c[0],y:p[1]-c[1],z:p[2]-c[2],n:(x.nm||NM)[i]}));return{V,F,nv:V.length,...x}};
+const cur=(P,nm,x)=>({V:P.map((p,i)=>({x:p[0],y:p[1],z:p[2],n:nm[i]})),...x});
+const cub=(a,b,c)=>mod([[0,0,b],[a,0,b],[a,0,0],[0,0,0],[0,c,b],[a,c,b],[a,c,0],[0,c,0]],[[0,1,2,3],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]]);
+const pyr=(B,t)=>{const n=B.length,cx=B.reduce((s,q)=>s+q[0],0)/n,cz=B.reduce((s,q)=>s+q[1],0)/n;return mod([...B.map(([x,z])=>[x,0,z]),[cx,t,cz],[cx,0,cz]],[[...B.keys()],...B.map((_,i)=>[i,(i+1)%n,n])],{nm:[...NM.slice(0,n),'T','O'],nv:n+1,lines:[[n,n+1,'#2563eb','5 4','t']]})};
+const pri=(B,t)=>{const n=B.length;return mod([...B.map(([x,z])=>[x,0,z]),...B.map(([x,z])=>[x,t,z])],[[...B.keys()],[...B.keys()].map(i=>i+n),...B.map((_,i)=>[i,(i+1)%n,n+(i+1)%n,n+i])])};
+const tri=a=>[[0,a*RT(3)/2],[a,a*RT(3)/2],[a/2,0]],pent=a=>{const R=a/(2*Math.sin(PI/5));return[0,1,2,3,4].map(i=>[R*Math.cos(PI/2+2*PI*i/5),R*Math.sin(PI/2+2*PI*i/5)])};
+const polyArea=M=>M.F.reduce((s,f)=>{let x=0,y=0,z=0;f.forEach((i,k)=>{const a=M.V[i],b=M.V[f[(k+1)%f.length]];x+=a.y*b.z-a.z*b.y;y+=a.z*b.x-a.x*b.z;z+=a.x*b.y-a.y*b.x});return s+Math.hypot(x,y,z)/2},0);
+/* diagonal: pilih titik asal dan tujuan, jenisnya dikenali otomatis */
+const diag=(id,M,note)=>{const[i,j]=ST[id].d,a=M.V[i],b=M.V[j];if(i===j)return'<p class="tip">Pilih dua titik yang berbeda.</p>';
+ const ps=(f,x)=>f.indexOf(x),sh=M.F.filter(f=>f.includes(i)&&f.includes(j)),ed=sh.some(f=>{const g=Math.abs(ps(f,i)-ps(f,j));return g===1||g===f.length-1}),
+ kind=ed?'Rusuk':sh.length?'Diagonal bidang':'Diagonal ruang',nm=a.n+b.n,cs=['x','y','z'].map(c=>Math.abs(a[c]-b[c])).filter(v=>v>1e-6),len=Math.hypot(...cs),eq=cs.length>1&&cs.every(v=>Math.abs(v-cs[0])<1e-6);
+ return box(`${kind} ${nm}`,ed?[`${nm} adalah rusuk, yaitu garis potong dua sisi.`]:[`${nm}² = ${cs.map(v=>num(v)+'²').join(' + ')} (teorema Pythagoras${cs.length>2?' dua kali':''})`,`${nm} = √${num(len*len)}`+(eq?` = ${num(cs[0])}√${cs.length}`:'')],`${nm} = ${num(len)}`,'satuan')+(sh.length&&!ed?key('terletak pada bidang '+sh[0].map(x=>M.V[x].n).join('')):'')+note};
+const poly=(id,M,name,K,L,vol,note='')=>({ok:true,title:name,sub:`${M.nv} titik sudut · ${M.nv+M.F.length-2} rusuk · ${M.F.length} sisi`,checks:[],
+ info:[['Luas permukaan',num(polyArea(M))],['Volume',num(vol)],['Titik sudut',M.nv],['Rusuk',M.nv+M.F.length-2],['Sisi',M.F.length],['Nama sisi',M.F.map(f=>f.map(i=>M.V[i].n).join('')).join(', '),1]],K,L,D:ST[id].d?diag(id,M,note):null});
+const cv=(name,sub,info,K,L)=>({ok:true,title:name,sub,checks:[],info,K,L,D:null});
+const Ab3=a=>a*a*RT(3)/4,Ab5=a=>5*a*a/(4*Math.tan(PI/5));
+
+const S3=[
+{id:'kubus',name:'Kubus',tip:'Enam sisi persegi dan 12 rusuk sama panjang.',color:'#2563eb',icon:'40,10 66,25 66,55 40,70 14,55 14,25',rm:9,d0:[0,6],sl:[['a','Panjang rusuk (s)',1,10,1,5]],geo:p=>cub(p.a,p.a,p.a),
+ calc:(p,M)=>{const a=p.a;return poly('kubus',M,'Kubus',
+  box('Luas permukaan kubus',['Kubus dibuka menjadi jaring-jaring: 6 persegi sama besar (ABCD, EFGH, ABFE, BCGF, CDHG, DAEH).',`Luas satu persegi = s × s = s² = ${a*a}`,'L = 6 × s²',`L = 6 × ${a}²`],`L = ${6*a*a}`,'satuan²'),
+  box('Volume kubus',[`Alas diisi s × s = ${a*a} kubus satuan (satu lapis).`,`Ditumpuk setinggi s = ${a} lapis.`,'V = luas alas × tinggi = s² × s = s³',`V = ${a}³`],`V = ${a**3}`,'satuan³'),a**3,key('diagonal bidang = s√2','diagonal ruang = s√3'))}},
+{id:'balok',name:'Balok',tip:'Tiga pasang sisi persegi panjang yang berhadapan.',color:'#0891b2',icon:'10,30 48,30 70,14 70,48 32,66 10,50',rm:8,d0:[0,6],sl:[['p','Panjang (p)',2,10,1,6],['l','Lebar (l)',2,8,1,4],['t','Tinggi (t)',2,8,1,3]],geo:p=>cub(p.p,p.l,p.t),
+ calc:(p,M)=>{const{p:a,l:b,t:c}=p;return poly('balok',M,'Balok',
+  box('Luas permukaan balok',['Jaring-jaring balok: 3 pasang persegi panjang yang sama besar.',`Alas dan atas: 2 × (p × l) = 2 × ${a*b}`,`Depan dan belakang: 2 × (p × t) = 2 × ${a*c}`,`Kiri dan kanan: 2 × (l × t) = 2 × ${b*c}`,'L = 2 × (pl + pt + lt)'],`L = ${2*(a*b+a*c+b*c)}`,'satuan²'),
+  box('Volume balok',[`Alas diisi p × l = ${a} × ${b} = ${a*b} kubus satuan.`,`Ditumpuk setinggi t = ${c} lapis.`,'V = luas alas × tinggi = p × l × t',`V = ${a} × ${b} × ${c}`],`V = ${a*b*c}`,'satuan³'),a*b*c,key('diagonal bidang = √(p² + l²)','diagonal ruang = √(p² + l² + t²)'))}},
+{id:'limas-segitiga',name:'Limas Segitiga',tip:'Alas segitiga, tiga sisi tegak berbentuk segitiga.',color:'#16a34a',icon:'40,10 70,62 10,62',rm:8,sl:[['a','Sisi alas (a)',2,10,1,6],['t','Tinggi limas (t)',2,10,1,5]],geo:p=>pyr(tri(p.a),p.t),
+ calc:(p,M)=>{const{a,t}=p,ab=Ab3(a),s=RT(t*t+a*a/12);return poly('limas-segitiga',M,'Limas segitiga',
+  box('Luas permukaan limas',['Jaring-jaring: 1 segitiga alas ABC + 3 segitiga sisi tegak (TAB, TBC, TCA).',`Luas alas (segitiga sama sisi) = ${frac(1,4)} × a² × √3 = ${num(ab)}`,`Tinggi sisi tegak s = √(t² + (a/(2√3))²) = ${num(s)}`,`Luas 1 sisi tegak = ${frac(1,2)} × a × s = ${num(a*s/2)}`,'L = luas alas + 3 × luas sisi tegak'],`L = ${num(ab+1.5*a*s)}`,'satuan²'),
+  box('Volume limas',['Prisma segitiga dapat dibagi menjadi 3 limas segitiga dengan volume sama.','Jadi satu limas = sepertiga volume prisma dengan alas dan tinggi yang sama.',`V = ${frac(1,3)} × luas alas × tinggi`,`V = ${frac(1,3)} × ${num(ab)} × ${t}`],`V = ${num(ab*t/3)}`,'satuan³'),ab*t/3)}},
+{id:'limas-segiempat',name:'Limas Segi Empat',tip:'Alas persegi, empat sisi tegak berbentuk segitiga.',color:'#f59e0b',icon:'40,8 70,50 40,66 10,50',rm:8,d0:[0,2],sl:[['a','Sisi alas (a)',2,10,1,6],['t','Tinggi limas (t)',2,10,1,5]],geo:p=>pyr([[0,p.a],[p.a,p.a],[p.a,0],[0,0]],p.t),
+ calc:(p,M)=>{const{a,t}=p,s=RT(t*t+a*a/4);return poly('limas-segiempat',M,'Limas segi empat',
+  box('Luas permukaan limas',['Jaring-jaring: 1 persegi alas ABCD + 4 segitiga sisi tegak (TAB, TBC, TCD, TDA).',`Luas alas = a² = ${a*a}`,`Tinggi sisi tegak s = √(t² + (a/2)²) = ${num(s)}`,`Luas 1 sisi tegak = ${frac(1,2)} × a × s = ${num(a*s/2)}`,'L = a² + 4 × luas sisi tegak'],`L = ${num(a*a+2*a*s)}`,'satuan²'),
+  box('Volume limas',['Kubus dapat dibagi menjadi 6 limas kongruen yang puncaknya di titik pusat kubus.','Tiap limas beralas persegi s × s dan tinggi ½s, sehingga V limas = s³ : 6.',`V = ${frac(1,3)} × luas alas × tinggi`,`V = ${frac(1,3)} × ${a}² × ${t}`],`V = ${num(a*a*t/3)}`,'satuan³'),a*a*t/3)}},
+{id:'prisma-segitiga',name:'Prisma Segitiga',tip:'Dua segitiga sejajar dihubungkan tiga persegi panjang.',color:'#f43f5e',icon:'12,52 40,52 68,52 54,20 26,20',rm:7,d0:[0,4],sl:[['a','Sisi alas (a)',2,10,1,5],['t','Tinggi prisma (t)',2,10,1,6]],geo:p=>pri(tri(p.a),p.t),
+ calc:(p,M)=>{const{a,t}=p,ab=Ab3(a);return poly('prisma-segitiga',M,'Prisma segitiga',
+  box('Luas permukaan prisma',['Jaring-jaring: 2 segitiga (ABC, DEF) + 3 persegi panjang (ABED, BCFE, CAFD).',`Luas alas (segitiga sama sisi) = ${frac(1,4)} × a² × √3 = ${num(ab)}`,`Luas 2 alas = 2 × ${num(ab)}`,`Selimut = keliling alas × t = 3a × t = ${3*a} × ${t}`,'L = 2 × luas alas + keliling alas × tinggi'],`L = ${num(2*ab+3*a*t)}`,'satuan²'),
+  box('Volume prisma',['Prisma adalah tumpukan segitiga alas setinggi t.',`Luas alas = ${num(ab)}`,'V = luas alas × tinggi',`V = ${num(ab)} × ${t}`],`V = ${num(ab*t)}`,'satuan³'),ab*t)}},
+{id:'prisma-segilima',name:'Prisma Segi Lima',tip:'Alas segi lima beraturan, lima sisi tegak persegi panjang.',color:'#8b5cf6',icon:'40,12 64,28 56,56 24,56 16,28',rm:8,d0:[0,7],sl:[['a','Sisi alas (a)',2,8,1,4],['t','Tinggi prisma (t)',2,10,1,6]],geo:p=>pri(pent(p.a),p.t),
+ calc:(p,M)=>{const{a,t}=p,ab=Ab5(a);return poly('prisma-segilima',M,'Prisma segi lima',
+  box('Luas permukaan prisma',['Jaring-jaring: 2 segi lima (ABCDE, FGHIJ) + 5 persegi panjang.',`Luas segi lima = 5a² / (4 tan 36°) = ${num(ab)}`,`Selimut = keliling alas × t = 5a × t = ${5*a} × ${t}`,'L = 2 × luas alas + keliling alas × tinggi'],`L = ${num(2*ab+5*a*t)}`,'satuan²'),
+  box('Volume prisma',['Prisma adalah tumpukan segi lima alas setinggi t.','V = luas alas × tinggi',`V = ${num(ab)} × ${t}`],`V = ${num(ab*t)}`,'satuan³'),ab*t)}},
+{id:'tabung',name:'Tabung',tip:'Dua lingkaran sejajar dan satu selimut lengkung.',color:'#14b8a6',rm:9,sl:[['r','Jari-jari (r)',1,8,1,3],['t','Tinggi (t)',2,12,1,6]],
+ geo:(p,w={yaw:0})=>{const{r,t}=p,h=t/2,a=w.yaw+PI/2,c=Math.cos(a),s=Math.sin(a);return cur([[0,-h,0],[0,h,0],[r,-h,0],[r,h,0]],'OPAB',{circ:[{y:-h,r,cap:-1},{y:h,r,cap:1}],sil:['cyl',r,h],lines:[[0,2,'#dc2626','','r = '+r],[2,3,'#f59e0b','','t = '+t],[0,1,'#2563eb','5 4']],labels:[{p:[r*c,0,r*s],t:'selimut'},{p:[.5*r*c,-h,.5*r*s],t:'alas'},{p:[.5*r*c,h,.5*r*s],t:'tutup'}]})},
+ calc:p=>{const{r,t}=p,al=pi*r*r;return cv('Tabung','2 lingkaran (alas O dan tutup P) + 1 selimut',[['Luas selimut',num(2*pi*r*t)],['Luas permukaan',num(2*pi*r*(r+t))],['Volume',num(al*t)],['Sisi','alas (lingkaran O), tutup (lingkaran P), selimut',1]],
+  box('Luas permukaan tabung',['Jaring-jaring: 2 lingkaran + 1 persegi panjang (selimut yang dibuka).','Panjang persegi panjang = keliling alas = 2πr, lebarnya = tinggi t.',`Luas selimut = 2πr × t = 2 × 3,14 × ${r} × ${t} = ${num(2*pi*r*t)}`,'L = 2 × πr² + 2πrt = 2πr(r + t)',`L = 2 × 3,14 × ${r} × (${r} + ${t})`],`L = ${num(2*pi*r*(r+t))}`,'satuan²')+key('π ≈ 3,14'),
+  box('Volume tabung',['Tabung adalah tumpukan lingkaran alas setinggi t.',`Luas alas = πr² = 3,14 × ${r}² = ${num(al)}`,'V = luas alas × tinggi = πr²t',`V = ${num(al)} × ${t}`],`V = ${num(al*t)}`,'satuan³'))}},
+{id:'kerucut',name:'Kerucut',tip:'Alas lingkaran dengan selimut yang menyempit ke puncak.',color:'#ec4899',rm:9,sl:[['r','Jari-jari (r)',1,8,1,3],['t','Tinggi (t)',2,12,1,6]],
+ geo:(p,w={yaw:0})=>{const{r,t}=p,h=t/2,a=w.yaw+PI/2,c=Math.cos(a),s=Math.sin(a);return cur([[0,-h,0],[0,h,0],[r,-h,0]],'OTA',{circ:[{y:-h,r,cap:-1}],sil:['cone',r,h],lines:[[0,2,'#dc2626','','r = '+r],[1,2,'#f59e0b','','garis pelukis s = '+num(RT(r*r+t*t))],[0,1,'#2563eb','5 4','t = '+t]],labels:[{p:[.5*r*c,0,.5*r*s],t:'selimut'},{p:[.5*r*c,-h,.5*r*s],t:'alas'}]})},
+ calc:p=>{const{r,t}=p,s=RT(r*r+t*t);return cv('Kerucut','1 lingkaran (alas O) + 1 selimut, puncak T',[['Garis pelukis s',num(s)],['Luas permukaan',num(pi*r*(r+s))],['Volume',num(pi*r*r*t/3)],['Sisi','alas (lingkaran O), selimut',1]],
+  box('Luas permukaan kerucut',['Selimut dibuka menjadi juring: jari-jari = garis pelukis s, panjang busur = keliling alas = 2πr. Juring itu bagian dari lingkaran besar berjari-jari s.',`s = √(r² + t²) = ${num(s)}`,'Perbandingan: luas selimut ÷ luas lingkaran besar = panjang busur ÷ keliling lingkaran besar','Luas selimut ÷ πs² = 2πr ÷ 2πs = r ÷ s',`Luas selimut = πs² × r ÷ s = πrs = ${num(pi*r*s)}`,'L = πr² + πrs = πr(r + s)'],`L = ${num(pi*r*(r+s))}`,'satuan²')+key('π ≈ 3,14'),
+  box('Volume kerucut',['Tiga kerucut penuh air dituang ke tabung yang jari-jari dan tingginya sama, tepat penuh.','Jadi kerucut = sepertiga volume tabung. Jika kerucut dikeluarkan dari tabung, sisanya ⅔ tabung.',`V = ${frac(1,3)} × πr² × t`,`V = ${frac(1,3)} × 3,14 × ${r}² × ${t}`],`V = ${num(pi*r*r*t/3)}`,'satuan³'))}},
+{id:'bola',name:'Bola',tip:'Semua titik pada permukaannya berjarak sama dari pusat.',color:'#6366f1',rm:10,sl:[['r','Jari-jari (r)',1,10,1,4]],
+ geo:(p,w={yaw:0})=>{const r=p.r,a=w.yaw+PI/2;return cur([[0,0,0],[r,0,0],[-r,0,0]],'OAB',{sph:r,lines:[[0,1,'#dc2626','','r = '+r],[1,2,'#2563eb','5 4','d = 2r = '+2*r]],labels:[{p:[.55*r*Math.cos(a),.75*r,.55*r*Math.sin(a)],t:'permukaan bola'}]})},
+ calc:p=>{const r=p.r;return cv('Bola','1 sisi lengkung, pusat O, diameter AB',[['Diameter d = 2r',num(2*r)],['Luas permukaan',num(4*pi*r*r)],['Volume',num(4*pi*r**3/3)],['Sisi','kulit bola (satu sisi lengkung)',1]],
+  box('Luas permukaan bola',['Archimedes: selimut tabung yang membungkus bola (jari-jari r, tinggi 2r) luasnya sama dengan luas bola.',`Luas selimut tabung = 2πr × 2r = 4πr² = 4 × 3,14 × ${r}²`,'L = 4πr² (empat kali luas lingkaran besar)'],`L = ${num(4*pi*r*r)}`,'satuan²')+key('π ≈ 3,14'),
+  box('Volume bola',['Cavalieri: pada setiap ketinggian, irisan bola setara dengan irisan tabung (tinggi 2r) dikurangi dua kerucut.','V bola = πr²·2r − 2 × (⅓ × πr² × r) = 2πr³ − ⅔πr³',`V = ${frac(4,3)} × πr³ = ${frac(4,3)} × 3,14 × ${r}³`],`V = ${num(4*pi*r**3/3)}`,'satuan³'))}}
+];
+
+/* ── Gambar 3D: proyeksi ortografik, rusuk tersembunyi putus-putus ── */
+function draw3(s){const st=ST[s.id],w=VW[s.id],M=st.mod=s.geo(st.cur,w),svg=$('#svg-'+s.id),k=150/s.rm,col=s.color;svg.replaceChildren();
+ const T=p=>{const q=rot(p,w.yaw,w.pit);return{x:220+q.x*k,y:190-q.y*k,z:q.z}},pt=a=>a.x.toFixed(1)+','+a.y.toFixed(1),P=M.V.map(T),
+ ln=(a,b,c,wd,da)=>mk('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:c,'stroke-width':wd,'stroke-dasharray':da||'none','stroke-linecap':'round'},svg),
+ ring=(f,vz,fill)=>{let a='',b='';const ps=[];for(let i=0;i<72;i++){const p=T(f(i/72*2*PI)),q=T(f((i+1)/72*2*PI)),d=`M${pt(p)}L${pt(q)}`;ps.push(pt(p));if(vz((i+.5)/72*2*PI))a+=d;else b+=d}
+  if(fill)mk('polygon',{points:ps.join(' '),fill:col,'fill-opacity':.1},svg);mk('path',{d:b,fill:'none',stroke:'#94a3b8','stroke-width':1.6,'stroke-dasharray':'4 4'},svg);mk('path',{d:a,fill:'none',stroke:col,'stroke-width':2.6},svg)};
+ const vis=new Set;
+ if(M.F){const fs=M.F.map(f=>{const q=f.map(i=>P[i]),c={x:0,y:0,z:0};q.forEach(p=>{c.x+=p.x/q.length;c.y+=p.y/q.length;c.z+=p.z/q.length});const[a,b,d]=q;
+   let n={x:(b.y-a.y)*(d.z-a.z)-(b.z-a.z)*(d.y-a.y),y:(b.z-a.z)*(d.x-a.x)-(b.x-a.x)*(d.z-a.z),z:(b.x-a.x)*(d.y-a.y)-(b.y-a.y)*(d.x-a.x)};
+   if(n.x*(c.x-220)+n.y*(c.y-190)+n.z*c.z<0)n={x:-n.x,y:-n.y,z:-n.z};return{f,q,c,fr:n.z>0}}).sort((a,b)=>a.c.z-b.c.z),E={};
+  fs.forEach(x=>{mk('polygon',{points:x.q.map(pt).join(' '),fill:col,'fill-opacity':x.fr?.2:.06},svg);x.f.forEach((i,j)=>{const m=x.f[(j+1)%x.f.length],key=Math.min(i,m)+'-'+Math.max(i,m);E[key]=[i,m,!!(E[key]&&E[key][2])||x.fr]});if(x.fr)x.f.forEach(i=>vis.add(i))});
+  Object.values(E).sort((a,b)=>a[2]-b[2]).forEach(([i,m,v])=>ln(P[i],P[m],v?col:'#94a3b8',v?2.8:1.6,v?'':'4 4'));
+  fs.filter(x=>x.fr).forEach(x=>text(svg,x.c.x,x.c.y,x.f.map(i=>M.V[i].n).join(''),col,11))}
+ (M.circ||[]).forEach(c=>{const cz=rot({x:0,y:c.cap,z:0},w.yaw,w.pit).z>0;ring(a=>({x:c.r*Math.cos(a),y:c.y,z:c.r*Math.sin(a)}),a=>cz||rot({x:Math.cos(a),y:0,z:Math.sin(a)},w.yaw,w.pit).z>0,1)});
+ if(M.sil){const[ty,r,h]=M.sil;if(ty==='cyl')[w.yaw,w.yaw+PI].forEach(a=>ln(T({x:r*Math.cos(a),y:h,z:r*Math.sin(a)}),T({x:r*Math.cos(a),y:-h,z:r*Math.sin(a)}),col,2.6));
+  else{const Ap=P[1],Cp=P[0],ref=Math.atan2(Cp.y-Ap.y,Cp.x-Ap.x);let lo=[9,Ap],hi=[-9,Ap];for(let i=0;i<72;i++){const q=T({x:r*Math.cos(i/72*2*PI),y:-h,z:r*Math.sin(i/72*2*PI)});let d=Math.atan2(q.y-Ap.y,q.x-Ap.x)-ref;d=Math.atan2(Math.sin(d),Math.cos(d));if(d<lo[0])lo=[d,q];if(d>hi[0])hi=[d,q]}ln(Ap,lo[1],col,2.6);ln(Ap,hi[1],col,2.6)}}
+ if(M.sph){const r=M.sph;mk('circle',{cx:220,cy:190,r:r*k,fill:col,'fill-opacity':.12,stroke:col,'stroke-width':2.6},svg);[a=>({x:r*Math.cos(a),y:0,z:r*Math.sin(a)}),a=>({x:r*Math.cos(a),y:r*Math.sin(a),z:0}),a=>({x:0,y:r*Math.sin(a),z:r*Math.cos(a)})].forEach(f=>ring(f,a=>T(f(a)).z>0))}
+ (M.lines||[]).forEach(([i,j,c,d,l])=>{ln(P[i],P[j],c,2.6,d);if(l){const m=mid(P[i],P[j]);pill(svg,m.x,m.y,l,c,11)}});
+ if(M.F&&st.d&&st.d[0]!==st.d[1]){const[i,j]=st.d,a=M.V[i],b=M.V[j],m=mid(P[i],P[j]);ln(P[i],P[j],'#f59e0b',4.5);pill(svg,m.x,m.y-14,a.n+b.n,'#d97706',11)}
+ const c0={x:220,y:190};P.forEach((p,i)=>{const o=M.F&&!vis.has(i);mk('circle',{cx:p.x,cy:p.y,r:4.5,fill:'#fff',stroke:col,'stroke-width':2.5,opacity:o?.55:1},svg);const u=dist(c0,p)<6?{x:.7,y:.7}:unit(c0,p),l=add(p,u,15);text(svg,l.x,l.y,M.V[i].n,col,14)});
+ (M.labels||[]).forEach(L=>{const q=T({x:L.p[0],y:L.p[1],z:L.p[2]});pill(svg,q.x,q.y,L.t,col,11)})}
+
+/* ── Pasang ke aplikasi: state, tampilan, router, interaksi ── */
+const _d=draw,_r=refresh;draw=s=>s.d3?draw3(s):_d(s);
+refresh=s=>{_r(s);const I=ST[s.id].info;if(s.d3&&I.D!=null)$('#v-'+s.id+' .D').innerHTML=I.D};
+S3.forEach(s=>{s.d3=1;BY[s.id]=s;const d=Object.fromEntries(s.sl.map(x=>[x[0],x[5]]));ST[s.id]={def:d,tgt:{...d},cur:{...d},h:-1,hl:false,fresh:false,raf:0,info:{ok:true},drag:null,d:s.d0?[...s.d0]:null};VW[s.id]={yaw:-.6,pit:.45}});
+ORDER.push(...S3.map(s=>s.id));
+const v3=s=>`<section class="view" id="v-${s.id}">${nav(s.id)}<div class="wrap"><h2 class="mt">Bangun Ruang: ${s.name}</h2><div class="ws">
+<div class="pn"><svg class="s3" id="svg-${s.id}" viewBox="0 0 440 380" role="img" aria-label="Model 3D ${s.name}, seret untuk memutar"></svg><p class="tip">🖱️ Seret gambar untuk memutar ke segala arah (360°).</p>
+<div class="pre" style="justify-content:center;margin:10px 0 0"><button class="btn gh sm" data-r3="${s.id}|0">Tampak depan</button><button class="btn gh sm" data-r3="${s.id}|1">Tampak atas</button><button class="btn gh sm" data-r3="${s.id}|2">▶ Putar otomatis</button></div></div>
+<aside class="pn"><div class="st"></div>${s.sl.map(([k,l,mn,mx,sp,v])=>slider(l,`data-s="${s.id}" data-k="${k}" data-u=""`,mn,mx,sp,v)).join('')}
+${s.d0?'<div class="dsel">Diagonal dari titik <select data-d="'+s.id+'|0"></select> ke titik <select data-d="'+s.id+'|1"></select></div>':''}
+<button class="btn gh" data-r3="${s.id}|3">↺ Kembalikan ke awal</button><div class="ck"></div></aside></div>
+<div class="pn ls"><h3><i>Analisis</i>Titik, rusuk, dan sisi</h3><div class="info"></div></div>
+${s.d0?'<div class="pn ls"><h3><i>Diagonal</i>Diagonal bidang dan diagonal ruang</h3><div class="D"></div></div>':''}
+<div class="pn ls"><h3><i>Luas</i>Luas permukaan ${s.name}</h3><div class="K"></div></div><div class="pn ls"><h3><i>Volume</i>Volume ${s.name}</h3><div class="L"></div></div></div></section>`;
+$('main').insertAdjacentHTML('beforeend',S3.map(v3).join(''));
+$('.dash').insertAdjacentHTML('afterbegin','<h2 class="hd">Bangun Datar</h2>');$('.dash').insertAdjacentHTML('beforeend','<h2 class="hd">Bangun Ruang</h2>'+S3.map(card).join(''));
+$('#v-lingkaran .bar').insertAdjacentHTML('beforeend','<button class="btn sm" data-go="kubus">Selanjutnya →</button>');
+S3.forEach(s=>{const M=s.geo(ST[s.id].tgt),svg=$('#svg-'+s.id),w=VW[s.id];
+ $$(`select[data-d^="${s.id}|"]`).forEach((sel,q)=>{sel.innerHTML=M.V.slice(0,M.nv).map((v,i)=>`<option value="${i}">${v.n}</option>`).join('');sel.value=s.d0[q]});
+ svg.addEventListener('pointerdown',e=>{w.dr=[e.clientX,e.clientY];svg.setPointerCapture(e.pointerId)});
+ svg.addEventListener('pointermove',e=>{if(!w.dr)return;w.yaw+=(e.clientX-w.dr[0])*.012;w.pit+=(e.clientY-w.dr[1])*.012;w.dr=[e.clientX,e.clientY];draw(s)});
+ ['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>w.dr=null));
+ $$(`#v-${s.id} input[type=range]`).forEach(paint);refresh(s);draw(s)});
+document.addEventListener('change',e=>{const d=e.target.dataset.d;if(!d)return;const[id,q]=d.split('|');ST[id].d[+q]=+e.target.value;refresh(BY[id]);kick(id)});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-r3]');if(!b)return;const[id,a]=b.dataset.r3.split('|'),w=VW[id],s=BY[id];
+ if(a==='0'){w.yaw=0;w.pit=0}else if(a==='1'){w.yaw=0;w.pit=PI/2}
+ else if(a==='2'){w.auto=!w.auto;b.textContent=w.auto?'⏸ Berhenti':'▶ Putar otomatis';const f=()=>{if(!w.auto||!$('#v-'+id).classList.contains('on')){w.auto=false;b.textContent='▶ Putar otomatis';return}w.yaw+=.012;draw(s);requestAnimationFrame(f)};f()}
+ else{w.yaw=-.6;w.pit=.45;apply(s,ST[id].def)}
+ draw(s)});
+go(location.hash.slice(1));
+})();
+</script>
+<style>
+.sy .ch output,.sy input{display:none}.sym{display:flex;align-items:center;gap:10px}.sym b{flex:1;text-align:center;font:italic 700 1.35rem "STIX Two Text",Georgia,serif;color:var(--pri)}.sym button{width:46px;height:46px;border:0;border-radius:12px;background:var(--pri);color:var(--on);font:900 1.6rem Nunito,sans-serif;cursor:pointer}
+#v-segitiga .ctl{display:none}.res:empty,.fx small:empty{display:none}
+.kp p,.kd{margin:6px 0}.kp .row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.kd{color:var(--mut);font-weight:600;font-size:.92rem}
+.vz{width:100%;height:auto;background:var(--fx);border-radius:14px;color:var(--ink)}.qa{border:1.5px dashed var(--fxl);border-radius:14px;padding:12px 14px;margin-top:14px}.qa summary{font-weight:900;cursor:pointer;color:var(--pri)}
+.dfs p{font-size:.9rem;margin:4px 0}.pyth{margin-top:8px}
+</style>
+<script>
+(()=>{
+const cl=x=>Math.max(0,Math.min(1,x)),FL=SH.map(s=>s.id),COLS=['#2563eb','#dc2626','#16a34a','#d97706'];
+const GEN_K='<b>Keliling</b> adalah panjang lintasan ketika kita mengitari bangun sepanjang sisi-sisinya satu putaran penuh: jumlah seluruh sisinya.';
+const GEN_L='<b>Luas</b> adalah besar daerah di dalam bangun, yaitu banyaknya kotak satuan yang dapat menutupinya.';
+const DEF={persegi:'<b>Persegi</b> adalah segi empat yang keempat sisinya sama panjang dan keempat sudutnya siku-siku (90°).',
+'persegi-panjang':'<b>Persegi panjang</b> adalah segi empat yang sisi berhadapannya sama panjang dan sejajar, dengan keempat sudutnya siku-siku (90°).',
+segitiga:'<b>Segitiga</b> adalah bangun datar yang dibatasi tiga sisi dan memiliki tiga titik sudut.',
+'jajar-genjang':'<b>Jajar genjang</b> adalah segi empat yang sisi-sisi berhadapannya sejajar dan sama panjang; sudut berhadapannya sama besar.',
+trapesium:'<b>Trapesium</b> adalah segi empat yang memiliki sepasang sisi sejajar. Jika ada <i>dua</i> pasang sisi sejajar, bangun itu adalah jajar genjang.',
+'belah-ketupat':'<b>Belah ketupat</b> adalah segi empat yang keempat sisinya sama panjang; kedua diagonalnya berpotongan tegak lurus dan saling membagi dua.',
+'layang-layang':'<b>Layang-layang</b> adalah segi empat dengan dua pasang sisi berdekatan sama panjang; diagonal simetrinya memotong tegak lurus dan membagi dua diagonal yang lain.'};
+const QA={persegi:['Apakah persegi adalah persegi panjang, atau persegi panjang adalah persegi?','Persegi adalah persegi panjang istimewa: sisi berhadapannya sama panjang dan keempat sudutnya 90°, bahkan keempat sisinya sama. Sebaliknya, persegi panjang belum tentu persegi, karena panjang dan lebarnya boleh berbeda. Coba samakan a dan b pada persegi panjang.'],
+'persegi-panjang':['Apakah persegi adalah persegi panjang, atau persegi panjang adalah persegi?','Persegi adalah persegi panjang istimewa (panjang = lebar). Persegi panjang belum tentu persegi. Samakan p dan l untuk melihatnya berubah jadi persegi.'],
+segitiga:['Geser titik sudut mana pun: mengapa jumlah ketiga sudutnya selalu 180°?','Potong ketiga sudutnya lalu rapatkan; ketiganya membentuk satu garis lurus, yaitu 180°. Bentuk segitiga boleh berubah, jumlah sudutnya tetap.'],
+'jajar-genjang':['Jika sudut jajar genjang dibuat 90°, ia menjadi bangun apa? Jika sisinya juga disamakan?','Pada 90° menjadi persegi panjang; bila a = b juga, menjadi persegi. Jika hanya a = b dengan sudut bukan 90°, menjadi belah ketupat.'],
+trapesium:['Apakah jajar genjang adalah trapesium, atau trapesium adalah jajar genjang?','Menurut definisi "sedikitnya sepasang sisi sejajar", jajar genjang adalah trapesium (punya dua pasang). Trapesium belum tentu jajar genjang karena sisi lainnya tidak harus sejajar. (Sebagian buku memakai definisi "tepat satu pasang"; cek definisi di bukumu.)'],
+'belah-ketupat':['Belah ketupat pasti layang-layang, atau layang-layang pasti belah ketupat?','Belah ketupat pasti layang-layang: keempat sisinya sama, jadi dua pasang sisi berdekatan pasti sama. Layang-layang belum tentu belah ketupat, karena sisinya boleh berbeda pasangan.'],
+'layang-layang':['Belah ketupat pasti layang-layang, atau layang-layang pasti belah ketupat?','Belah ketupat pasti layang-layang, tetapi tidak sebaliknya. Samakan sisi pendek dan panjang pada layang-layang untuk melihatnya menjadi belah ketupat.']};
+const TRI='<div class="dfs"><p><b>Sama sisi:</b> ketiga sisi sama panjang.</p><p><b>Sama kaki:</b> dua sisi sama panjang.</p><p><b>Sembarang:</b> ketiga sisi berbeda panjang.</p><p><b>Siku-siku:</b> satu sudutnya 90°.</p><p><b>Lancip:</b> semua sudutnya kurang dari 90°.</p><p><b>Tumpul:</b> satu sudutnya lebih dari 90°.</p></div><p class="as"></p><p><b>Keliling</b> segitiga: K = a + b + c.</p><label class="hs">Garis istimewa: <select data-gl><option value="">Sembunyikan</option><option value="tinggi">Garis tinggi</option><option value="berat">Garis berat</option><option value="bagi">Garis bagi</option><option value="sumbu">Garis sumbu</option></select></label><p class="gd"></p>';
+const GD={tinggi:'<b>Garis tinggi</b>: garis dari titik sudut yang tegak lurus (90°) pada sisi di depannya.',berat:'<b>Garis berat</b>: garis dari titik sudut ke titik tengah sisi di depannya.',bagi:'<b>Garis bagi</b>: garis dari titik sudut yang membagi sudut itu menjadi dua sama besar.',sumbu:'<b>Garis sumbu</b>: garis yang tegak lurus tepat di titik tengah sebuah sisi; ketiganya bertemu di pusat lingkaran luar.'};
+/* ── penemuan rumus luas ── */
+let PC=0;const vl=(p,f,c)=>{const q=p.trim().split(/\s+/).map(s=>s.split(',').map(Number)),m=[0,1].map(k=>q.reduce((a,b)=>a+b[k],0)/q.length);return q.map((v,i)=>{const dx=v[0]-m[0],dy=v[1]-m[1],d=Math.hypot(dx,dy)||1;return`<circle cx="${v[0]}" cy="${v[1]}" r="3.5" fill="#fff" stroke="${f}" stroke-width="2"/><text x="${v[0]+dx/d*13}" y="${v[1]+dy/d*13}" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="800" fill="${f}" style="paint-order:stroke;stroke:var(--fx);stroke-width:3px">${'ABCDEF'[i]}${"'".repeat(c)}</text>`}).join('')};const PG=(p,f,o,x)=>PG0(p,f,o,x)+vl(p,f,PC++),PG0=(p,f,o=.4,x='')=>`<polygon points="${p}" fill="${f}" fill-opacity="${o}" stroke="${f}" stroke-width="2.5" stroke-linejoin="round" ${x}/>`,LN=(a,b,c,d,k='#64748b',s='')=>`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="${k}" stroke-width="2.5" stroke-dasharray="${s}"/>`,TX=(x,y,s,c='currentColor')=>`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="${c}">${s}</text>`;
+const grid=(R,Cc)=>t=>{let o='';const k=36,x0=220-Cc*k/2,y0=130-R*k/2;for(let r=0;r<R;r++)for(let c=0;c<Cc;c++)o+=`<rect x="${x0+c*k}" y="${y0+r*k}" width="${k-3}" height="${k-3}" rx="4" fill="#2563eb" opacity="${cl(t*R-r)*.85}"/>`;return o+TX(220,y0-14,Cc+' kolom')+TX(x0-34,130,R+' baris')+TX(x0-12,y0+R*k+12,'A','#2563eb')+TX(x0+Cc*k+12,y0+R*k+12,'B','#2563eb')+TX(x0+Cc*k+12,y0-12,'C','#2563eb')+TX(x0-12,y0-12,'D','#2563eb')};
+const DISC={persegi:{d:grid(4,4),s:['Persegi: keempat sisi sama panjang. Tutup daerahnya dengan kotak satuan 1 × 1.','Baris pertama berisi 4 kotak: satu baris = 4 kolom.','Tambah baris demi baris sampai penuh: ada 4 baris.','Banyak kotak = baris × kolom = 4 × 4 = 16. Karena baris = kolom = s, maka <b>L = s × s = s²</b>.']},
+'persegi-panjang':{d:grid(3,5),s:['Persegi panjang berukuran p × l. Tutup daerahnya dengan kotak satuan.','Baris pertama berisi 5 kotak (5 kolom = panjang p).','Tambah baris sampai 3 baris (tinggi = lebar l).','Banyak kotak = baris × kolom = 3 × 5 = 15. Jadi <b>L = p × l</b>.']},
+'belah-ketupat':{d:t=>{const m=cl((t-1/3)*3),k=m*40,pc=(p,f,ap,y)=>`<g transform="translate(0 ${y})">${PG(p,f)}${LN(110,130,330,130,'#f59e0b')}${TX(90,130,'d₁','#b45309')}${t>.6?LN(220,130,220,ap,'#16a34a','5 4')+TX(240,(130+ap)/2,'½d₂','#16a34a'):''}</g>`;return pc('110,130 330,130 220,50','#8b5cf6',50,-k)+pc('110,130 330,130 220,210','#ec4899',210,k)},
+ s:['Belah ketupat dengan diagonal d₁ (mendatar) dan d₂ (tegak). Diagonalnya berpotongan tegak lurus.','Bagi dua sepanjang diagonal d₁: terbentuk 2 segitiga sama kaki yang sama besar, beralas d₁.','Pisahkan keduanya. Diagonal d₂ terbagi dua sama panjang, sehingga tinggi tiap segitiga = ½ d₂.','Luas 1 segitiga = ½ × d₁ × ½d₂. Ada 2 segitiga, jadi L = 2 × ½ × d₁ × ½d₂ = <b>½ × d₁ × d₂</b>.']},
+'jajar-genjang':{d:t=>{const m=cl((t-1/3)*3),dx=m*220;return PG('120,200 280,200 340,80 120,80','#f59e0b')+`<g transform="translate(${dx} 0)">${PG('60,200 120,200 120,80','#ec4899',.5)}</g>`+(t>.3?LN(120,80,120,200,'#16a34a','5 4')+TX(m>.5?352:106,140,'t','#16a34a'):'')+TX(m>.5?230:170,222,'a')},
+ s:['Jajar genjang dengan alas a dan tinggi t.','Tarik garis tinggi t dari sudut atas: jajar genjang terbagi menjadi sebuah segitiga siku-siku dan sebuah trapesium siku-siku.','Geser segitiga ke sisi seberangnya; potongannya pas.','Terbentuk persegi panjang beralas a dan tinggi t, dengan luas yang sama. Jadi <b>L = a × t</b>.']},
+trapesium:{d:t=>{const m=cl((t-1/3)*3),u=cl(t*3-1);return PG('30,190 190,190 150,110 70,110','#f43f5e')+(t>.3?`<g transform="translate(0 ${-(1-u)*95}) rotate(${180*u} 170 150)">${PG('30,190 190,190 150,110 70,110','#fb923c',.45)}</g>`:'')+LN(70,110,70,190,'#16a34a','5 4')+TX(56,150,'t','#16a34a')+(m>.9?TX(170,214,'a + b'):TX(110,210,'a')+TX(110,96,'b'))},
+ s:['Trapesium dengan sisi sejajar a dan b, tinggi t.','Buat salinan trapesium yang sama persis.','Putar salinan 180° lalu rapatkan pada kaki trapesium.','Terbentuk jajar genjang beralas (a + b) dan tinggi t, luasnya (a + b) × t. Itu gabungan 2 trapesium, jadi <b>L = ½ × (a + b) × t</b>.']},
+segitiga:{d:t=>{const m=cl((t-1/3)*3),k=m*30;return PG('100,70 100,210 340,210','#16a34a')+`<g transform="translate(${k} ${-k})">${PG('100,70 340,70 340,210','#22c55e',.25)}</g>`+TX(220,236,'alas')+TX(70,140,'tinggi')},
+ s:['Mulai dari persegi panjang beralas "alas" dan tinggi "tinggi": luasnya alas × tinggi.','Bagi dua dengan satu diagonal: terbentuk 2 segitiga siku-siku yang sama besar.','Dua segitiga itu kongruen, jadi luas satu segitiga = setengah luas persegi panjang.','<b>L = ½ × alas × tinggi</b>. Segitiga sembarang pun dapat dibagi oleh garis tingginya menjadi dua segitiga siku-siku yang masing-masing setengah persegi panjang.']},
+'layang-layang':{d:t=>{const m=cl((t-1/3)*3),k=m*45,pc=(p,f,x,hx)=>`<g transform="translate(${x} 0)">${PG(p,f)}${LN(220,35,220,235,'#f59e0b')}${t>.6?LN(220,125,hx,125,'#16a34a','5 4')+TX((220+hx)/2,110,'½d₁','#16a34a'):''}</g>`;return pc('220,35 220,235 110,125','#ec4899',-k,110)+pc('220,35 220,235 330,125','#f472b6',k,330)+TX(220+(t>.3?0:12),20,'d₂','#b45309')},
+ s:['Layang-layang dengan diagonal simetri d₂ (tegak) dan diagonal d₁ (mendatar).','Bagi dua sepanjang diagonal simetri d₂: terbentuk 2 segitiga dengan alas d₂.','Pisahkan keduanya. Diagonal d₂ memotong d₁ tegak lurus dan membaginya dua, sehingga tinggi tiap segitiga = ½ d₁.','Luas 1 segitiga = ½ × d₂ × ½d₁. Dua segitiga: L = 2 × ½ × d₂ × ½d₁ = <b>½ × d₁ × d₂</b>.']}};
+const VZ={};
+const vzDraw=id=>{const v=VZ[id];PC=0;$('#vz-'+id).innerHTML=DISC[id].d(v.t);$('#vt-'+id).innerHTML='<h4>Langkah '+(v.g+1)+' dari 4</h4><p>'+DISC[id].s[v.g]+'</p>'};
+const vzGo=(id,d)=>{const v=VZ[id],g=v.g=Math.max(0,Math.min(3,v.g+d)),to=g/3,from=v.t,t0=performance.now();cancelAnimationFrame(v.raf);const f=now=>{const p=rm?1:cl((now-t0)/1100);v.t=from+(to-from)*(p*p*(3-2*p));vzDraw(id);if(p<1)v.raf=requestAnimationFrame(f)};v.raf=requestAnimationFrame(f)};
+/* ── panel tambahan di tiap bangun datar ── */
+FL.forEach(id=>{const s=BY[id],st=ST[id],R=$('#v-'+id),n4=id!=='segitiga',pp=id==='persegi'||id==='persegi-panjang';st.dg=[0,2];
+ $('.info',R).closest('.pn').insertAdjacentHTML('afterend',`<div class="pn ls kp"><h3><i>Konsep</i>Definisi ${s.name}</h3><p>${DEF[id]}</p><div class="row"><button class="btn gh sm" data-ov="${id}|sisi">Tunjukkan sisi</button>${n4?`<button class="btn gh sm" data-ov="${id}|diag">Tunjukkan diagonal</button>`:''}</div>${pp?`<div class="dsel">Diagonal dari titik <select data-dg="${id}|0">${'ABCD'.split('').map((c,i)=>`<option value="${i}"${i===0?' selected':''}>${c}</option>`).join('')}</select> ke titik <select data-dg="${id}|1">${'ABCD'.split('').map((c,i)=>`<option value="${i}"${i===2?' selected':''}>${c}</option>`).join('')}</select></div><div class="pyth"></div>`:''}${id==='segitiga'?TRI:''}</div>`);
+ $('.K',R).insertAdjacentHTML('beforebegin',`<p class="kd">${GEN_K}</p>`);
+ $('.L',R).insertAdjacentHTML('beforebegin',`<p class="kd">${GEN_L}</p><button class="btn" data-ov="${id}|luas">🟧 Sorot luas</button>`);
+ VZ[id]={t:0,g:0,raf:0};
+ $('.wrap',R).insertAdjacentHTML('beforeend',`<div class="pn ls kp"><h3><i>Penemuan rumus</i>Dari mana rumus luas ${s.name}?</h3><svg class="vz" id="vz-${id}" viewBox="0 0 440 260" role="img" aria-label="Animasi penemuan rumus luas ${s.name}"></svg><div class="row" style="justify-content:center"><button class="btn gh sm" data-vz="${id}|-1">◀ Sebelumnya</button><button class="btn sm" data-vz="${id}|1">Berikutnya ▶</button></div><div class="fx" id="vt-${id}"></div><details class="qa"><summary>🤔 ${QA[id][0]}</summary><p>${QA[id][1]}</p></details></div>`);vzDraw(id);pyth(id)});
+function pyth(id){if(!$('.pyth',$('#v-'+id)))return;const[i,j]=ST[id].dg,N='ABCD',a=N[i],b=N[j],k=N[(i+1)%4];$('.pyth',$('#v-'+id)).innerHTML=i===j?'<p>Pilih dua titik yang berbeda.</p>':(j-i+4)%4===2?box(`Diagonal bidang ${a}${b}`,[`${a}${b}² = ${a}${k}² + ${k}${b}² (teorema Pythagoras, siku-siku di ${k})`,id==='persegi'?`${a}${b} = √(s² + s²) = s√2`:`${a}${b} = √(p² + l²)`],'',''):`<p>${a}${b} adalah <b>sisi</b>, bukan diagonal.</p>`}
+/* ── +/− menggantikan kursor angka ── */
+$$('input[type=range][data-s]').forEach(r=>{const s=BY[r.dataset.s];if(r.dataset.u==='°'||s.fixed)return;const c=r.closest('.ctl'),l=$('.ch span',c).textContent,m=l.match(/\(([^)]+)\)/);c.classList.add('sy');c.insertAdjacentHTML('beforeend',`<div class="sym"><button data-m="-1" aria-label="Kurangi ${l}">−</button><b>${m?m[1]:l}</b><button data-m="1" aria-label="Tambah ${l}">+</button></div>`)});
+/* ── rumus simbolik: buang baris substitusi angka ── */
+const _b=box,pl=r=>r.replace(/<span class="fr">.*?<\/span>/g,'');box=(t,r,res,u)=>/lingkaran|kotak|tabung|kerucut|bola/i.test(t)?_b(t,r,res,u):_b(t,r.map(x=>x.replace(/\s*=\s*\d[\d.,]*\s*$/,'')).filter((x,i)=>!(r.length>1&&i===r.length-1)&&!/\d[,.]\d|\d{2,}/.test(pl(x))),'','');
+/* ── overlay (sisi, diagonal, luas, garis istimewa) ── */
+const _rf=refresh,_dr=draw;
+const post=s=>{const R=$('#v-'+s.id);$$('.info .it',R).forEach(i=>{if(/^[\d.,]+$/.test($('b',i).textContent))i.hidden=true});$$('.ck .c,.st small',R).forEach(e=>{e.innerHTML=e.innerHTML.replace(/\s*\((?![^)]*°)[^)]*\d[^)]*\)/g,'')});
+ if(s.id==='segitiga'){const V=s.geo(ST.segitiga.tgt),a=V.map((v,i)=>angleAt(v,V[(i+1)%3],V[(i+2)%3]));$('.as',R).innerHTML=`<b>Perhatikan:</b> ∠A + ∠B + ∠C = ${num(a[0])}° + ${num(a[1])}° + ${num(a[2])}° = <b>${num(a[0]+a[1]+a[2])}°</b>. Geser titik mana pun, hasilnya tetap 180°.`}};
+refresh=s=>{_rf(s);if(!s.d3&&s.id!=='lingkaran')post(s)};
+draw=s=>{_dr(s);if(!s.d3&&s.id!=='lingkaran')ov(s)};
+function ov(s){const st=ST[s.id],svg=$('#svg-'+s.id),pg=svg.querySelector('polygon');if(!pg||!(st.ov||st.gl))return;const pts=pg.getAttribute('points'),P=pts.split(' ').map(q=>q.split(',').map(Number)),n=P.length,g=mk('g',{},svg),N='ABCD',M=st.ov,Q=P.map(p=>({x:p[0],y:p[1]})),L=(a,b,c,d)=>mk('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:c,'stroke-width':3.5,'stroke-dasharray':d||'none','stroke-linecap':'round'},g);
+ if(M==='luas'){const q=mk('polygon',{points:pts,fill:'#f59e0b','fill-opacity':.55},g);if(st.ovf){q.animate([{fillOpacity:0},{fillOpacity:.55}],{duration:3200,easing:'ease-in-out',fill:'forwards'});st.ovf=0}const c=Q.reduce((a,p)=>({x:a.x+p.x/n,y:a.y+p.y/n}),{x:0,y:0});pill(g,c.x,c.y,'luas = isi daerah','#b45309',12)}
+ if(M==='sisi')Q.forEach((p,i)=>{const q=Q[(i+1)%n],m=mid(p,q);L(p,q,COLS[i%4]);mk('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:COLS[i%4],'stroke-width':8,'stroke-opacity':.5},g);pill(g,m.x,m.y,'sisi '+N[i]+N[(i+1)%n],COLS[i%4],11)});
+ if(M==='diag'&&n===4){const pp=s.id==='persegi'||s.id==='persegi-panjang',ps=pp?[st.dg]:[[0,2],[1,3]];ps.forEach(([i,j])=>{if(i===j)return;if(pp&&(j-i+4)%4===2){const k=(i+1)%4;L(Q[i],Q[k],'#94a3b8','5 4');L(Q[k],Q[j],'#94a3b8','5 4')}L(Q[i],Q[j],'#f59e0b');const m=mid(Q[i],Q[j]);pill(g,m.x,m.y-14,'diagonal '+N[i]+N[j],'#b45309',11)})}
+ if(st.gl&&n===3){const[a,b,c]=Q,d=2*(a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y));Q.forEach((A,i)=>{const B=Q[(i+1)%3],C=Q[(i+2)%3],k=COLS[i];let F;
+  if(st.gl==='tinggi'){const u=unit(B,C);F=add(B,u,(A.x-B.x)*u.x+(A.y-B.y)*u.y);L(A,F,k,'6 4')}
+  if(st.gl==='berat'){F=mid(B,C);L(A,F,k)}
+  if(st.gl==='bagi'){const c1=dist(A,B),b1=dist(A,C);F={x:(b1*B.x+c1*C.x)/(b1+c1),y:(b1*B.y+c1*C.y)/(b1+c1)};L(A,F,k)}
+  if(st.gl==='sumbu'&&Math.abs(d)>1e-6){const f=p=>p.x*p.x+p.y*p.y,O={x:(f(a)*(b.y-c.y)+f(b)*(c.y-a.y)+f(c)*(a.y-b.y))/d,y:(f(a)*(c.x-b.x)+f(b)*(a.x-c.x)+f(c)*(b.x-a.x))/d};F=mid(B,C);L(F,O,k);mk('circle',{cx:O.x,cy:O.y,r:4,fill:k},g)}
+  if(F)mk('circle',{cx:F.x,cy:F.y,r:4.5,fill:k},g)})}}
+document.addEventListener('click',e=>{let b;
+ if(b=e.target.closest('[data-m]')){const r=$('input',b.closest('.ctl'));+b.dataset.m>0?r.stepUp():r.stepDown();r.dispatchEvent(new Event('input',{bubbles:true}))}
+ if(b=e.target.closest('[data-ov]')){const[id,m]=b.dataset.ov.split('|'),st=ST[id];st.ov=st.ov===m?'':m;st.ovf=1;$$(`[data-ov^="${id}|"]`).forEach(x=>x.classList.toggle('on',x.dataset.ov===id+'|'+st.ov));kick(id)}
+ if(b=e.target.closest('[data-vz]')){const[id,d]=b.dataset.vz.split('|');vzGo(id,+d)}
+ if(b=e.target.closest('[data-nj]')){C.N=+b.dataset.nj;$$('[data-nj]').forEach(x=>x.classList.toggle('on',x===b));updC();drawCircle()}});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.dg){const[id,q]=t.dataset.dg.split('|');ST[id].dg[+q]=+t.value;pyth(id);kick(id)}
+ if('gl' in t.dataset){ST.segitiga.gl=t.value;$('.gd').innerHTML=GD[t.value]||'';kick('segitiga')}});
+FL.forEach(id=>{refresh(BY[id]);draw(BY[id])});
+/* ── lingkaran: definisi, jumlah juring, perbandingan keliling ÷ diameter ── */
+$('#play').insertAdjacentHTML('afterend','<div class="pre" style="margin-bottom:14px">'+[6,12,24,32,64,80].map(n=>`<button class="btn gh sm${n===32?' on':''}" data-nj="${n}">${n} juring</button>`).join('')+'</div>');
+$('#v-lingkaran .wrap').insertAdjacentHTML('beforeend',`<div class="pn ls kp"><h3><i>Konsep</i>Definisi dan penemuan rumus keliling</h3><div class="dfs"><p><b>Lingkaran</b>: himpunan semua titik yang berjarak sama (r) dari satu titik pusat.</p><p><b>Diameter</b>: tali busur terpanjang, melalui pusat; d = 2r. <b>Busur</b>: bagian garis lengkung lingkaran. <b>Juring</b>: daerah yang dibatasi dua jari-jari dan satu busur. <b>Tali busur</b>: ruas garis yang menghubungkan dua titik pada lingkaran. <b>Tembereng</b>: daerah antara tali busur dan busurnya.</p><p><b>Keliling</b>: panjang lintasan satu putaran penuh mengelilingi lingkaran.</p></div>
+<label class="hs">Diameter d = <input id="pid" type="number" min="0.1" step="any" value="7" style="width:90px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700"></label><div class="row" style="justify-content:center">${[7,14,3.5,21].map(d=>`<button class="btn gh sm" data-pd="${d}">d = ${d}</button>`).join('')}</div><div class="fx" id="pir"></div>
+<details class="qa"><summary>🤔 Berapa kali diameter muat melingkari keliling lingkaran?</summary><p>Selalu sedikit lebih dari 3 kali: K ÷ d = 22/7 ≈ 3,14 untuk lingkaran sekecil atau sebesar apa pun. Bilangan itu dinamai π.</p></details></div>`);
+const pi2=()=>{const d=Math.max(.1,+$('#pid').value||7),K=22/7*d;$('#pir').innerHTML=`<h4>Keliling ÷ diameter</h4><p>d = ${num(d)} → K = ${frac(22,7)} × ${num(d)} = <b>${num(K)}</b></p><p>K ÷ d = ${num(K)} ÷ ${num(d)} = <span class="res">${frac(22,7)} ≈ 3,14</span></p><p class="key">Coba d = 7 (K = 22) lalu d = 14 (K = 44): perbandingannya tetap sama, jadi <b>K = π × d = 2πr</b>.</p>`};
+$('#pid').addEventListener('input',pi2);document.addEventListener('click',e=>{const b=e.target.closest('[data-pd]');if(b){$('#pid').value=b.dataset.pd;pi2()}});pi2();
+})();
+</script>
+
+<script>
+(()=>{
+const cl=x=>Math.max(0,Math.min(1,x));
+/* ── lingkaran: juring/busur, tali busur, diameter bisa dipindah ── */
+const _dc=drawCircle;drawCircle=()=>{_dc();if(C.tab!=='unsur')return;const g=$('#svg-lingkaran'),R=C.rc*16;
+ [['juring',C.oj+rad(C.theta)/2,C.on.has('juring')||C.on.has('busur'),'#db2777',R],['tali',C.ot,C.on.has('tali')||C.on.has('tembereng'),'#0f766e',R*Math.cos(rad(C.phi)/2)],['diameter',C.od,C.on.has('diameter'),'#2563eb',R]].forEach(([k,a,v,c,d])=>{if(!v)return;const x=220+d*Math.cos(a),y=190+d*Math.sin(a);mk('circle',{cx:x,cy:y,r:8,fill:'#fff',stroke:c,'stroke-width':3,'data-hd':k},g);mk('circle',{cx:x,cy:y,r:22,fill:'transparent','data-hd':k,style:'cursor:grab'},g)})};
+{const svg=$('#svg-lingkaran');let dr=null;
+ svg.addEventListener('pointerdown',e=>{const h=e.target.closest('[data-hd]');if(!h)return;dr=h.dataset.hd;svg.setPointerCapture(e.pointerId)});
+ svg.addEventListener('pointermove',e=>{if(!dr)return;const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse()),a=Math.atan2(q.y-190,q.x-220);if(dr==='juring')C.oj=a-rad(C.theta)/2;else if(dr==='tali')C.ot=a;else C.od=a;drawCircle()});
+ ['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>dr=null));
+ svg.insertAdjacentHTML('afterend','<p class="tip">💡 Seret titik putih pada gambar untuk memindahkan juring/busur, tali busur, dan diameter.</p>')}
+drawCircle();
+/* ── persegi & persegi panjang: penjelasan di sebelah kotak-kotak ── */
+['persegi','persegi-panjang'].forEach(id=>{const R=$('#v-'+id),gr=$('.gr',R),go=$('.GO',R),w=document.createElement('div');w.style.cssText='display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center';gr.before(w);gr.style.margin='0';go.style.cssText='flex:1 1 240px;margin:0';w.append(gr,go)});
+/* ── bangun ruang: definisi, penemuan volume, pertanyaan unik ── */
+const QB=['Apakah kubus adalah balok, atau balok adalah kubus?','Kubus adalah balok istimewa karena semua rusuknya sama panjang (p = l = t). Balok belum tentu kubus.'];
+const D3={
+kubus:['<b>Kubus</b> adalah bangun ruang yang dibatasi 6 sisi persegi yang sama besar; memiliki 12 rusuk sama panjang dan 8 titik sudut.',QB,'stack','V = s × s × s = s³.'],
+balok:['<b>Balok</b> adalah bangun ruang yang dibatasi 3 pasang sisi persegi panjang yang berhadapan; memiliki 12 rusuk dan 8 titik sudut.',QB,'stack','V = p × l × t.'],
+'limas-segitiga':['<b>Limas segitiga</b> adalah bangun ruang beralas segitiga dengan 3 sisi tegak berbentuk segitiga yang bertemu di satu titik puncak (4 sisi, 6 rusuk, 4 titik sudut).',['Mengapa untuk alas segi-n berapa pun volume limas tetap ⅓ × luas alas × tinggi?','Alas segi-n dapat dibagi menjadi segitiga-segitiga, sehingga limasnya terbagi menjadi limas-limas segitiga dengan tinggi yang sama. Tiap limas segitiga bervolume ⅓ × luas alasnya × t, jadi jumlahnya ⅓ × (jumlah luas alas) × t.'],'third',['limas','prisma']],
+'limas-segiempat':['<b>Limas segi empat</b> adalah bangun ruang beralas segi empat dengan 4 sisi tegak berbentuk segitiga yang bertemu di satu titik puncak.',['Berapa sisi, rusuk, dan titik sudut limas segi empat?','5 sisi (1 alas + 4 sisi tegak), 8 rusuk, dan 5 titik sudut.'],'third',['limas','prisma']],
+'prisma-segitiga':['<b>Prisma</b> adalah bangun ruang yang dibatasi dua bidang sejajar yang sama besar (alas dan tutup) serta sisi-sisi tegak berbentuk persegi panjang. Prisma segitiga: 5 sisi, 9 rusuk, 6 titik sudut.',['Apa beda prisma dengan tabung?','Keduanya tumpukan alas setinggi t. Prisma beralas segi banyak (sisi datar), tabung beralas lingkaran (selimut lengkung).'],'stack','V = luas alas × t.'],
+'prisma-segilima':['<b>Prisma segi lima</b> beralas dan bertutup segi lima beraturan dengan 5 sisi tegak persegi panjang: 7 sisi, 15 rusuk, 10 titik sudut.',['Jika alas prisma dibuat segi-n dengan n sangat banyak, bangunnya mendekati apa?','Mendekati tabung, karena alasnya makin mirip lingkaran.'],'stack','V = luas alas × t.'],
+tabung:['<b>Tabung</b> adalah bangun ruang dengan alas dan tutup berupa lingkaran sejajar yang sama besar, serta satu selimut lengkung: 3 sisi, 2 rusuk, tanpa titik sudut.',['Selimut tabung jika dibuka membentuk bangun apa?','Persegi panjang dengan panjang 2πr (keliling alas) dan lebar t.'],'stack','V = πr² × t.'],
+kerucut:['<b>Kerucut</b> adalah bangun ruang beralas lingkaran dengan selimut lengkung yang menyempit ke satu titik puncak: 2 sisi, 1 rusuk, 1 titik sudut.',['Bola, tabung, atau kerucut: mana yang punya titik sudut?','Hanya kerucut (puncaknya). Tabung dan bola tidak punya titik sudut.'],'third',['kerucut','tabung']],
+bola:['<b>Bola</b> adalah bangun ruang yang semua titik pada permukaannya berjarak sama dari satu titik pusat: 1 sisi lengkung, tanpa rusuk dan titik sudut.',['Mengapa volume bola dikatakan ⅔ volume tabung yang membungkusnya?','Tabung (jari-jari r, tinggi 2r) bervolume 2πr³, dan bola yang tepat muat di dalamnya bervolume 4/3 πr³, yaitu ⅔-nya. Buktinya memakai prinsip Cavalieri (lihat tab Penemuan rumus).'],'two']};
+const PG=(p,f,o=.4)=>`<polygon points="${p}" fill="${f}" fill-opacity="${o}" stroke="${f}" stroke-width="2.5" stroke-linejoin="round"/>`,TX=(x,y,s,c='currentColor')=>`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="${c}">${s}</text>`;
+const V3={
+stack:(t,d,col)=>{const n=Math.round(t*6);let o=`<rect x="120" y="192" width="180" height="28" rx="4" fill="none" stroke="${col}" stroke-dasharray="5 4" stroke-width="2"/>`;for(let i=0;i<n;i++)o+=`<rect x="120" y="${192-i*28}" width="180" height="26" rx="4" fill="${col}" opacity="${i%2?.55:.8}"/>`;return o+TX(210,242,'luas alas')+(t>.95?`<line x1="322" y1="${220-6*28}" x2="322" y2="220" stroke="#16a34a" stroke-width="3"/>`+TX(342,136,'t','#16a34a'):'')},
+third:(t,d,col)=>PG('60,220 190,220 125,70',col,.5*(1-.8*t))+`<rect x="250" y="60" width="130" height="160" rx="6" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="250" y="${220-160*t}" width="130" height="${160*t}" fill="${col}" opacity=".6"/>`+TX(125,242,d[0])+TX(315,242,d[1]),
+two:(t,d,col)=>{const L=cl((t-1/3)*3)*2/3;return `<rect x="120" y="${240-200*L}" width="200" height="${200*L}" fill="${col}" opacity=".55"/><rect x="120" y="40" width="200" height="200" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="220" cy="140" r="${100*(1-.35*L)}" fill="${col}" fill-opacity=".3" stroke="${col}" stroke-width="2.5"/>`+TX(220,258,'tinggi tabung = 2r')}};
+const X3={};
+const txt=(id,g)=>{const[,,ty,x]=D3[id];if(ty==='stack')return['Alas bangun ini memiliki luas tertentu: luas alas.','Satu lapis setebal satu satuan tepat menutupi alas.','Tumpuk lapis demi lapis sampai setinggi t.',`Volume = luas alas × tinggi. ${x}`][g];
+ if(ty==='third')return[`${x[0]} dan ${x[1]} dengan alas dan tinggi yang sama.`,`Isi ${x[0]} penuh lalu tuang ke ${x[1]}: terisi ${frac(1,3)}.`,`Tuang ${x[0]} yang kedua kali: terisi ${frac(2,3)}.`,`Tuang ketiga kali: ${x[1]} penuh. Jadi 3 ${x[0]} = 1 ${x[1]}, dan <b>V ${x[0]} = ${frac(1,3)} × luas alas × tinggi</b>.`][g];
+ return['Bola berjari-jari r dimasukkan tepat ke dalam tabung berjari-jari r dan tinggi 2r.','Volume tabung = πr² × 2r = 2πr³.','Isi bola dituang ke tabung kosong: terisi 2 dari 3 bagian.',`V bola = ${frac(2,3)} × 2πr³ = <b>${frac(4,3)} × πr³</b>.`][g]};
+const r3=id=>{const x=X3[id],s=BY[id];$('#z3-'+id).innerHTML=V3[D3[id][2]](x.t,D3[id][3],s.color);$('#t3-'+id).innerHTML=`<h4>Langkah ${x.g+1} dari 4</h4><p>${txt(id,x.g)}</p>`};
+Object.keys(D3).forEach(id=>{const s=BY[id],[df,q]=D3[id];X3[id]={t:0,g:0,raf:0};
+ $('#v-'+id+' .wrap').insertAdjacentHTML('beforeend',`<div class="pn ls kp"><h3><i>Konsep</i>Definisi ${s.name}</h3><p>${df}</p><p class="kd"><b>Sisi</b> adalah bidang yang membatasi bangun, <b>rusuk</b> adalah garis pertemuan dua sisi, dan <b>titik sudut</b> adalah titik pertemuan rusuk. <b>Luas permukaan</b> adalah jumlah luas seluruh sisinya, yaitu luas jaring-jaringnya. <b>Volume</b> adalah banyaknya kubus satuan yang mengisi bangun.</p></div><div class="pn ls kp"><h3><i>Penemuan rumus</i>Dari mana rumus volume ${s.name}?</h3><svg class="vz" id="z3-${id}" viewBox="0 0 440 270" role="img" aria-label="Animasi penemuan rumus volume ${s.name}"></svg><div class="row" style="justify-content:center"><button class="btn gh sm" data-v3="${id}|-1">◀ Sebelumnya</button><button class="btn sm" data-v3="${id}|1">Berikutnya ▶</button></div><div class="fx" id="t3-${id}"></div><details class="qa"><summary>🤔 ${q[0]}</summary><p>${q[1]}</p></details></div>`);r3(id)});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-v3]');if(!b)return;const[id,d]=b.dataset.v3.split('|'),x=X3[id],g=x.g=Math.max(0,Math.min(3,x.g+ +d)),to=g/3,from=x.t,t0=performance.now();cancelAnimationFrame(x.raf);const f=now=>{const p=rm?1:cl((now-t0)/1100);x.t=from+(to-from)*(p*p*(3-2*p));r3(id);if(p<1)x.raf=requestAnimationFrame(f)};x.raf=requestAnimationFrame(f)});
+/* ── bangun ruang: sembunyikan angka ukuran pada tabel analisis (kecuali yang memakai π) ── */
+const _rf2=refresh;refresh=s=>{_rf2(s);if(!s.d3||/tabung|kerucut|bola/.test(s.id))return;$$('.info .it',$('#v-'+s.id)).forEach(i=>{if(/^[\d.,]+$/.test($('b',i).textContent)&&!/titik|rusuk|sisi|bidang|jumlah/i.test($('span',i).textContent))i.hidden=true})};
+ORDER.slice(ORDER.indexOf('kubus')).forEach(id=>{refresh(BY[id]);draw(BY[id])});
+})();
+</script>
+<style>
+.ws{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}@media(max-width:820px){.ws{grid-template-columns:1fr}}
+@media(min-width:821px){.ws>.pn:first-child{position:sticky;top:10px}}.ws{scroll-margin-top:8px}
+svg{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}svg text{pointer-events:none}
+.sy .ch output{display:inline-block!important}.sy input{display:block!important}.sym{display:none!important}
+.bn{display:flex;gap:8px}.hrow{display:flex;flex-wrap:wrap;justify-content:center;gap:0 18px}
+.pn svg:not(.mvon) .drag{pointer-events:none}.mvon .drag{fill:rgba(245,158,11,.18);stroke:#f59e0b;stroke-width:2;stroke-dasharray:3 3;cursor:grab}
+aside .info{margin-top:14px}aside .kp{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}aside .kp h3{font-size:.95rem}
+.dz .row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;justify-content:center}.df{margin-top:6px;font-weight:600!important}
+</style>
+<script>
+(()=>{
+const cl=x=>Math.max(0,Math.min(1,x)),IDS=SH.map(s=>s.id),NEW=['kubus','balok','limas-segitiga','limas-segiempat','prisma-segitiga','prisma-segilima'],SOL=[...NEW,'tabung','kerucut','bola'],RV=id=>$('#v-'+id);
+$$('.view').forEach(v=>{if(v.id==='v-home')return;const i=ORDER.indexOf(v.id.slice(2)),pv=ORDER[i-1],nx=ORDER[i+1];$('.bar',v).innerHTML=`<button class="btn gh sm" data-go="home">← Beranda</button><span class="bn">${pv?`<button class="btn gh sm" data-go="${pv}">← Sebelumnya</button>`:''}${nx?`<button class="btn sm" data-go="${nx}">Selanjutnya →</button>`:''}</span>`});
+const tab=(id,m)=>{const R=RV(id);$('.mv',R).hidden=m!=='m';$('.dz',R).hidden=m!=='d';$$('[data-mt]',R).forEach(b=>b.classList.toggle('on',b.dataset.mt===id+'|'+m))};
+/* susun ulang tiap bangun: analisis & definisi ke kanan, penemuan jadi tab di gambar utama */
+[...IDS,...SOL].forEach(id=>{const R=RV(id),d3=SOL.includes(id),mp=$('.ws',R).children[0],as=$('aside',R),ip=$('.info',R),ipp=ip.closest('.pn');as.append(ip);ipp.remove();
+ const kps=$$('.pn.kp',R),kp=kps[0],dp=kps.find(p=>p.querySelector('svg.vz'));kp.className='kp';as.append(kp);
+ const dz=document.createElement('div');dz.className='dz';dz.hidden=true;[...dp.children].slice(1).forEach(c=>dz.append(c));dp.remove();
+ const mv=document.createElement('div');mv.className='mv';[...mp.children].forEach(c=>mv.append(c));
+ mp.innerHTML=`<div class="tabs"><button class="on" data-mt="${id}|m">Gambar utama</button><button data-mt="${id}|d">Penemuan rumus</button></div>`;mp.append(mv,dz);
+ if(!d3)mv.insertAdjacentHTML('beforeend',`<p class="hs"><button class="btn gh sm" data-mv="${id}">✥ Geser titik: mati</button></p>`);
+ if(!NEW.includes(id)){const b=document.createElement('button');b.className='btn gh sm';b.dataset.pl=id+'|'+(d3?'v3':'vz');b.textContent='▶ Putar';$('.row',dz).lastElementChild.before(b)}
+ if(id==='segitiga'){const h=$('label.hs',mv),gl=$('[data-gl]',R).closest('label'),w=document.createElement('div');w.className='hrow';h.before(w);w.append(h,gl);$('.dfs',R).remove();$('.tip',mv).textContent='💡 Tekan “Geser titik”, lalu seret titik A, B, atau C pada gambar.'}});
+/* definisi jenis segitiga langsung di kotak status */
+const DT={'Sama sisi':'ketiga sisinya sama panjang, ketiga sudutnya sama besar (60°).','Sama kaki':'dua sisinya sama panjang, dua sudut alasnya sama besar.','Sembarang':'ketiga sisinya berbeda panjang.','Lancip':'semua sudutnya kurang dari 90°.','Siku-siku':'tepat satu sudutnya 90°.','Tumpul':'satu sudutnya lebih dari 90°.'};
+const _R=refresh;refresh=s=>{_R(s);const R=RV(s.id),sm=$('.st small',R);
+ if(s.id==='segitiga'&&sm&&ST.segitiga.info.ok){const I=ST.segitiga.info,a=I.title.replace('Segitiga ',''),b=I.sub.replace('Jenis sudut: ','');sm.insertAdjacentHTML('afterend',`<small class="df"><b>${a}:</b> ${DT[a]||''}<br><b>${b}:</b> ${DT[b]||''}</small>`)}
+ const inf=$('.info',R);if(inf){$$('.it',inf).forEach(i=>{if((i.classList.contains('hi')&&!SOL.includes(s.id))||/^(Titik sudut|Rusuk|Sisi)$/.test($('span',i).textContent))i.hidden=true});inf.hidden=!$$('.it',inf).some(i=>!i.hidden)}};
+/* geser titik semua bangun datar (dengan tombol pengaman) */
+IDS.filter(id=>id!=='segitiga').forEach(id=>{const s=BY[id],st=ST[id],svg=$('#svg-'+id);let dg=null;
+ svg.addEventListener('pointerdown',e=>{const g=e.target.closest('[data-v]');if(!g)return;e.preventDefault();dg={i:+g.dataset.v,x:e.clientX,y:e.clientY,V:s.geo(st.tgt),p:{...st.tgt},k:st.k||30};svg.setPointerCapture(e.pointerId)});
+ svg.addEventListener('pointermove',e=>{if(!dg)return;const f=(svg.getScreenCTM()||{a:1}).a*dg.k,v=dg.V[dg.i],X=v.x+(e.clientX-dg.x)/f,Y=v.y-(e.clientY-dg.y)/f,p={...dg.p},r=Math.round,i=dg.i,L=id==='layang-layang';
+  if(s.geo===para){if(i===1)p.a=r(X);else if(i>1){const x=i===3?X:X-p.a,a=r(Math.atan2(Y,x)*180/PI);p.b=r(Math.hypot(x,Y));p.s=Math.abs(a-90)<4?90:a}}
+  else if(id==='trapesium'){if(i===1)p.a=r(X);else if(i===3){p.o=r(X);p.t=r(Y)}else if(i===2){p.b=r(X-p.o);p.t=r(Y)}}
+  else{if(i===1)p.d1=r(2*X);else if(i===3)p.d1=r(-2*X);else if(i===0)p.d2=r(L?Y+p.h1:2*Y);else if(L)p.h1=r(-Y);else p.d2=r(-2*Y)}
+  s.sl.forEach(([k,,mn,mx])=>{if(k in p)p[k]=Math.max(mn,Math.min(mx,p[k]))});apply(s,p)});
+ ['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>dg=null))});
+/* ===== penemuan volume: bangunan potongan 3D ===== */
+const PAL=['#2f5db8','#3b6fd1','#4a7fe0','#5b8ce6','#6c97e6','#7fa4ea','#8fb0ee','#a0bcf1','#3b6fd1','#6c97e6','#2f5db8','#8fb0ee'],NA='ABCDEFGH',
+CV=[[-1,-1,1],[1,-1,1],[1,-1,-1],[-1,-1,-1],[-1,1,1],[1,1,1],[1,1,-1],[-1,1,-1]],CF=[[0,1,2,3],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]],
+av=Q=>[0,1,2].map(k=>Q.reduce((s,p)=>s+p[k],0)/Q.length),pc=(V,F,N,c,n,g)=>({V,F,N,c,n,g,ce:av(V)}),
+pyr=sp=>{const o=[];CF.forEach((f,g)=>{const q=f.map(i=>CV[i]);(sp?[[0,1,2],[0,2,3]]:[[0,1,2,3]]).forEach(ix=>{const n=ix.length,nm=ix.map(i=>NA[f[i]]);o.push(pc([[0,0,0],...ix.map(i=>q[i])],[ix.map((_,i)=>i+1),...ix.map((_,i)=>[0,i+1,(i+1)%n+1])],['O',...nm],PAL[(o.length*(sp?1:2))%12],'O.'+nm.join(''),g))})});return o},
+BL=[[-1.3,-.8,.9],[1.3,-.8,.9],[1.3,-.8,-.9],[-1.3,-.8,-.9],[-1.3,.8,.9],[1.3,.8,.9],[1.3,.8,-.9],[-1.3,.8,-.9]],
+pt3=()=>[[[0,1,2,4,5,6],'ABC.EFG','#4f7cd6'],[[0,2,3,4,6,7],'ACD.EGH','#9bb8ee']].map(([ix,n,c])=>pc(ix.map(j=>BL[j]),[[0,1,2],[3,4,5],[0,1,4,3],[1,2,5,4],[2,0,3,5]],ix.map(j=>NA[j]),c,n,0)),
+pt5=()=>{const A=(i,y)=>[1.2*Math.cos(PI/2+2*PI*i/5),y,-1.2*Math.sin(PI/2+2*PI*i/5)];return[0,1,2,3,4].map(i=>{const j=(i+1)%5,a=NA[i],b=NA[j],f='FGHIJ'[i],g='FGHIJ'[j];return pc([[0,-.8,0],A(i,-.8),A(j,-.8),[0,.8,0],A(i,.8),A(j,.8)],[[0,1,2],[3,4,5],[1,2,5,4],[0,1,4,3],[0,2,5,3]],['O',a,b,'P',f,g],['#3b6fd1','#6c97e6','#4f7cd6','#8fb0ee','#5b8ce6'][i],'O'+a+b+'.P'+f+g,0)})},
+stk=(c,r,l)=>{const o=[],CO=['#4f7cd6','#7fa4ea','#4f7cd6','#7fa4ea'];for(let y=0;y<l;y++)for(let z=0;z<r;z++)for(let x=0;x<c;x++){const ox=x-(c-1)/2,oy=y-(l-1)/2,oz=(r-1)/2-z;o.push(pc(CV.map(v=>[ox+v[0]*.5,oy+v[1]*.5,oz+v[2]*.5]),CF,[],CO[y%4],'',0))}return o},
+BLK={kubus:[3,3,3],balok:[4,3,2]},PH=t=>{const u=t*3;return[cl(u),0,cl(u-1)]},PZ={};
+const TXT={
+kubus:['Mulai dari satu kubus satuan (rusuk 1). Volumenya 1 satuan³.','Susun 3 kubus ke samping: satu baris berisi 3 kubus (panjang rusuk s = 3).','Susun 3 baris: satu lapis alas berisi 3 × 3 = 9 kubus, yaitu luas alas s × s.','Tumpuk 3 lapis: 3 × 3 × 3 = 27 kubus. Jadi <b>V = s × s × s = s³</b>.'],
+balok:['Mulai dari satu kubus satuan. Volumenya 1 satuan³.','Susun 4 kubus ke samping: satu baris = 4 kubus (panjang p = 4).','Susun 3 baris: satu lapis alas berisi 4 × 3 = 12 kubus, yaitu luas alas p × l.','Tumpuk 2 lapis (t = 2): 4 × 3 × 2 = 24 kubus. Jadi <b>V = p × l × t</b>.'],
+'limas-segitiga':['Kubus ABCD.EFGH dengan rusuk s dan titik pusat O. Volume kubus = s³. Kubus akan kita bagi menjadi bagian-bagian yang sama besar.','Hubungkan titik pusat O ke semua titik sudut kubus: kubus terbagi menjadi <b>6 limas segi empat</b> yang sama besar.','Tiap limas segi empat dibelah menurut diagonal alasnya menjadi 2 limas segitiga. Jadi kubus terbagi menjadi 6 × 2 = <b>12 limas segitiga</b> yang sama besar. Volume 1 limas segitiga = s³ ÷ 12 = <b>1/12 s³</b>.','Ambil satu limas segitiga O.ABC. Alasnya segitiga siku-siku ABC: luas alas = ½s². Tingginya (jarak O ke alas) t = ½s. Maka luas alas × t = ½s² × ½s = ¼s³. Padahal volume limas sebenarnya hanya 1/12 s³, yaitu ⅓ dari ¼s³. Jadi <b>V limas = ⅓ × luas alas × t</b>. Berlaku untuk alas segi-n berapa pun.'],
+'limas-segiempat':['Kubus ABCD.EFGH dengan rusuk s dan titik pusat O. Volume kubus = s³.','Hubungkan titik pusat O ke semua titik sudut kubus: kubus terbagi menjadi <b>6 limas segi empat</b> yang sama besar. Volume 1 limas = s³ ÷ 6 = <b>1/6 s³</b>.','Ambil satu limas O.ABCD. Alasnya persegi ABCD: luas alas = s². Tingginya (jarak O ke alas) t = ½s. Maka luas alas × t = s² × ½s = ½s³.','Padahal volume limas sebenarnya hanya 1/6 s³, yaitu ⅓ dari ½s³. Jadi <b>V limas = ⅓ × luas alas × t</b>. Hasil yang sama kita dapat pada limas segitiga, sehingga untuk alas segi-n berapa pun: <b>V limas = ⅓ × luas alas × tinggi</b>.'],
+'prisma-segitiga':['Balok ABCD.EFGH dengan panjang p, lebar l, dan tinggi t. Volume balok = p × l × t.','Belah balok menurut bidang diagonal ACGE: terbentuk <b>2 prisma segitiga</b> yang sama besar. Volume 1 prisma = ½ × p × l × t.','Ambil satu prisma ABC.EFG. Alasnya segitiga siku-siku ABC: luas alas = ½ × p × l. Tingginya t.','Luas alas × t = (½ × p × l) × t, sama persis dengan volume prisma tadi. Jadi <b>V prisma = luas alas × tinggi</b>. Berlaku untuk alas segi-n berapa pun.'],
+'prisma-segilima':['Prisma segi lima ABCDE.FGHIJ dengan tinggi t. Pusat alas = O, pusat tutup = P.','Hubungkan O ke semua titik sudut alas (dan P ke titik sudut tutup): prisma terbagi menjadi <b>5 prisma segitiga</b> yang sama besar.','Ambil satu prisma, misalnya OAB.PFG. Alasnya segitiga sama kaki OAB, tingginya t. Seperti prisma segitiga, volumenya = luas OAB × t.','Volume seluruhnya = 5 × (luas OAB × t) = (5 × luas OAB) × t = luas alas × t. Jadi <b>V prisma = luas alas × tinggi</b>, untuk alas segi-n berapa pun.']};
+const stage=(p,t,e1,e2,fo)=>{let d=[0,1,2].map(k=>p.a[k]*e1+p.b[k]*e2),sc=1,o=1;if(p.i===0){d=d.map((v,k)=>v*(1-fo)-p.ce[k]*fo);sc=1+.5*fo}else o=1-fo;return[d,o,sc]};
+const mkZ=id=>{let P,z;
+ if(BLK[id]){const[c,r,l]=BLK[id],T=[1,c,c*r,c*r*l];z={P:stk(c,r,l),k:id==='kubus'?66:56,cap:n=>n+' kubus satuan',stage:(p,t)=>{const u=t*3,j=Math.min(2,u|0),n=T[j]+(T[j+1]-T[j])*(u-j),a=cl(n-p.i);z.n=Math.round(n);return[[0,(1-a)*1.4,0],a,1]}}}
+ else if(id.startsWith('limas')){const sp=id==='limas-segitiga',G={};P=pyr(sp);P.forEach(p=>(G[p.g]=G[p.g]||[]).push(p.ce));P.forEach(p=>{const g=av(G[p.g]);p.a=g.map(v=>v*1.3);p.b=sp?p.ce.map((v,k)=>(v-g[k])*2.4):[0,0,0]});P[0].h=[[0,0,0],[0,-1,0],'t = ½s'];z={P,k:72,tr:1,pill:1,ph:sp?t=>{const u=t*3;return[cl(u),cl(u-1),cl(u-2)]}:PH}}
+ else if(id==='prisma-segitiga'){P=pt3();P.forEach((p,i)=>{p.a=[.57,0,.82].map(v=>v*(i?-.8:.8));p.b=[0,0,0]});P[0].h=[av([BL[0],BL[1],BL[2]]),av([BL[4],BL[5],BL[6]]),'t'];z={P,k:76,tr:1,pill:1,all:1,ph:PH}}
+ else{P=pt5();P.forEach(p=>{p.a=p.ce.map(v=>v*1.7);p.b=[0,0,0]});P[0].h=[[0,-.8,0],[0,.8,0],'t'];z={P,k:72,tr:1,pill:1,all:1,ph:PH}}
+ return PZ[id]={...z,t:0,g:0,raf:0,w:{y:-.6,p:.45},txt:TXT[id]}};
+function rp(id){const z=PZ[id],svg=$('#pz-'+id),w=z.w,[e1,e2,fo]=z.ph?z.ph(z.t):[0,0,0],c=Math.cos(w.y),s=Math.sin(w.y),cx=Math.cos(w.p),sx=Math.sin(w.p),
+ R=p=>{const X=p[0]*c+p[2]*s,Z=p[2]*c-p[0]*s;return[X,p[1]*cx-Z*sx,p[1]*sx+Z*cx]},S=q=>[220+q[0]*z.k,190-q[1]*z.k],F=[],L=[],seen=new Set;svg.replaceChildren();
+ z.P.forEach((p,i)=>{p.i=i;const[d,o,sc]=(z.stage||stage)(p,z.t,e1,e2,fo),op=z.tr?o*(.5+.5*cl(e1*5)):o;if(op<.02)return;
+  const T=v=>R(v.map((x,k)=>(x-p.ce[k])*sc+p.ce[k]+d[k])),Q=p.V.map(T),Cq=T(p.ce);
+  p.F.forEach(f=>{const q=f.map(j=>Q[j]),a=q[0],u=[0,1,2].map(k=>q[1][k]-a[k]),v=[0,1,2].map(k=>q[2][k]-a[k]);let n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];const m=Math.hypot(...n)||1,fc=av(q);if(n[0]*(fc[0]-Cq[0])+n[1]*(fc[1]-Cq[1])+n[2]*(fc[2]-Cq[2])<0)n=n.map(x=>-x);if(n[2]<=0)return;F.push({z:fc[2],q,c:p.c,op,l:.62+.22*n[1]/m+.2*n[2]/m})});
+  const showV=(e1<.04)||(fo>.3&&i===0)||(z.all&&fo<.3);
+  if(showV)p.N.forEach((n,j)=>{if(!n||(e1<.04&&seen.has(n)))return;seen.add(n);L.push(()=>{const[x,y]=S(Q[j]),C=S(Cq),dx=x-C[0],dy=y-C[1],m=Math.hypot(dx,dy)||1;mk('circle',{cx:x,cy:y,r:3.4,fill:'#fff',stroke:p.c,'stroke-width':1.6},svg);mk('text',{x:x+dx/m*14,y:y+dy/m*14,'text-anchor':'middle','dominant-baseline':'central','font-size':14,'font-weight':900,fill:'#fff',stroke:'#0f172a','stroke-width':3.2,'paint-order':'stroke','font-family':'Nunito,sans-serif'},svg).textContent=n})});
+  if(z.pill&&e1>.5&&fo<.3)L.push(()=>{const[x,y]=S(Cq);pill(svg,x,y,p.n,p.c,11)});
+  if(p.h&&i===0&&fo>.6)L.push(()=>{const A=S(T(p.h[0])),B=S(T(p.h[1]));mk('line',{x1:A[0],y1:A[1],x2:B[0],y2:B[1],stroke:'#f59e0b','stroke-width':3,'stroke-dasharray':'6 4'},svg);pill(svg,(A[0]+B[0])/2+18,(A[1]+B[1])/2,p.h[2],'#d97706',11)})});
+ F.sort((a,b)=>a.z-b.z).forEach(f=>mk('polygon',{points:f.q.map(q=>S(q).map(v=>v.toFixed(1)).join(',')).join(' '),style:`fill:color-mix(in srgb,${f.c} ${(f.l*100)|0}%,#000)`,'fill-opacity':f.op,stroke:'#fff','stroke-width':1.1,'stroke-opacity':.85*f.op,'stroke-linejoin':'round'},svg));
+ L.forEach(fn=>fn());if(z.cap)pill(svg,220,18,z.cap(z.n||1),'#2563eb',13)}
+const pzGo=(id,d,abs)=>{const z=PZ[id],g=z.g=abs??Math.max(0,Math.min(3,z.g+d)),to=g/3,from=z.t,t0=performance.now();cancelAnimationFrame(z.raf);$('#pt-'+id).innerHTML=`<h4>Langkah ${g+1} dari 4</h4><p>${z.txt[g]}</p>`;
+ const f=n=>{const p=rm?1:cl((n-t0)/1600);z.t=from+(to-from)*(p*p*(3-2*p));rp(id);if(p<1)z.raf=requestAnimationFrame(f)};z.raf=requestAnimationFrame(f)};
+NEW.forEach(id=>{const dz=$('.dz',RV(id)),det=$('details',dz).outerHTML,z=mkZ(id);
+ dz.innerHTML=`<svg class="vz s3" id="pz-${id}" viewBox="0 0 440 380" role="img" aria-label="Animasi penemuan rumus volume"></svg><p class="tip">🖱️ Seret gambar untuk memutar.</p><div class="row"><button class="btn gh sm" data-pz="${id}|-1">◀ Sebelumnya</button><button class="btn gh sm" data-pl="${id}|pz">▶ Putar</button><button class="btn sm" data-pz="${id}|1">Berikutnya ▶</button></div><div class="fx" id="pt-${id}"></div>${det}`;
+ const svg=$('#pz-'+id);svg.addEventListener('pointerdown',e=>{z.dr=[e.clientX,e.clientY];svg.setPointerCapture(e.pointerId)});
+ svg.addEventListener('pointermove',e=>{if(!z.dr)return;z.w.y+=(e.clientX-z.dr[0])*.012;z.w.p+=(e.clientY-z.dr[1])*.012;z.dr=[e.clientX,e.clientY];rp(id)});
+ ['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>z.dr=null));pzGo(id,0,0)});
+/* tombol putar otomatis */
+const PL={};const play=(id,a)=>{const b=$(`[data-pl="${id}|${a}"]`),nx=$(`[data-${a}="${id}|1"]`),pv=$(`[data-${a}="${id}|-1"]`),stop=()=>{clearInterval(PL[id]);PL[id]=0;b.textContent='▶ Putar'};if(PL[id])return stop();b.textContent='⏸ Berhenti';for(let i=0;i<3;i++)pv.click();let n=0;
+ const step=()=>{if(!RV(id).offsetParent)return stop();if(n>=3){for(let i=0;i<3;i++)pv.click();n=0}else{nx.click();n++}};PL[id]=setInterval(step,3000);step()};
+/* klik: tab, geser titik, putar, sorot -> kembali ke gambar utama */
+document.addEventListener('click',e=>{let b;
+ if(b=e.target.closest('[data-mt]')){const[id,m]=b.dataset.mt.split('|');return tab(id,m)}
+ if(b=e.target.closest('[data-mv]')){const id=b.dataset.mv,on=$('#svg-'+id).classList.toggle('mvon');b.classList.toggle('on',on);b.textContent=on?'✥ Geser titik: AKTIF (seret titik)':'✥ Geser titik: mati';return}
+ if(b=e.target.closest('[data-pz]')){const[id,d]=b.dataset.pz.split('|');return pzGo(id,+d)}
+ if(b=e.target.closest('[data-pl]')){const[id,a]=b.dataset.pl.split('|');return play(id,a)}
+ if(b=e.target.closest('[data-hl],[data-ov]')){const id=b.dataset.hl||b.dataset.ov.split('|')[0];tab(id,'m');RV(id).querySelector('.ws').scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})}});
+/* matikan salin / seleksi teks pada area gambar */
+['copy','cut','selectstart','dragstart','contextmenu'].forEach(t=>document.addEventListener(t,e=>{const n=e.target.parentElement&&!e.target.closest?e.target.parentElement:e.target;if(n.closest&&n.closest('svg'))e.preventDefault()}));
+[...IDS,...SOL].forEach(id=>refresh(BY[id]));
+})();
+</script>
+<script>
+(()=>{
+const cl=x=>Math.max(0,Math.min(1,x)),ease=x=>x*x*(3-2*x),RV=id=>$('#v-'+id),SOL=['kubus','balok','limas-segitiga','limas-segiempat','prisma-segitiga','prisma-segilima','tabung','kerucut','bola'];
+const E=(g,cx,cy,rx,ry,c,o=.35,d)=>mk('ellipse',{cx,cy,rx,ry,fill:c,'fill-opacity':o,stroke:c,'stroke-width':2.5,'stroke-dasharray':d||'none'},g),
+Rc=(g,x,y,w,h,c,o=.35)=>mk('rect',{x,y,width:w,height:h,fill:c,'fill-opacity':o,stroke:c,'stroke-width':2.5,'stroke-linejoin':'round'},g),
+Ln=(g,a,b,c,d,k,da)=>mk('line',{x1:a,y1:b,x2:c,y2:d,stroke:k,'stroke-width':2.8,'stroke-dasharray':da||'none','stroke-linecap':'round'},g),
+Dt=(g,x,y,n,c,dx=13,dy=-13)=>{mk('circle',{cx:x,cy:y,r:4.5,fill:'#fff',stroke:c,'stroke-width':2.5},g);mk('text',{x:x+dx,y:y+dy,'text-anchor':'middle','dominant-baseline':'central','font-size':15,'font-weight':900,fill:c,'font-family':'Nunito,sans-serif'},g).textContent=n},
+body=(g,x,y1,y2,rx,ry,c,o)=>{const d=`M${x-rx} ${y1}V${y2}A${rx} ${ry} 0 0 0 ${x+rx} ${y2}V${y1}`;mk('path',{d:d+'Z',fill:c,'fill-opacity':o},g);mk('path',{d,fill:'none',stroke:c,'stroke-width':2.5,'stroke-linejoin':'round'},g)};
+const R2=(a,b,t)=>a+(b-a)*t,ZQ={};
+const TQ={
+tabung:['Ini jaring-jaring tabung: 1 persegi panjang dan 2 lingkaran. Panjang persegi panjang = keliling lingkaran = 2πr, lebarnya = tinggi t.','Gulung persegi panjang itu sampai kedua sisi panjangnya bertemu: terbentuklah selimut tabung (masih terbuka di atas dan bawah).','Satu lingkaran menutup bagian atas (tutup P), satu lagi menutup bagian bawah (alas O). Jadilah tabung dengan jari-jari r dan tinggi t.','Luas permukaan = luas tutup + luas alas + luas selimut = πr² + πr² + 2πr × t = <b>2πr(r + t)</b>.','Volume: lingkaran alas (luas πr²) ditumpuk setinggi t. Jadi <b>V = luas alas × tinggi = πr² × t</b>.'],
+kerucut:['Sebuah tabung berjari-jari r dan tinggi t. Titik O pusat tutup, titik T pusat alas.','Di dalam tabung ada kerucut yang alasnya = tutup tabung (lingkaran O) dan puncaknya di T. Garis dari puncak T ke tepi lingkaran (titik A) disebut <b>garis pelukis s</b>, s = √(r² + t²).','Kerucut dikeluarkan dari tabung. Yang tersisa adalah tabung dengan lubang berbentuk kerucut.','Kerucut = ⅓ tabung (3 kerucut penuh air tepat memenuhi 1 tabung yang alas dan tingginya sama). Maka sisa tabung = 1 − ⅓ = ⅔ tabung. Jadi <b>V kerucut = ⅓ × πr² × t</b>.','Jaring-jaring kerucut: 1 lingkaran (alas, luas πr²) dan 1 juring berjari-jari s. Panjang busur juring = keliling alas = 2πr, luas juring = ½ × 2πr × s = πrs. Jadi <b>L = πr² + πrs = πr(r + s)</b>.'],
+bola:['Bola berjari-jari r dengan pusat O dan diameter AB = 2r.','Bagi kulit bola menjadi pita-pita mendatar yang tingginya sama. Menurut Archimedes, luas tiap pita = keliling lingkaran besar × tinggi pita = 2πr × tinggi pita.','Rentangkan semua pita: tiap pita menjadi strip selebar 2πr, lalu tersusun menjadi persegi panjang 2πr × 2r. Luasnya = 2πr × 2r = 4πr².','Potong persegi panjang itu menjadi 4 bagian πr × r. Tiap bagian luasnya sama dengan lingkaran berjari-jari r (πr²). Jadi <b>L bola = 4 × πr² = 4πr²</b>.','Volume (prinsip Cavalieri): pada tinggi h yang sama, irisan setengah bola berupa lingkaran dengan luas π(r² − h²), sama dengan irisan cincin tabung berlubang kerucut: πr² − πh². Jadi V setengah bola = πr²·r − ⅓πr²·r = ⅔πr³, dan <b>V bola = 2 × ⅔πr³ = ⁴⁄₃πr³</b>.']};
+const DQ={
+tabung:(g,u)=>{const r=34,W=2*Math.PI*r,H=90,f=.32,T='#14b8a6',p=ease(cl(u)),q=ease(cl(u-1)),ex=ease(cl(u-2))*(1-ease(cl(u-3))),vo=ease(cl(u-3)),k=Math.max(p/r,1e-4),N=36,
+ P=v=>Array.from({length:N+1},(_,i)=>{const a=(i/N*W-W/2)*k,z=(1-Math.cos(a))/k;return{x:220+Math.sin(a)/k,y:105+v-z*f,z,a}}),A=P(0),B=P(H),
+ tx=R2(150,220,q),ty=R2(71,105-r*f,q)-28*ex,bx=R2(290,220,q),by=R2(229,105+H-r*f,q)+28*ex,ry=R2(r,r*f,q),op=1-.8*vo;
+ E(g,bx,by,r,ry,'#f59e0b',.5);
+ mk('path',{d:'M'+A.map(a=>a.x+' '+a.y).join('L')+'L'+B.slice().reverse().map(b=>b.x+' '+b.y).join('L')+'Z',fill:'none',stroke:'#0f766e','stroke-width':3,opacity:op},g);
+ Array.from({length:N},(_,i)=>({i,z:(A[i].z+A[i+1].z)/2,c:Math.cos((A[i].a+A[i+1].a)/2)})).sort((a,b)=>b.z-a.z).forEach(({i,c})=>{const sh=c>=0?.6+.4*c:.42,col=`color-mix(in srgb,${T} ${(sh*100)|0}%,#000)`;mk('path',{d:`M${A[i].x} ${A[i].y}L${A[i+1].x} ${A[i+1].y}L${B[i+1].x} ${B[i+1].y}L${B[i].x} ${B[i].y}Z`,style:`fill:${col};stroke:${col};stroke-width:.7`,opacity:op},g)});
+ if(vo>.01){const cnt=10*vo,dh=H/10;for(let i=0;i<10;i++){const a=cl(cnt-i);if(a<.02)continue;const yb=105+H-r*f-i*dh-(1-a)*18,h=mk('g',{opacity:a},g);body(h,220,yb-dh,yb,r,r*f,T,.8);E(h,220,yb-dh,r,r*f,i%2?'#2dd4bf':'#5eead4',.9)}}
+ E(g,tx,ty,r,ry,'#3b82f6',.55);
+ const G=o=>mk('g',{opacity:o},g),nt=1-ease(cl(u*2.2)),lb=ease(cl(u-1.8))*(1-ease(cl(u-3))),e2=ease(cl(u-2.5))*(1-ease(cl(u-3))),v4=ease(cl(u-3.7));
+ if(nt>.02){const h=G(nt);pill(h,290,92,'panjang = keliling = 2πr','#0f766e',11);pill(h,98,150,'t','#0f766e',12);pill(h,220,150,'selimut','#0f766e',12);pill(h,150,71,'tutup','#2563eb',11);pill(h,290,229,'alas','#b45309',11)}
+ if(lb>.02){const h=G(lb);Ln(h,220,ty,220,by,'#2563eb','5 4');Ln(h,220,ty,220+r,ty,'#dc2626');Dt(h,220,ty,'P','#2563eb',-14,-8);Dt(h,220,by,'O','#b45309',-14,12);Dt(h,220+r,ty,'A','#dc2626',13,-8);pill(h,238,ty+14,'r','#dc2626',11);pill(h,204,(ty+by)/2,'t','#2563eb',11)}
+ if(e2>.02){const h=G(e2);pill(h,330,ty,'tutup = πr²','#2563eb',12);pill(h,330,150,'selimut = 2πr × t','#0f766e',12);pill(h,330,by,'alas = πr²','#b45309',12)}
+ if(v4>.02){const h=G(v4);pill(h,330,150,'luas alas = πr²','#0f766e',12);pill(h,128,140,'t','#0f766e',12);pill(h,220,252,'V = πr² × t','#0f766e',13)}},
+kerucut:(g,u)=>{const cx=110,rx=58,ry=17,yt=70,yb=220,C='#ec4899',Y='#f59e0b',a=ease(cl(u)),m=ease(cl(u-1)),oA=1-ease(cl((u-3)*1.6)),oB=ease(cl((u-3.3)*1.5)),G=o=>mk('g',{opacity:o},g);
+ if(oA>.02){const h=G(oA),px=cx+180*m,l=-40*Math.sin(Math.PI*m),y1=yt+l,y2=yb+l;
+  body(h,cx,yt,yb,rx,ry,Y,.2);
+  if(m>.01){E(h,cx,yt,rx,ry,'#7f1d1d',.6*m);E(h,cx,yt+9,rx*.62,ry*.62,'#9d174d',.5*m);E(h,cx,yt+15,rx*.28,ry*.28,'#be185d',.6*m)}
+  E(h,cx,yt,rx,ry,Y,.1);
+  if(a>.02){const c=mk('g',{opacity:a},h);mk('path',{d:`M${px-rx} ${y1}L${px} ${y2}L${px+rx} ${y1}Z`,fill:C,'fill-opacity':.5,stroke:C,'stroke-width':2.5,'stroke-linejoin':'round'},c);E(c,px,y1,rx,ry,C,.45)}
+  Dt(h,px,y1,'O','#334155',-14,-9);Dt(h,px,y2,'T',C,-14,12);
+  if(a>.9){Ln(h,px,y1,px+rx,y1,'#dc2626');Dt(h,px+rx,y1,'A','#dc2626',13,-9);Ln(h,px,y1,px,y2,'#2563eb','5 4');Ln(h,px,y2,px+rx,y1,'#d97706');pill(h,px+90,(y1+y2)/2,'garis pelukis s','#b45309',11);pill(h,px-14,(y1+y2)/2,'t','#2563eb',11);pill(h,px+30,y1+15,'r','#dc2626',11)}
+  const s2=ease(cl(u-2.4));if(s2>.02){const c=mk('g',{opacity:s2},h);pill(c,cx,262,'sisa ⅔ tabung','#be185d',12);pill(c,290,262,'⅓ tabung = kerucut','#be185d',12)}}
+ if(oB>.02){const h=G(oB),n=ease(cl((u-3.3)/.7)),s=120,r=34,th=2*Math.PI*r/s*n,a1=Math.PI/2-th/2,a2=Math.PI/2+th/2,ax=150,ay=46,P1=[ax+s*Math.cos(a1),ay+s*Math.sin(a1)],P2=[ax+s*Math.cos(a2),ay+s*Math.sin(a2)];
+  mk('path',{d:`M${ax} ${ay}L${P1[0]} ${P1[1]}A${s} ${s} 0 0 1 ${P2[0]} ${P2[1]}Z`,fill:C,'fill-opacity':.4,stroke:C,'stroke-width':2.5,'stroke-linejoin':'round'},h);E(h,335,125,r*n,r*n,C,.4);Dt(h,ax,ay,'T',C,0,-14);
+  if(n>.95){pill(h,56,70,'garis pelukis s','#b45309',10);pill(h,150,190,'busur = 2πr','#be185d',11);pill(h,150,118,'juring = πrs','#be185d',12);pill(h,335,125,'alas = πr²','#be185d',12);pill(h,335,175,'busur = keliling alas','#be185d',10);pill(h,220,258,'L = πr² + πrs = πr(r + s)','#be185d',13)}}},
+bola:(g,u)=>{const r=60,cx=220,cy=150,W=2*Math.PI*r,I='#6366f1',D='#4338ca',K=['#6366f1','#8b5cf6','#d946ef','#ec4899','#f97316','#eab308','#22c55e','#06b6d4'],m1=ease(cl(u)),m2=ease(cl(u-1)),mm=ease(cl((u-2.5)*2)),oA=1-cl((u-2.1)*2.5),oC=cl((u-2.1)*2.5)*(1-cl((u-3.1)*2.5)),oD=ease(cl((u-3.2)*2)),G=o=>mk('g',{opacity:o},g);
+ if(oA>.02){const h=G(oA),ch=y=>Math.sqrt(Math.max(0,r*r-(y-cy)**2)),q=mk('g',{opacity:1-m1},h),b=mk('g',{opacity:m1},h);
+  mk('circle',{cx,cy,r,fill:I,'fill-opacity':.25,stroke:I,'stroke-width':2.5},q);E(q,cx,cy,r,r*.3,I,0,'4 4');Ln(q,cx,cy,cx+r,cy,'#dc2626');Dt(q,cx,cy-r,'A',D,-14,-8);Dt(q,cx,cy+r,'B',D,-14,12);Dt(q,cx,cy,'O','#334155',-13,-12);pill(q,cx+32,cy-12,'r','#dc2626',11);
+  for(let i=0;i<8;i++){const y1=cy-r+i*15,y2=y1+15,o=(i-3.5)*10*m1*(1-m2),w1=R2(ch(y1),W/2,m2),w2=R2(ch(y2),W/2,m2);mk('path',{d:`M${cx-w1} ${y1+o}L${cx+w1} ${y1+o}L${cx+w2} ${y2+o}L${cx-w2} ${y2+o}Z`,fill:K[i],'fill-opacity':.55,stroke:K[i],'stroke-width':2,'stroke-linejoin':'round'},b)}
+  const p1=m1*(1-m2),p2=ease(cl(u-1.6));if(p1>.02)pill(mk('g',{opacity:p1},h),cx,24,'luas tiap pita = 2πr × tinggi pita',D,11);
+  if(p2>.02){const c=mk('g',{opacity:p2},h);pill(c,cx,66,'2πr',D,12);pill(c,47,150,'2r',D,11);pill(c,cx,238,'L = 2πr × 2r = 4πr²',D,13)}}
+ if(oC>.02){const h=G(oC),K4=['#3b82f6','#14b8a6','#f59e0b','#ec4899'];[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([sx,sy],k)=>{const w=R2(W/2,2*r,mm),hh=R2(r,2*r,mm),x=R2(cx+sx*W/4,cx+sx*90,mm),y=R2(cy+sy*30,cy+sy*70,mm);mk('rect',{x:x-w/2,y:y-hh/2,width:w,height:hh,rx:Math.min(w,hh)/2*mm,fill:K4[k],'fill-opacity':.45,stroke:K4[k],'stroke-width':2.5},h);pill(h,x,y,mm<.5?'πr × r':'πr²',K4[k],12)});if(mm>.95)pill(h,cx,cy,'L = 4πr²',D,13)}
+ if(oD>.02){const h=G(oD),rr=52,hx=110,c2=316,y0=150,q4=cl((u-3.2)/.8),hh=rr*(.5+.4*Math.sin(2*Math.PI*q4)),yy=y0-hh,dd=Math.sqrt(rr*rr-hh*hh),Y='#f59e0b';
+  mk('path',{d:`M${hx-rr} ${y0}A${rr} ${rr} 0 0 1 ${hx+rr} ${y0}Z`,fill:I,'fill-opacity':.3,stroke:I,'stroke-width':2.5},h);
+  mk('rect',{x:c2-rr,y:y0-rr,width:2*rr,height:rr,fill:Y,'fill-opacity':.35,stroke:Y,'stroke-width':2.5},h);
+  mk('path',{d:`M${c2-rr} ${y0-rr}L${c2} ${y0}L${c2+rr} ${y0-rr}Z`,style:'fill:var(--fx)',stroke:Y,'stroke-width':2,'stroke-dasharray':'5 4'},h);
+  Ln(h,36,yy,392,yy,'#d97706','5 4');pill(h,22,yy,'h','#d97706',11);Ln(h,hx-dd,yy,hx+dd,yy,D);Ln(h,c2-rr,yy,c2-hh,yy,'#b45309');Ln(h,c2+hh,yy,c2+rr,yy,'#b45309');
+  E(h,hx,228,rr,rr,I,0,'4 4');E(h,hx,228,dd,dd,I,.45);E(h,c2,228,rr,rr,Y,.45);mk('circle',{cx:c2,cy:228,r:hh,style:'fill:var(--fx)',stroke:Y,'stroke-width':2},h);
+  pill(h,hx,60,'setengah bola',D,12);pill(h,c2,60,'tabung − kerucut','#b45309',12);pill(h,213,228,'=','#16a34a',20);pill(h,hx,228,'π(r² − h²)',D,10);pill(h,c2,228,'πr² − πh²','#b45309',10)}}};
+const rq=id=>{const z=ZQ[id],svg=$('#qz-'+id);svg.replaceChildren();DQ[id](mk('g',{},svg),z.t*(TQ[id].length-1))};
+const qgo=(id,d,abs)=>{const z=ZQ[id],N=TQ[id].length-1,g=z.g=abs??Math.max(0,Math.min(N,z.g+d)),to=g/N,from=z.t,t0=performance.now(),dur=Math.max(1500,Math.abs(to-from)*N*1500);cancelAnimationFrame(z.raf);$('#qt-'+id).innerHTML=`<h4>Langkah ${g+1} dari ${N+1}</h4><p>${TQ[id][g]}</p>`;const f=n=>{const p=rm?1:cl((n-t0)/dur);z.t=from+(to-from)*ease(p);rq(id);if(p<1)z.raf=requestAnimationFrame(f)};z.raf=requestAnimationFrame(f)};
+['tabung','kerucut','bola'].forEach(id=>{const dz=$('.dz',RV(id)),det=$('details',dz).outerHTML;dz.innerHTML=`<svg class="vz" id="qz-${id}" viewBox="0 0 440 300" role="img" aria-label="Animasi penemuan rumus ${id}"></svg><div class="row"><button class="btn gh sm" data-qz="${id}|-1">◀ Sebelumnya</button><button class="btn gh sm" data-ql="${id}">▶ Putar</button><button class="btn sm" data-qz="${id}|1">Berikutnya ▶</button></div><div class="fx" id="qt-${id}"></div>${det}`;ZQ[id]={t:0,g:0,raf:0};qgo(id,0,0)});
+const QP={};document.addEventListener('click',e=>{const b=e.target.closest('[data-ql]');if(!b)return;const id=b.dataset.ql,stop=()=>{clearInterval(QP[id]);QP[id]=0;b.textContent='▶ Putar'};if(QP[id])return stop();b.textContent='⏸ Berhenti';const N=TQ[id].length-1;qgo(id,0,0);let n=0;QP[id]=setInterval(()=>{if(!RV(id).offsetParent)return stop();n=n>=N?0:n+1;qgo(id,0,n)},3800)});
+/* geser titik bangun ruang: tarik titik sudut untuk mengubah ukuran */
+const PM={kubus:{x:'a',y:'a',z:'a'},balok:{x:'p',y:'t',z:'l'},'limas-segitiga':{x:'a',y:'t',z:'a'},'limas-segiempat':{x:'a',y:'t',z:'a'},'prisma-segitiga':{x:'a',y:'t',z:'a'},'prisma-segilima':{x:'a',y:'t',z:'a'},tabung:{x:'r',y:'t',z:'r'},kerucut:{x:'r',y:'t',z:'r'},bola:{x:'r',y:'r',z:'r'}};
+const rot=(p,y,x)=>{const c=Math.cos(y),s=Math.sin(y),X=p.x*c+p.z*s,Z=p.z*c-p.x*s,cx=Math.cos(x),sx=Math.sin(x);return{x:X,y:p.y*cx-Z*sx,z:p.y*sx+Z*cx}},scr=(s,p)=>{const w=VW[s.id],q=rot(p,w.yaw,w.pit),k=150/s.rm;return{x:220+q.x*k,y:190-q.y*k}};
+SOL.forEach(id=>{const s=BY[id],st=ST[id],svg=$('#svg-'+id);let dg=null;$('.mv',RV(id)).insertAdjacentHTML('beforeend',`<p class="hs"><button class="btn gh sm" data-mv="${id}">✥ Geser titik: mati</button></p>`);
+ const pt=e=>new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());
+ svg.addEventListener('pointerdown',e=>{if(!svg.classList.contains('mvon'))return;const q=pt(e);let b=null,bd=26;st.mod.V.forEach((v,i)=>{const p=scr(s,v),d=Math.hypot(p.x-q.x,p.y-q.y);if(d<bd){bd=d;b=i}});if(b===null)return;e.stopImmediatePropagation();e.preventDefault();svg.setPointerCapture(e.pointerId);dg={x:e.clientX,y:e.clientY,v:st.mod.V[b],p:{...st.tgt}}},true);
+ svg.addEventListener('pointermove',e=>{if(!dg)return;const w=VW[id],k=150/s.rm,sc=svg.getScreenCTM().a||1,d=[(e.clientX-dg.x)/sc,-(e.clientY-dg.y)/sc];let best=null;
+  ['x','y','z'].forEach(a=>{const r=rot({x:+(a==='x'),y:+(a==='y'),z:+(a==='z')},w.yaw,w.pit),vx=r.x*k,vy=r.y*k,n=vx*vx+vy*vy||1e-9,dot=d[0]*vx+d[1]*vy,f=Math.abs(dot)/Math.sqrt(n);if(!best||f>best.f)best={a,amt:dot/n,f}});
+  const key=PM[id][best.a],c=dg.v[best.a],p={...dg.p};p[key]+=best.amt*(Math.abs(c)<1e-6?1:Math.sign(c));s.sl.forEach(([q,,mn,mx,sp])=>{if(q in p)p[q]=Math.max(mn,Math.min(mx,Math.round(p[q]/sp)*sp))});apply(s,p)});
+ ['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>dg=null))});
+const _D=draw;draw=s=>{_D(s);if(!s.d3)return;const svg=$('#svg-'+s.id);if(svg.classList.contains('mvon'))ST[s.id].mod.V.forEach(v=>{const p=scr(s,v);mk('circle',{cx:p.x,cy:p.y,r:13,fill:'rgba(245,158,11,.15)',stroke:'#f59e0b','stroke-width':2,'stroke-dasharray':'3 3','pointer-events':'none'},svg)})};
+document.addEventListener('click',e=>{let b;if(b=e.target.closest('[data-qz]')){const[id,d]=b.dataset.qz.split('|');qgo(id,+d)}if((b=e.target.closest('[data-mv]'))&&SOL.includes(b.dataset.mv))draw(BY[b.dataset.mv])});
+})();
+</script>
+<style>
+.sb{display:flex;gap:6px;background:var(--fx);padding:5px;border-radius:12px;margin-bottom:12px}.sb button{flex:1;border:0;padding:9px;border-radius:9px;background:none;color:var(--mut);font:inherit;font-weight:800;cursor:pointer}.sb .on{background:var(--card);color:var(--pri);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.sp .ctl{margin:12px 0 0}.sp .fx h4{margin:0 0 4px}.sp[data-sp=v] .vz{min-height:260px}
+</style>
+<script>
+(()=>{
+const cl=x=>Math.max(0,Math.min(1,x)),ez=x=>x*x*(3-2*x),lp=(a,b,t)=>a+(b-a)*t,RV=id=>$('#v-'+id),H2=Math.PI/2,PI2=Math.PI,sq=Math.sqrt,
+SOL=['kubus','balok','limas-segitiga','limas-segiempat','prisma-segitiga','prisma-segilima','tabung','kerucut','bola'],NEW=SOL.slice(0,6),
+F1=x=>x.toFixed(1),pts=Q=>Q.map(q=>F1(q[0])+','+F1(q[1])).join(' '),cen=P=>[0,1].map(j=>P.reduce((s,p)=>s+p[j],0)/P.length),
+TX_=(x,y,s,z=13,c='#fff',st='#0f172a')=>`<text x="${F1(x)}" y="${F1(y)}" text-anchor="middle" dominant-baseline="central" font-size="${z}" font-weight="900" fill="${c}" stroke="${st}" stroke-width="3" paint-order="stroke" font-family="Nunito,sans-serif">${s}</text>`,
+INK=(x,y,s,z=13)=>TX_(x,y,s,z,'var(--ink)','none');
+/* ───────── Jaring-jaring: mesin lipat 3D ───────── */
+const V2=(a,b)=>{const d=Math.hypot(b[0]-a[0],b[1]-a[1]);return[(b[1]-a[1])/d,-(b[0]-a[0])/d,d]},pp=(p,n,k)=>[p[0]+n[0]*k,p[1]+n[1]*k],
+ed=(F,p,i)=>{const Q=F[p].pts;return[Q[i],Q[(i+1)%Q.length]]},
+addF=(F,par,i,P,psi,c)=>{F.push({pts:P,par,h:ed(F,par,i),psi,c});return F.length-1},
+rect=(F,p,i,h,psi,c)=>{const[a,b]=ed(F,p,i),n=V2(a,b);return addF(F,p,i,[b,a,pp(a,n,h),pp(b,n,h)],psi,c)},
+tri=(F,p,i,s,psi,c)=>{const[a,b]=ed(F,p,i),n=V2(a,b);return addF(F,p,i,[b,a,pp([(a[0]+b[0])/2,(a[1]+b[1])/2],n,s)],psi,c)},
+reg=(F,p,i,k,psi,c)=>{const[a,b]=ed(F,p,i),n=V2(a,b),o=pp([(a[0]+b[0])/2,(a[1]+b[1])/2],n,n[2]/(2*Math.tan(PI2/k))),P=[];for(let j=0;j<k;j++){const q=2*PI2*j/k,x=b[0]-o[0],y=b[1]-o[1];P.push([o[0]+x*Math.cos(q)-y*Math.sin(q),o[1]+x*Math.sin(q)+y*Math.cos(q)])}return addF(F,p,i,P,psi,c)},
+circ=(F,p,i,r,psi,c)=>{const[a,b]=ed(F,p,i),n=V2(a,b),o=pp([(a[0]+b[0])/2,(a[1]+b[1])/2],n,r),P=[];for(let j=0;j<40;j++)P.push([o[0]+r*Math.cos(2*PI2*j/40),o[1]+r*Math.sin(2*PI2*j/40)]);return addF(F,p,i,P,psi,c)},
+root=P=>[{pts:P,par:-1,c:0}],
+fin=n=>{n.F.forEach(f=>{if(f.par<0)return;const[a,b]=f.h,l=Math.hypot(b[0]-a[0],b[1]-a[1]),c=cen(n.F[f.par].pts),mx=(a[0]+b[0])/2-c[0],my=(a[1]+b[1])/2-c[1];f.k=[(b[0]-a[0])/l,(b[1]-a[1])/l];f.sg=Math.sign(f.k[0]*my-f.k[1]*mx)||1});return n},
+tb=a=>[[0,0],[a,0],[a/2,a*sq(3)/2]],
+BX=(a,b,c,lab)=>{const F=root([[0,0],[a,0],[a,b],[0,b]]);for(let i=0;i<4;i++)rect(F,0,i,c,H2,1);rect(F,1,2,b,H2,0);return fin({F,zc:c/2,L:lab.map((t,i)=>[[i],t])})},
+PYR=(k,a,t)=>{const rho=k===3?a/(2*sq(3)):a/2,s=sq(t*t+rho*rho),F=root(k===3?tb(a):[[0,0],[a,0],[a,a],[0,a]]);for(let i=0;i<k;i++)tri(F,0,i,s,PI2-Math.atan2(t,rho),1);return fin({F,zc:t/3,L:F.map((_,i)=>[[i],i?'½·a·s':'alas'])})},
+PRI=(k,a,t)=>{const R=a/(2*Math.sin(PI2/5)),F=root(k===3?tb(a):[0,1,2,3,4].map(j=>[R*Math.cos(H2+2*PI2*j/5),R*Math.sin(H2+2*PI2*j/5)]));for(let i=0;i<k;i++)rect(F,0,i,t,H2,1);reg(F,1,2,k,H2,0);return fin({F,zc:t/2,L:F.map((_,i)=>[[i],i===0?'alas':i>k?'tutup':'a×t'])})},
+NETS={
+kubus:p=>BX(p.a,p.a,p.a,Array(6).fill('s²')),
+balok:p=>BX(p.p,p.l,p.t,['p×l','p×t','l×t','p×t','l×t','p×l']),
+'limas-segitiga':p=>PYR(3,p.a,p.t),'limas-segiempat':p=>PYR(4,p.a,p.t),
+'prisma-segitiga':p=>PRI(3,p.a,p.t),'prisma-segilima':p=>PRI(5,p.a,p.t),
+tabung:p=>{const{r,t}=p,N=24,w=2*r*Math.sin(PI2/N),F=root([[-w/2,0],[w/2,0],[w/2,t],[-w/2,t]]),sf=i=>{F[i].soft=1;F[i].c=1;return i};sf(0);
+ let a=0;for(let j=0;j<N/2;j++)a=sf(rect(F,a,a?2:1,w,2*PI2/N,1));a=0;for(let j=0;j<N/2-1;j++)a=sf(rect(F,a,a?2:3,w,2*PI2/N,1));
+ circ(F,0,0,r,H2,0);circ(F,0,2,r,H2,0);return fin({F,zc:r,L:[[[...Array(N).keys()],'2πr × t'],[[N],'πr²'],[[N+1],'πr²']]})},
+kerucut:p=>{const{r,t}=p,s=sq(r*r+t*t),N=24,D=2*PI2*r/s/N,g=Math.sin(D/2)/Math.sin(PI2/N),psi=PI2-2*Math.atan(1/(sq(Math.max(1e-6,1-g*g))*Math.tan(PI2/N))),m=N/2,
+ W=j=>{const c=-H2+(j-(N-1)/2)*D;return[[0,s],...[c-D/2,c+D/2].map(x=>[s*Math.cos(x),s+s*Math.sin(x)])]},F=root(W(m)),sf=i=>{F[i].soft=1;F[i].c=1;return i};sf(0);
+ let a=0;for(let j=m+1;j<N;j++)a=sf(addF(F,a,2,W(j),psi,1));a=0;for(let j=m-1;j>=0;j--)a=sf(addF(F,a,0,W(j),psi,1));
+ circ(F,0,1,r,PI2-Math.atan2(t,r),0);return fin({F,zc:r*.5,L:[[[...Array(N).keys()],'πrs'],[[N],'πr²']]})}};
+function dN(z){
+ const id=z.id,n=NETS[id](ST[id].tgt),F=n.F,u=z.v,e=ez(u),ph=F.map(f=>f.psi*(1-u)),
+ P3=F.map((f,i)=>{let Q=f.pts.map(q=>[q[0],q[1],0]),k=i;while(F[k].par>=0){const g=F[k],a=g.h[0],K=g.k,th=g.sg*ph[k],c=Math.cos(th),s=Math.sin(th);
+  Q=Q.map(q=>{const x=q[0]-a[0],y=q[1]-a[1],w=q[2],d=K[0]*x+K[1]*y;return[a[0]+x*c+K[1]*w*s+K[0]*d*(1-c),a[1]+y*c-K[0]*w*s+K[1]*d*(1-c),w*c+(K[0]*y-K[1]*x)*s]});k=g.par}return Q}),
+ xs=F.flatMap(f=>f.pts.map(q=>q[0])),ys=F.flatMap(f=>f.pts.map(q=>q[1])),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),
+ k=Math.min(400/(x1-x0),250/(y1-y0),70)*lp(1.4,1,e),rc=cen(F[0].pts),C=[lp(rc[0],(x0+x1)/2,e),lp(rc[1],(y0+y1)/2,e),n.zc*(1-e)],
+ tau=.95*(1-e),yw=z.yaw*(1-e),cy=Math.cos(yw),sy=Math.sin(yw),ct=Math.cos(tau),st=Math.sin(tau),
+ pj=q=>{const x=q[0]-C[0],y=q[1]-C[1],w=q[2]-C[2],X=x*cy-y*sy,Y=x*sy+y*cy;return[220+k*X,150-k*(Y*ct+w*st),k*(w*ct-Y*st)]},
+ S=F.map((f,i)=>{const Q=P3[i].map(pj),c=[0,1,2].map(j=>Q.reduce((s,q)=>s+q[j],0)/Q.length),a=Q[0],b=Q[1],d=Q[2],ux=b[0]-a[0],uy=b[1]-a[1],uz=b[2]-a[2],vx=d[0]-a[0],vy=d[1]-a[1],vz=d[2]-a[2],
+  nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;return{f,Q,c,l:Math.abs(nz)/(Math.hypot(nx,ny,nz)||1)}}).sort((p,q)=>p.c[2]-q.c[2]);
+ let h='';S.forEach(({f,Q,l})=>{const fl=`color-mix(in srgb,color-mix(in srgb,${z.col} ${f.c?60:100}%,#fff) ${Math.round((.55+.45*l)*100)}%,#000)`;
+  h+=`<polygon points="${pts(Q)}" style="fill:${fl};${f.soft?`stroke:${fl}`:'stroke:#fff'}" stroke-width="${f.soft?.8:1.8}" stroke-linejoin="round"/>`});
+ if(u>.9)n.L.forEach(([ids,t])=>{const m=[0,1].map(j=>ids.reduce((s,i)=>s+S.find(x=>x.f===F[i]).c[j],0)/ids.length);h+=`<g opacity="${cl((u-.9)*10)}">${TX_(m[0],m[1],t,k>30?15:13)}</g>`});
+ $('#'+z.key).innerHTML=h}
+/* ───────── Bola ditutupi 4 lingkaran ───────── */
+const SC={},SCOL=['#7aa2f7','#4fc9b0','#f3b94d','#ef86b0'],SH_=[-1,-.5,0,.5,1],SR=80,SNR=10,SNA=60;
+const SB=(j,f)=>j===0?-1:j===4?1:SH_[j]+.13*Math.sin(2*f+1.3*j)+.07*Math.sin(3*f+2.1*j+.5);
+function smap(i){const N=720,G=[0];for(let k=1;k<=N;k++){const f=(k-.5)*2*Math.PI/N;G.push(G[k-1]+(SB(i+1,f)-SB(i,f))/.5*2*Math.PI/N)}
+ const tot=G[N],ph=a=>{const t=a/SNA*tot;let lo=0,hi=N;while(hi-lo>1){const m=(lo+hi)>>1;if(G[m]<=t)lo=m;else hi=m}return(lo+(t-G[lo])/(G[hi]-G[lo]))*2*Math.PI/N},GA=[],LO=[],DB=[];
+ for(let a=0;a<=SNA;a++){const f=ph(a);GA.push(f);LO.push(SB(i,f));DB.push(SB(i+1,f)-SB(i,f))}return{GA,LO,DB}}
+function sc(i){if(SC[i])return SC[i];const n=[5,7,6,8][i],S=[],id=[];
+ for(let s=0;s<n;s++){const r=(.18+.68*sq((s+.5)/n))*SR,a=s*2.4+i*1.1+.5*Math.sin(s*5.1+i);S.push([r*Math.cos(a),r*Math.sin(a)])}
+ for(let m=0;m<SNR;m++){const row=[];for(let a=0;a<SNA;a++){const rho=SR*sq((m+.5)/SNR),al=2*PI2*(a+.5)/SNA,x=rho*Math.cos(al),y=rho*Math.sin(al);let b=0,bd=1e9;
+  S.forEach((p,s)=>{const d=Math.hypot(x-p[0],y-p[1])+9*Math.sin(x*.13+s*1.7)*Math.cos(y*.17+s*2.3);if(d<bd){bd=d;b=s}});row.push(b)}id.push(row)}
+ const M=smap(i),acc=S.map(()=>[0,0,0]);
+ for(let m=0;m<SNR;m++)for(let a=0;a<SNA;a++){const s=id[m][a],f=(M.GA[a]+M.GA[a+1])/2,hh=(M.LO[a]+M.LO[a+1])/2+(M.DB[a]+M.DB[a+1])/2*(m+.5)/SNR,r=Math.sqrt(Math.max(0,1-hh*hh));acc[s][0]+=r*Math.cos(f);acc[s][1]+=r*Math.sin(f);acc[s][2]+=hh}
+ return SC[i]={n,S,id,M,ctr:acc.map(v=>[Math.atan2(v[1],v[0]),Math.max(-1,Math.min(1,v[2]/(Math.hypot(v[0],v[1],v[2])||1)))]),D:S.map(p=>{const l=Math.hypot(p[0],p[1]);return l<8?[0,-1]:[p[0]/l,p[1]/l]})}}
+function dS(z){
+ const T=z.v,k=Math.min(3,Math.floor(T)),c=T>=4?1:T-k,now=performance.now(),dt=Math.min(.1,(now-(z.tp||now))/1000);z.tp=now;if(z.yw==null){z.yw=.5;z.tt=.38}
+ if(T>0&&T<4&&c>.26){const C0=sc(k),s0=Math.max(0,Math.min(C0.n-1,Math.floor((c-.3)/(.68/C0.n)))),tg=H2-C0.ctr[s0][0],tt=Math.asin(Math.max(-.95,Math.min(.95,C0.ctr[s0][1])));z.yw+=Math.atan2(Math.sin(tg-z.yw),Math.cos(tg-z.yw))*Math.min(1,dt*1.6);z.tt+=(tt-z.tt)*Math.min(1,dt*1.6)}
+ else{if(!rm)z.yw+=dt*.45;z.tt+=(.38-z.tt)*Math.min(1,dt*1.6)}
+ const R=SR,CX=320,CY=150,tau=z.tt,yaw=z.yw,H=SH_,COL=SCOL,st=Math.sin(tau),ct=Math.cos(tau),nR=SNR,nA=SNA,
+ P=(f,h)=>{const q=f+yaw,r=sq(Math.max(0,1-h*h)),x=r*Math.cos(q),s=r*Math.sin(q);return[CX+R*x,CY-R*(h*ct-s*st),s*ct+h*st]},
+ TXc=95,TYc=150,
+ crv=(fn,N)=>{let a='',b='';for(let i=0;i<N;i++){const p=fn(i/N),q=fn((i+1)/N),d=`M${F1(p[0])} ${F1(p[1])}L${F1(q[0])} ${F1(q[1])}`;if(p[2]+q[2]>0)a+=d;else b+=d}return`<path d="${b}" fill="none" stroke="#111" stroke-opacity=".55" stroke-width="1.8" stroke-dasharray="1.5 4.5" stroke-linecap="round"/><path d="${a}" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>`},
+ q4=A=>`M${F1(A[0][0])} ${F1(A[0][1])}L${F1(A[1][0])} ${F1(A[1][1])}L${F1(A[2][0])} ${F1(A[2][1])}L${F1(A[3][0])} ${F1(A[3][1])}Z`,
+ sg=(a,b)=>`M${F1(a[0])} ${F1(a[1])}L${F1(b[0])} ${F1(b[1])}`;
+ function circ_(i,pw,pop,pL,fly,sep,cut,dash,pH){
+  const C=sc(i),n=C.n,id=C.id,col=COL[i],SV=[];
+  for(let m=0;m<=nR;m++){const r=[];for(let a=0;a<=nA;a++)r.push(P(C.M.GA[a],C.M.LO[a]+C.M.DB[a]*m/nR));SV.push(r)}
+  const dH=Array(n).fill(''),eH=Array(n).fill(''),dF=Array(n).fill(''),dP=Array(n).fill(''),eF=Array(n).fill(''),eP=Array(n).fill(''),
+  fv=(m,a,s)=>{const rho=R*sq(m/nR),al=2*PI2*a/nA,x=TXc+rho*Math.cos(al)+C.D[s][0]*sep[s],y=TYc+rho*Math.sin(al)+C.D[s][1]*sep[s],w=ez(pw[s]);return[lp(x,SV[m][a][0],w),lp(y,SV[m][a][1],w)]};
+  for(let m=0;m<nR;m++)for(let a=0;a<nA;a++){const s=id[m][a],on=pL[s]>.01,hi=pH[s]>.01,fl=fly&&pop[s]>.01;if(!on&&!fl&&!hi)continue;
+   const sv=[SV[m][a],SV[m+1][a],SV[m+1][a+1],SV[m][a+1]],fr=sv[0][2]+sv[1][2]+sv[2][2]+sv[3][2]>0;
+   if(on&&fr)dP[s]+=q4(sv);if(hi&&fr)dH[s]+=q4(sv);if(fl){const A=[fv(m,a,s),fv(m+1,a,s),fv(m+1,a+1,s),fv(m,a+1,s)];dF[s]+=q4(A)}
+   [[m>0&&id[m-1][a]!==s,m,a,m,a+1],[m===nR-1||id[m+1][a]!==s,m+1,a,m+1,a+1],[id[m][(a+nA-1)%nA]!==s,m,a,m+1,a],[id[m][(a+1)%nA]!==s,m,a+1,m+1,a+1]].forEach(([t,m1,a1,m2,a2])=>{if(!t)return;
+    if(on&&SV[m1][a1][2]+SV[m2][a2][2]>0)eP[s]+=sg(SV[m1][a1],SV[m2][a2]);if(hi&&SV[m1][a1][2]+SV[m2][a2][2]>0)eH[s]+=sg(SV[m1][a1],SV[m2][a2]);if(fl)eF[s]+=sg(fv(m1,a1,s),fv(m2,a2,s))})}
+  let o='';for(let s=0;s<n;s++){
+   if(dH[s])o+=`<path d="${dH[s]}" fill="#fde047" opacity=".55"/><path d="${eH[s]}" fill="none" stroke="#f59e0b" stroke-width="2.6" stroke-dasharray="5 3" stroke-linecap="round"/>`;
+   if(dP[s])o+=`<path d="${dP[s]}" fill="${col}" opacity="${.55*pL[s]}"/><path d="${eP[s]}" fill="none" stroke="#111" stroke-width="1.1" stroke-opacity="${.75*pL[s]}" stroke-linecap="round"/>`;
+   if(dF[s])o+=`<path d="${dF[s]}" fill="${col}" opacity="${.55*pop[s]}"/><path d="${eF[s]}" fill="none" stroke="#111" stroke-width="1.3" stroke-opacity="${pop[s]*(.15+.7*cut)}" stroke-linecap="round"${dash?' stroke-dasharray="4 3"':''}/>`}
+  return o}
+ let h=`<defs><radialGradient id="sg" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d5dae1"/></radialGradient></defs><circle cx="${CX}" cy="${CY}" r="${R}" fill="url(#sg)" stroke="#111" stroke-width="2.4"/>`;
+ h+=crv(t=>P(t*2*PI2,0),64);[0,1].forEach(j=>h+=crv(t=>{const u=t*2*PI2,co=Math.cos(u);return P(j*PI2/4+(co<0?PI2:0),Math.sin(u))},64));
+ for(let i=0;i<4;i++){const nn=sc(i).n,one=Array(nn).fill(1),zero=Array(nn).fill(0);
+  if(i<k||T>=4)h+=circ_(i,one,zero,one,0,zero,1,0,zero);
+  else if(i===k&&T>0){const a=ez(cl(c/.12)),cut=cl((c-.12)/.16),sepA=ez(cl((c-.24)/.1))*8,pw=[],pop=[],pL=[],pH=[],sep=[],C=sc(i);
+   for(let s=0;s<nn;s++){const p=cl(((c-.3)/(.68/nn)-s-.4)/.6);
+    pw.push(p);pL.push(p>=1?1:0);pop.push(p>=1?0:a);pH.push(p>0&&p<1?1:0);sep.push(sepA*(1-ez(p)))}
+   h+=circ_(i,pw,pop,pL,1,sep,cut,c<.3,pH)}}
+ h+=`<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#111" stroke-width="2.4"/>`;
+ if(T<.8)h+=`<g opacity="${1-T/.8}"><line x1="${CX}" y1="${CY}" x2="${CX+R}" y2="${CY}" stroke="#dc2626" stroke-width="3"/><circle cx="${CX}" cy="${CY}" r="3.5" fill="#fff" stroke="#111" stroke-width="2"/>${TX_(CX+R/2,CY-12,'r',14,'#fff','#dc2626')}</g>`;
+ if(T>0&&T<4){const a=ez(cl(c/.12));if(c<.3)h+=`<g opacity="${a}"><line x1="${TXc}" y1="${TYc}" x2="${TXc+R}" y2="${TYc}" stroke="#dc2626" stroke-width="2.5"/>${TX_(TXc+R/2,TYc-11,'r',13,'#fff','#dc2626')}${TX_(TXc,TYc+22,'πr²',15,'#fff',COL[k])}</g>`;
+  h+=INK(TXc,254,`luas lingkaran ke-${k+1} = πr²`,13)+INK(220,16,`Lingkaran ke-${k+1} dari 4`,14)}
+ if(T>=4)h+=`<g opacity="${cl((T-4)*3)}">${INK(220,262,'4 lingkaran menutup bola: tanpa celah',13)}${INK(220,284,'L = 4 × πr² = 4πr²',18)}</g>`;
+ if(T<=0)h+=INK(95,150,'bola berputar →',13);
+ $('#'+z.key).innerHTML=h}
+/* ───────── Air: kerucut → tabung, kerucut → bola ───────── */
+const clipB=(Q,y)=>{const o=[];Q.forEach((a,i)=>{const b=Q[(i+1)%Q.length],ia=a[1]>=y,ib=b[1]>=y;if(ia)o.push(a);if(ia!==ib){const s=(y-a[1])/(b[1]-a[1]);o.push([a[0]+(b[0]-a[0])*s,y])}});return o},
+area=P=>Math.abs(P.reduce((s,a,i)=>{const b=P[(i+1)%P.length];return s+a[0]*b[1]-b[0]*a[1]},0))/2,
+hs=(f,R)=>{let lo=0,hi=2*R;for(let i=0;i<26;i++){const h=(lo+hi)/2;h*h*(3*R-h)/(4*R**3)<f?lo=h:hi=h}return(lo+hi)/2},
+WB='#2f8ee8',WT='#8fd0ff',GL='rgba(160,200,255,.16)',LN='stroke="var(--ink)" stroke-width="2.4"';
+function dW(z){
+ const B=z.id==='bola',n=B?4:3,T=z.v,k=Math.min(n-1,Math.floor(T)),c=T-k,r=B?50:34,t=B?50:100,RS=[100,B?235:190],PO=B?[270,70]:[300,64],thm=Math.atan2(t,r)+.2,
+ pos=m=>m<.5?[RS[0],lp(RS[1],PO[1],ez(m*2))]:[lp(RS[0],PO[0],ez(m*2-1)),PO[1]];
+ let m=0,th=0,ff=0,pour=0,emp=0;
+ if(c<.26)ff=ez(c/.26);else if(c<.42){ff=1;m=(c-.26)/.16}else if(c<.8){ff=1;m=1;th=thm*ez((c-.42)/.38);pour=1}else{const q=(c-.8)/.2;m=1-ez(cl((q-.1)/.9));th=thm*(1-ez(cl(q*1.6)));emp=1}
+ const O=pos(m),cs=Math.cos(th),sn=Math.sin(th),Rt=(x,y)=>[O[0]+x*cs-y*sn,O[1]+x*sn+y*cs],Q=[Rt(-r,0),Rt(r,0),Rt(0,t)];
+ let wp=[],lvl=0;if(!emp){lvl=c<.42?O[1]+t-t*Math.cbrt(ff):Rt(r,0)[1];wp=clipB(Q,lvl)}
+ const fr=wp.length>2?area(wp)/area(Q):0,fv=(k+(pour?1-fr:c>=.8?1:0))/n,CX=320;let h='',ys,C_;
+ if(!B){const YT=190,H=100,RX=34,RY=10,yb=YT+H,yw=yb-H*fv;ys=yw;
+  h+=[1/3,2/3,1].map((f,i)=>`<line x1="${CX+RX+3}" x2="${CX+RX+14}" y1="${yb-H*f}" y2="${yb-H*f}" stroke="var(--mut)" stroke-width="2"/>${INK(CX+RX+30,yb-H*f,['⅓','⅔','penuh'][i],12)}`).join('');
+  if(fv>.002)h+=`<path d="M${CX-RX} ${yw}V${yb}A${RX} ${RY} 0 0 0 ${CX+RX} ${yb}V${yw}Z" fill="${WB}" fill-opacity=".88"/><ellipse cx="${CX}" cy="${yw}" rx="${RX}" ry="${RY}" fill="${WT}"/>`;
+  h+=`<path d="M${CX-RX} ${YT}V${yb}A${RX} ${RY} 0 0 0 ${CX+RX} ${yb}V${YT}" fill="${GL}" ${LN}/><ellipse cx="${CX}" cy="${YT}" rx="${RX}" ry="${RY}" fill="none" ${LN}/><path d="M${CX-RX+7} ${YT+14}V${yb-8}" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>${INK(CX,yb+24,'tabung (r dan t sama dengan kerucut)',12)}`}
+ else{const CY=235,R=50,hh=hs(fv,R),yw=CY+R-hh,dy=CY-yw,hc=sq(Math.max(0,R*R-dy*dy)),x2=sq(R*R-196),yn=CY-x2;ys=yw;
+  h+=[.25,.5,.75].map((f,i)=>{const y=CY+R-hs(f,R),x=CX+sq(Math.max(0,R*R-(CY-y)**2));return`<line x1="${F1(x+2)}" x2="${F1(x+12)}" y1="${F1(y)}" y2="${F1(y)}" stroke="var(--mut)" stroke-width="2"/>${INK(x+26,y,['¼','½','¾'][i],12)}`}).join('');
+  h+=`<clipPath id="wc"><circle cx="${CX}" cy="${CY}" r="${R-1}"/></clipPath>`;
+  if(fv>.002)h+=`<g clip-path="url(#wc)"><rect x="${CX-R}" y="${F1(yw)}" width="${2*R}" height="${F1(hh+2)}" fill="${WB}" fill-opacity=".88"/></g><ellipse cx="${CX}" cy="${F1(yw)}" rx="${F1(hc)}" ry="${F1(hc*.28)}" fill="${WT}"/>`;
+  h+=`<path d="M${CX+14} ${F1(yn)}A${R} ${R} 0 1 1 ${CX-14} ${F1(yn)}" fill="${GL}" ${LN}/><path d="M${CX-14} ${F1(yn)}V${CY-R-26}M${CX+14} ${F1(yn)}V${CY-R-26}" fill="none" ${LN}/><ellipse cx="${CX}" cy="${CY-R-26}" rx="14" ry="4" fill="none" ${LN}/><path d="M${CX-R+9} ${CY-6}A${R-9} ${R-9} 0 0 1 ${CX-24} ${CY-R+14}" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>${INK(CX,CY+R+24,'bola (jari-jari r)',12)}`}
+ h+=`<rect x="84" y="4" width="32" height="12" rx="3" fill="#94a3b8"/><rect x="94" y="14" width="12" height="10" fill="#94a3b8"/>`;
+ if(c<.26&&ff>0&&ff<.99)h+=`<line x1="${RS[0]}" x2="${RS[0]}" y1="24" y2="${F1(lvl)}" stroke="${WB}" stroke-width="${F1(4*(1-cl((c-.2)/.06)))}" stroke-linecap="round"/>`;
+ if(pour&&fr>.01&&th>.03){const L0=Rt(r,0),w=3+2.5*cl(fr*3);h+=`<path d="M${F1(L0[0])} ${F1(L0[1])}Q${F1(L0[0]+10)} ${F1(L0[1]+4)} ${F1(L0[0]+8)} ${F1(ys)}" fill="none" stroke="${WB}" stroke-width="${w}" stroke-linecap="round"/><path d="M${F1(L0[0])} ${F1(L0[1])}Q${F1(L0[0]+10)} ${F1(L0[1]+4)} ${F1(L0[0]+8)} ${F1(ys)}" fill="none" stroke="${WT}" stroke-width="${w/3}" stroke-linecap="round"/><ellipse cx="${F1(L0[0]+8)}" cy="${F1(ys)}" rx="${6+w}" ry="2.5" fill="${WT}" fill-opacity=".8"/>`}
+ h+=`<polygon points="${pts(Q)}" fill="${GL}"/>`;
+ if(wp.length>2){const xs=wp.filter(p=>Math.abs(p[1]-lvl)<1e-3).map(p=>p[0]),a=Math.min(...xs),b=Math.max(...xs);h+=`<polygon points="${pts(wp)}" fill="${WB}" fill-opacity=".9"/>`+(xs.length>1&&b-a>2?`<ellipse cx="${F1((a+b)/2)}" cy="${F1(lvl)}" rx="${F1((b-a)/2)}" ry="${F1((b-a)*.14)}" fill="${WT}"/>`:'')}
+ h+=`<polygon points="${pts(Q)}" fill="none" ${LN} stroke-linejoin="round"/><ellipse transform="translate(${F1(O[0])} ${F1(O[1])}) rotate(${F1(th*180/PI2)})" rx="${r}" ry="${r*.28}" fill="rgba(160,200,255,.1)" ${LN}/>`;
+ if(m===0)h+=INK(100,RS[1]+t+24,B?'kerucut (r, t = r)':'kerucut (r, t)',12);
+ h+=INK(330,14,T>=n-.001?`${B?'4':'3'} kerucut = ${B?'1 bola':'1 tabung'} penuh`:`Kerucut ke-${Math.max(1,Math.ceil(T-1e-9))} dari ${n}`,13);
+ $('#'+z.key).innerHTML=h}
+/* ───────── Volume tabung: tumpukan lingkaran ───────── */
+function dT(z){const t=z.v,cx=220,yb=262,rx=78,ry=22,H=170,N=10,nl=N*cl((t-.25)/.75);let h='';
+ for(let i=0;i<Math.ceil(nl-1e-6);i++){const hh=H/N*Math.min(1,nl-i),y1=yb-i*H/N,y0=y1-hh;h+=`<path d="M${cx-rx} ${F1(y0)}V${F1(y1)}A${rx} ${ry} 0 0 0 ${cx+rx} ${F1(y1)}V${F1(y0)}Z" fill="${i%2?'#6aa0ee':'#4f8be8'}" stroke="#fff" stroke-width="1.2"/><ellipse cx="${cx}" cy="${F1(y0)}" rx="${rx}" ry="${ry}" fill="#a9c9f8" stroke="#fff" stroke-width="1.2"/>`}
+ if(nl<.01)h+=`<ellipse cx="${cx}" cy="${yb}" rx="${rx}" ry="${ry}" fill="#a9c9f8" stroke="#4f8be8" stroke-width="2.5"/>`;
+ const top=yb-H*cl(nl/N),o=cl(t*2);h+=`<g opacity="${o}">${TX_(cx,top,'luas alas = πr²',14,'#fff','#2563eb')}</g>`;
+ if(t>1.4)h+=`<g opacity="${cl((t-1.4)*2.5)}"><line x1="${cx+rx+22}" x2="${cx+rx+22}" y1="${yb}" y2="${yb-H}" stroke="#16a34a" stroke-width="3"/>${TX_(cx+rx+40,yb-H/2,'t',16,'#fff','#16a34a')}${TX_(cx,yb+34,'V = πr² × t',17,'#fff','#2563eb')}</g>`;
+ $('#'+z.key).innerHTML=h}
+/* ───────── Teks langkah ───────── */
+const LS={
+kubus:['Kubus memiliki <b>6 sisi</b> berbentuk persegi yang sama besar. Seret gambar untuk memutarnya.','Kubus <b>dibongkar</b>: rusuk-rusuknya dibuka dan keenam sisinya direbahkan hingga terbentuk <b>jaring-jaring kubus</b>.','Luas permukaan = luas jaring-jaring = 6 persegi yang sama besar.<br><b>L = 6 × s² = 6s²</b>'],
+balok:['Balok memiliki 6 sisi persegi panjang: 3 pasang sisi berhadapan yang sama besar.','Balok dibongkar menjadi <b>jaring-jaring balok</b>: 3 pasang persegi panjang.','Luas permukaan = luas jaring-jaring.<br><b>L = 2(p×l) + 2(p×t) + 2(l×t) = 2(pl + pt + lt)</b>'],
+'limas-segitiga':['Limas segitiga: 1 alas segitiga dan 3 sisi tegak berbentuk segitiga yang bertemu di puncak.','Ketiga sisi tegak direbahkan ke luar hingga terbentuk <b>jaring-jaring limas</b>.','Luas permukaan = luas alas + 3 × luas segitiga sisi tegak.<br><b>L = L alas + 3 × (½ × a × s)</b><br><small>s = tinggi segitiga sisi tegak</small>'],
+'limas-segiempat':['Limas segi empat: 1 alas persegi dan 4 sisi tegak berbentuk segitiga yang bertemu di puncak.','Keempat sisi tegak direbahkan ke luar hingga terbentuk <b>jaring-jaring limas</b>.','Luas permukaan = luas persegi alas + 4 segitiga sisi tegak.<br><b>L = a² + 4 × (½ × a × s) = a² + 2as</b><br><small>s = tinggi segitiga sisi tegak</small>'],
+'prisma-segitiga':['Prisma segitiga: 2 segitiga (alas dan tutup) dan 3 persegi panjang sebagai sisi tegak.','Prisma dibongkar menjadi <b>jaring-jaring</b>: 3 persegi panjang berderet, 2 segitiga di ujungnya.','Luas permukaan = 2 × luas alas + 3 × (a × t).<br><b>L = 2 × L alas + (keliling alas × t)</b>'],
+'prisma-segilima':['Prisma segi lima: 2 segi lima (alas dan tutup) dan 5 persegi panjang sebagai sisi tegak.','Prisma dibongkar menjadi <b>jaring-jaring</b>: 5 persegi panjang berderet, 2 segi lima di ujungnya.','Luas permukaan = 2 × luas alas + 5 × (a × t).<br><b>L = 2 × L alas + (keliling alas × t)</b>'],
+tabung:['Tabung memiliki alas dan tutup berbentuk lingkaran, serta satu selimut lengkung. Seret gambar untuk memutarnya.','Selimut digunting lalu dibuka menjadi <b>persegi panjang</b>: panjangnya = keliling alas (2πr), lebarnya = tinggi (t). Bersama 2 lingkaran, inilah <b>jaring-jaring tabung</b>.','Luas permukaan = tutup + alas + selimut = πr² + πr² + (2πr × t).<br><b>L = 2πr² + 2πrt = 2πr(r + t)</b>'],
+kerucut:['Kerucut memiliki alas lingkaran dan selimut lengkung yang meruncing ke puncak. Seret gambar untuk memutarnya.','Selimut dibuka menjadi <b>juring lingkaran</b>: jari-jari juring = garis pelukis s, panjang busurnya = keliling alas (2πr). Juring ini adalah potongan dari sebuah <b>lingkaran besar</b> berjari-jari s. Bersama lingkaran alas, inilah <b>jaring-jaring kerucut</b>.','Bandingkan juring dengan lingkaran besar:<br><b>luas selimut ÷ luas lingkaran besar = panjang busur ÷ keliling lingkaran besar</b><br>L ÷ πs² = 2πr ÷ 2πs = r ÷ s <small>(rincian bergambar ada di panel di bawah)</small>','Dari L ÷ πs² = r ÷ s diperoleh <b>luas selimut L = πs² × r ÷ s = πrs</b>.<br>Luas permukaan = luas alas + luas selimut:<br><b>L = πr² + πrs = πr(r + s)</b>'],
+bola:['Ini sketsa sebuah bola berjari-jari r. Bola berputar agar seluruh permukaannya terlihat. Kita akan <b>menutupi</b> permukaannya dengan lingkaran yang jari-jarinya sama dengan bola (r).','Lingkaran ke-1 (luas πr²) disobek menjadi potongan-potongan bebas, lalu tiap potongan ditempelkan pada bagian bola yang cocok dengan bentuknya. Sekitar <b>¼</b> permukaan bola tertutup.','Lingkaran ke-2 juga dipotong-potong dan ditempelkan. Kini <b>½</b> permukaan bola tertutup.','Lingkaran ke-3 ditempelkan. Kini <b>¾</b> permukaan bola tertutup.','Lingkaran ke-4 menutup bagian yang tersisa. Seluruh permukaan bola <b>tertutup penuh</b>, tanpa celah dan tanpa sisa.','Luas permukaan bola = luas 4 lingkaran berjari-jari r.<br><b>L = 4 × πr² = 4πr²</b>']};
+const VS={
+tabung:['Alas tabung berbentuk lingkaran dengan luas <b>πr²</b>.','Tumpuk lingkaran-lingkaran tipis itu lapis demi lapis sampai setinggi t. Seperti prisma, tiap lapis luasnya sama dengan luas alas.','Volume tabung = luas alas × tinggi = πr² × t.<br><b>V = πr² × t</b>'],
+kerucut:['Siapkan sebuah tabung dan sebuah kerucut yang <b>jari-jari (r) dan tingginya (t) sama</b>. Kita akan mencari berapa kerucut air yang dibutuhkan untuk memenuhi tabung.','Isi kerucut dengan air sampai penuh, lalu tuang ke tabung. Tabung baru terisi <b>⅓</b> bagian.','Isi kerucut lagi sampai penuh, lalu tuang. Tabung terisi <b>⅔</b> bagian.','Tuang kerucut ketiga: tabung kini <b>penuh</b>. Dibutuhkan tepat <b>3 kerucut</b> air.',`Tabung penuh = 3 kerucut, jadi 3 × V kerucut = V tabung = πr² × t. Maka V kerucut = ⅓ dari V tabung.<br><b>V kerucut = ${frac(1,3)} × πr² × t = ${frac(1,3)} × luas alas × tinggi</b> (sama seperti limas).`],
+bola:['Siapkan sebuah bola kosong dan sebuah kerucut yang jari-jarinya sama dengan bola. Pada bola, tingginya adalah jari-jarinya, jadi tinggi kerucut <b>t = r</b>. Kita akan mencari berapa kerucut air yang dibutuhkan untuk memenuhi bola.','Isi kerucut penuh lalu tuang ke bola: bola terisi <b>¼</b> bagian.','Kerucut kedua: bola terisi <b>½</b> bagian.','Kerucut ketiga: bola terisi <b>¾</b> bagian.','Kerucut keempat: bola <b>penuh</b>. Dibutuhkan tepat <b>4 kerucut</b> air.',`Bola penuh = 4 kerucut, jadi V bola = 4 × V kerucut = 4 × (${frac(1,3)} × πr² × t). Karena t = r, maka πr² × t = πr³.<br><b>V bola = 4 × ${frac(1,3)} × πr³ = ${frac(4,3)}πr³</b>`]};
+/* ───────── Pengendali ───────── */
+const Z={};
+function cap(key,g){const z=Z[key];z.g=g;$('#t-'+key).innerHTML=`<h4>Langkah ${g+1} dari ${z.tx.length}</h4><p>${z.tx[g]}</p>`}
+function step(key,g){const z=Z[key];g=Math.max(0,Math.min(z.tx.length-1,g));cap(key,g);const to=z.tgt(g),from=z.v,t0=performance.now(),dur=Math.max(900,Math.abs(to-from)*z.dur);cancelAnimationFrame(z.raf);
+ const f=now=>{const p=rm?1:cl((now-t0)/dur);z.v=from+(to-from)*(z.lin?p:ez(p));z.d();const s=$(`[data-sl="${key}"]`);if(s){s.value=z.v/z.max*100;s.style.setProperty('--p',s.value+'%')}if(p<1)z.raf=requestAnimationFrame(f)};z.raf=requestAnimationFrame(f)}
+const pane=(key,vb,sl,tip)=>`<svg class="vz${tip?' s3':''}" id="${key}" viewBox="${vb}" role="img" aria-label="Animasi penemuan rumus"></svg>${tip?`<p class="tip">🖱️ Seret gambar untuk memutar (saat masih utuh).</p>`:''}${sl?`<div class="ctl"><div class="ch"><span>${sl}</span></div><input type="range" data-sl="${key}" min="0" max="100" step="1" value="0"></div>`:''}<div class="row"><button class="btn gh sm" data-st="${key}|-1">◀ Sebelumnya</button><button class="btn gh sm" data-pl2="${key}">▶ Putar</button><button class="btn sm" data-st="${key}|1">Berikutnya ▶</button></div><div class="fx" id="t-${key}"></div>`;
+const reg_=(key,o)=>Z[key]={key,v:0,g:0,raf:0,...o};
+SOL.forEach(id=>{const R=RV(id),dz=$('.dz',R),old=[...dz.children],isN=NEW.includes(id),B=id==='bola',kl='ls-'+id,kv='vs-'+id,col=BY[id].color;
+ dz.innerHTML=`<div class="sb"><button class="on" data-sb="${id}|l">📐 Luas permukaan</button><button data-sb="${id}|v">🧊 Volume</button></div><div class="sp" data-sp="l">${pane(kl,'0 0 440 300',B?'Belum ditutup ⟷ Tertutup':'Rakit ⟷ Bongkar',!B)}</div><div class="sp" data-sp="v" hidden></div>`;
+ const vp=$('[data-sp=v]',dz);
+ if(isN)old.forEach(c=>vp.append(c));
+ else{vp.innerHTML=pane(kv,id==='tabung'?'0 0 440 300':'0 0 440 330',null,0);const dt=old.find(c=>c.tagName==='DETAILS'),q=old.find(c=>c.tagName==='svg');dt&&dz.append(dt);if(q){q.style.display='none';dz.append(q)}}
+ if(B){reg_(kl,{id,max:5,dur:14000,lin:1,tx:LS[id],tgt:g=>g,sg:v=>Math.round(v*5),gap:15000,d(){dS(this)}});const zz=Z[kl],lo=()=>{const sv=$('#'+kl);if(sv&&sv.parentElement.offsetParent)zz.d();requestAnimationFrame(lo)};if(!rm)lo()}
+ else{reg_(kl,{id,col,max:1,dur:1800,yaw:id==='kerucut'?-1.25:id==='tabung'?-1.05:-.55,tx:LS[id],tgt:g=>g?1:0,sg:v=>v<.03?0:v<.97?1:2,gap:3400,d(){dN(this)}});
+  const svg=$('#'+kl),z=Z[kl];svg.addEventListener('pointerdown',e=>{z.dr=e.clientX;svg.setPointerCapture(e.pointerId)});svg.addEventListener('pointermove',e=>{if(z.dr==null)return;z.yaw+=(e.clientX-z.dr)*.012;z.dr=e.clientX;z.d()});['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>z.dr=null))}
+ if(id==='tabung')reg_(kv,{id,max:2,dur:1800,tx:VS[id],tgt:g=>g,gap:3400,d(){dT(this)}});
+ if(id==='kerucut'||B){const n=B?4:3;reg_(kv,{id,max:n,dur:4600,lin:1,tx:VS[id],tgt:g=>Math.min(g,n),gap:5200,d(){dW(this)}})}
+ [kl,kv].forEach(k=>{if(Z[k]){cap(k,0);Z[k].d()}})});
+const _rf=refresh;refresh=s=>{_rf(s);const z=Z['ls-'+s.id];if(z&&z.d&&s.id!=='bola')z.d()};
+const PLY={};
+document.addEventListener('click',e=>{let b;
+ if(b=e.target.closest('[data-sb]')){const m=b.dataset.sb.split('|')[1],dz=b.closest('.dz');$$('.sb button',dz).forEach(x=>x.classList.toggle('on',x===b));$$('.sp',dz).forEach(p=>p.hidden=p.dataset.sp!==m);return}
+ if(b=e.target.closest('[data-st]')){const[k,d]=b.dataset.st.split('|');return step(k,Z[k].g+ +d)}
+ if(b=e.target.closest('[data-pl2]')){const k=b.dataset.pl2,z=Z[k],stop=()=>{clearInterval(PLY[k]);PLY[k]=0;b.textContent='▶ Putar'};if(PLY[k])return stop();b.textContent='⏸ Berhenti';let g=0;step(k,0);
+  PLY[k]=setInterval(()=>{if(!RV(z.id).offsetParent)return stop();g=g>=z.tx.length-1?0:g+1;step(k,g)},z.gap)}});
+document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.sl;if(!k)return;e.stopPropagation();const z=Z[k],v=e.target.value/100;cancelAnimationFrame(z.raf);z.v=v*z.max;e.target.style.setProperty('--p',e.target.value+'%');z.d();const g=z.sg(v);if(g!==z.g)cap(k,g)},true);
+})();
+</script>
+<style>
+.K .fx,.L .fx,.K .key,.L .key{display:none}
+#v-kubus .pn.ls,#v-balok .pn.ls,#v-limas-segitiga .pn.ls,#v-limas-segiempat .pn.ls,#v-prisma-segitiga .pn.ls,#v-prisma-segilima .pn.ls,#v-tabung .pn.ls,#v-kerucut .pn.ls,#v-bola .pn.ls{display:none}
+#v-kubus .pn.ls:has(.D),#v-balok .pn.ls:has(.D),#v-limas-segitiga .pn.ls:has(.D),#v-limas-segiempat .pn.ls:has(.D),#v-prisma-segitiga .pn.ls:has(.D),#v-prisma-segilima .pn.ls:has(.D),#v-tabung .pn.ls:has(.D),#v-kerucut .pn.ls:has(.D),#v-bola .pn.ls:has(.D){display:block}
+</style>
+<script>
+(()=>{
+const host=document.querySelector('#v-kerucut [data-sp="l"]')||document.querySelector('#v-kerucut');
+if(!host)return;
+const cx=115,cy=140,R=95,ac=365,ar=57,rd=Math.PI/180,P=a=>[cx+R*Math.cos(a*rd),cy+R*Math.sin(a*rd)],A=P(-108),B=P(108);
+const fr=(a,b)=>`<span style="display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.25;margin:0 3px"><span style="border-bottom:1.5px solid currentColor;padding:0 4px">${a}</span><span>${b}</span></span>`;
+const I=[['sel','#ec4899','Luas selimut','<b>Luas selimut</b> = luas juring = <b>L</b>, bagian yang dicari.'],
+['big','#2563eb','Luas lingkaran besar','<b>Luas lingkaran besar</b> = π × s × s = <b>πs²</b>. Lingkaran besar berjari-jari s (garis pelukis); juring adalah potongannya.'],
+['bus','#be185d','Panjang busur','<b>Panjang busur</b> juring = keliling alas kerucut = <b>2πr</b>, sebab selimut dulu melingkari alas.'],
+['kel','#0891b2','Keliling lingkaran besar','<b>Keliling lingkaran besar</b> = 2 × π × s = <b>2πs</b>.']];
+const t=(x,y,c,s,z=12)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="${z}" font-weight="800" fill="${c}" style="paint-order:stroke;stroke:var(--card);stroke-width:3px;font-family:Nunito,sans-serif">${s}</text>`;
+const mid=[(cx+A[0])/2-9,(cy+A[1])/2];
+const svg=`<svg id="kp-svg" class="vz" viewBox="0 0 440 285" role="img" aria-label="Juring selimut kerucut di dalam lingkaran besar" style="width:100%;height:auto">
+<g data-k="big"><circle cx="${cx}" cy="${cy}" r="${R}" fill="#2563eb" fill-opacity=".14"/>${t(cx,22,'#2563eb','luas lingkaran besar = πs²')}</g>
+<g data-k="sel"><path d="M${cx} ${cy}L${A[0]} ${A[1]}A${R} ${R} 0 1 1 ${B[0]} ${B[1]}Z" fill="#ec4899" fill-opacity=".38" stroke="#ec4899" stroke-width="2" stroke-linejoin="round"/>${t(cx+62,cy-4,'#9d174d','luas selimut')}${t(cx+62,cy+12,'#9d174d','= L')}</g>
+<g data-k="kel"><circle id="kp-ring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#0891b2" stroke-width="2.5" stroke-dasharray="2 5" stroke-linecap="round"/>${t(cx,cy+R+22,'#0891b2','keliling lingkaran besar = 2πs')}</g>
+<g data-k="bus"><path d="M${A[0]} ${A[1]}A${R} ${R} 0 1 1 ${B[0]} ${B[1]}" fill="none" stroke="#be185d" stroke-width="5" stroke-linecap="round"/><circle cx="${ac}" cy="${cy}" r="${ar}" fill="#ec4899" fill-opacity=".22" stroke="#be185d" stroke-width="3"/>${t(259,cy-16,'#be185d','panjang busur',11.5)}${t(259,cy,'#be185d','= keliling alas',11.5)}${t(259,cy+16,'#be185d','= 2πr',11.5)}${t(ac,cy-ar-8,'#be185d','alas kerucut')}</g>
+<g data-k="all"><line x1="${cx}" y1="${cy}" x2="${A[0]}" y2="${A[1]}" stroke="#b45309" stroke-width="3" stroke-linecap="round"/><line x1="${cx}" y1="${cy}" x2="${B[0]}" y2="${B[1]}" stroke="#b45309" stroke-width="3" stroke-linecap="round"/>${t(mid[0],mid[1],'#b45309','s',14)}${t(mid[0],2*cy-mid[1],'#b45309','s',14)}<circle cx="${cx}" cy="${cy}" r="4.5" fill="#fff" stroke="#334155" stroke-width="2.5"/>${t(cx-12,cy+4,'#334155','T',14)}<line x1="${ac}" y1="${cy}" x2="${ac+ar}" y2="${cy}" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>${t(ac+ar/2,cy-9,'#dc2626','r',14)}</g></svg>`;
+const chips=I.map(([k,c,l])=>`<button class="btn gh sm" data-kp="${k}"><span style="color:${c}">●</span> ${l}</button>`).join('');
+const p='margin:0 0 10px';
+const html=`<div class="pn" id="kp-panel" style="margin-top:16px"><h3 style="margin:0 0 4px">🔍 Mengapa luas selimut = πrs?</h3><p style="margin:0 0 8px;color:var(--mut)">Dijelaskan dengan perbandingan juring terhadap lingkaran besar.</p>${svg}
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">${chips}</div><div class="fx" id="kp-info" style="margin-bottom:12px"></div>
+<div class="fx" style="line-height:1.75">
+<p style="${p}"><b>Langkah 1 – Buka selimut.</b> Selimut kerucut digunting dan dibuka menjadi sebuah <b>juring</b>. Jari-jari juring = garis pelukis <b>s</b>, jadi juring ini adalah potongan dari <b>lingkaran besar</b> berjari-jari s.</p>
+<p style="${p}"><b>Langkah 2 – Kenali empat besaran.</b><br><span style="color:#ec4899">●</span> luas selimut (juring) = L (dicari)<br><span style="color:#2563eb">●</span> luas lingkaran besar = πs²<br><span style="color:#be185d">●</span> panjang busur = keliling alas kerucut = 2πr<br><span style="color:#0891b2">●</span> keliling lingkaran besar = 2πs</p>
+<p style="${p}"><b>Langkah 3 – Buat perbandingan.</b> Juring adalah sebagian dari lingkaran besar. Besar bagian itu sama, baik dilihat dari luasnya maupun dari panjang busurnya:</p>
+<div style="text-align:center;margin:0 0 10px">${fr('luas selimut','luas lingkaran besar')} = ${fr('panjang busur','keliling lingkaran besar')}<br>${fr('L','πs²')} = ${fr('2πr','2πs')}</div>
+<p style="${p}"><b>Langkah 4 – Sederhanakan.</b> Ruas kanan: 2π dicoret, tinggal ${fr('r','s')}. Jadi ${fr('L','πs²')} = ${fr('r','s')}. Kalikan kedua ruas dengan πs²:<br>L = πs² × ${fr('r','s')} = πrs <small>(satu s pada s² habis dibagi s)</small></p>
+<p style="text-align:center;font-size:1.15rem;margin:0 0 10px"><b>Luas selimut = πrs</b></p>
+<p style="${p}"><b>Cek angka</b> (r = 3, s = 5): luas lingkaran besar = 25π, busur = 6π, keliling = 10π. ${fr('L','25π')} = ${fr('6π','10π')} = ${fr('3','5')}, jadi L = ${fr('3','5')} × 25π = 15π = π × 3 × 5 ✓. Sudut juring = ${fr('3','5')} × 360° = 216° (gambar memakai r : s = 3 : 5).</p>
+<p style="margin:0"><b>Luas permukaan</b> = luas alas + luas selimut = πr² + πrs = <b>πr(r + s)</b>.</p></div></div>`;
+host.insertAdjacentHTML('beforeend',html);
+const pn=host.querySelector('#kp-panel'),sv=pn.querySelector('#kp-svg'),ring=pn.querySelector('#kp-ring'),info=pn.querySelector('#kp-info');let cur=null;
+sv.querySelectorAll('[data-k]').forEach(g=>g.style.transition='opacity .25s');
+const show=k=>{cur=k;sv.querySelectorAll('[data-k]').forEach(g=>g.style.opacity=(!k||g.dataset.k===k||g.dataset.k==='all')?1:.12);ring.setAttribute('stroke-width',k==='kel'?5:2.5);ring.setAttribute('stroke-dasharray',k==='kel'?'none':'2 5');pn.querySelectorAll('[data-kp]').forEach(b=>b.classList.toggle('on',b.dataset.kp===k));info.innerHTML=k?I.find(x=>x[0]===k)[3]:'Ketuk salah satu tombol untuk menandai bagiannya pada gambar.'};
+pn.addEventListener('click',e=>{const b=e.target.closest('[data-kp]');if(b)show(cur===b.dataset.kp?null:b.dataset.kp)});
+show(null);
+})();
+</script>
+</body>
+</html>
