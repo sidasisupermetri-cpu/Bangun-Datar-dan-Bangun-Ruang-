@@ -215,7 +215,7 @@ ${slider('Sudut juring θ','data-c="theta" data-u="°"',10,180,1,60)}${slider('S
 <div id="cK"></div><div id="cL"></div><div class="info" id="cinfo"></div></div>
 <div id="t-luas" hidden><div class="st ok"><span class="ic">⭕</span><div>Pembuktian luas lingkaran<small>Lingkaran dipotong menjadi 32 juring, lalu disusun menjadi persegi panjang.</small></div></div>
 <button class="btn" id="play" style="width:100%;margin-bottom:14px">▶ Putar animasi</button>${slider('Posisi animasi','data-c="anim" data-u="%"',0,100,1,0)}<div class="fx" id="step"></div></div></aside></div></div></section>`;
-$('main').innerHTML=`<section class="view on" id="v-home"><header><small class="cr">Hak cipta &copy; 2026 Media Pembelajaran SiDaSi SuperMetri</small><h1>Bangun Datar Interaktif</h1><p>Pilih bangun datar, lalu geser kursor dan lihat bentuk, ukuran, serta rumusnya berubah saat itu juga.</p></header><div class="wrap"><div class="dash">${ALL.map(card).join('')}</div></div></section>${SH.map(viewHTML).join('')}${circleView()}`;
+$('main').innerHTML=`<section class="view on" id="v-home"><header><small class="cr">Hak cipta &copy; 2026 Media Pembelajaran SiDaSi SuperMetri</small><h1>SiDaSi SuperMetri</h1><p>Pilih bangun datar atau bangun ruang, lalu geser kursor dan lihat bentuk, ukuran, serta rumusnya berubah saat itu juga.</p></header><div class="wrap"><div class="dash">${ALL.map(card).join('')}</div></div></section>${SH.map(viewHTML).join('')}${circleView()}`;
 
 /* ── Lingkaran ──────────────────────────────────────────── */
 const C={r:6,rc:6,theta:60,phi:80,oj:-PI/2,ot:PI/2,od:0,on:new Set(UN.map(u=>u[0])),tab:'unsur',anim:0};
